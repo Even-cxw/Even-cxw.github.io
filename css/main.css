@@ -304,6 +304,19 @@ kbd {
   padding: 0.1em 0.3em;
   white-space: nowrap;
 }
+.post-body li a {
+  color: #72baa7;
+  border-bottom: 1px solid #999;
+}
+.post-body li a:hover {
+  color: #0477ab;
+}
+code {
+  color: #c7254e !important;
+  background: #f9f2f4 !important;
+  border: 1px;
+  solid: #d6d6d6;
+}
 .table-container {
   overflow: auto;
 }
@@ -1196,7 +1209,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #6fff46;
+  background: #67ffff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2168,6 +2181,14 @@ ul.breadcrumb li + li:last-child {
 }
 .tag-cloud a:hover {
   color: var(--link-hover-color) !important;
+}
+.post-body p a {
+  color: #0593d3 !important;
+  border-bottom: none;
+}
+.post-body p a:hover {
+  color: #0477ab;
+  text-decoration: underline;
 }
 .header {
   margin: 0 auto;
