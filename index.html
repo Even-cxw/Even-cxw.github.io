@@ -118,12 +118,12 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">0</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">0</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">1</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
@@ -163,7 +163,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/12/index/">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/16/vscode/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -177,7 +177,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/11/12/index/" class="post-title-link" itemprop="url">Untitled</a>
+            <a href="/2021/11/16/vscode/" class="post-title-link" itemprop="url">终端通过命令打开vscode编辑器</a>
         </h2>
 
         <div class="post-meta">
@@ -186,16 +186,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2021-11-12 10:33:35" itemprop="dateCreated datePublished" datetime="2021-11-12T10:33:35+08:00">2021-11-12</time>
+              <time title="Created: 2021-11-16 14:30:24 / Modified: 15:52:19" itemprop="dateCreated datePublished" datetime="2021-11-16T14:30:24+08:00">2021-11-16</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-15 19:55:06" itemprop="dateModified" datetime="2021-11-15T19:55:06+08:00">2021-11-15</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
+                </span>
+            </span>
 
           
 
@@ -208,7 +211,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p><img src="/images/vue-ssr-2.png"></p>
+<h2 id="mac笔记本"><a href="#mac笔记本" class="headerlink" title="mac笔记本"></a>mac笔记本</h2><pre><code>1. 打开vscode
+2. command + shift + p 打开命令面板
+3. 输入shell（选择&quot;install code command in PATH&quot;）
+4. 打开终端输入命令：code &lt;dir&gt;  (dir - 对应的文件夹路径)
+</code></pre>
+<hr>
+<h2 id="window笔记本"><a href="#window笔记本" class="headerlink" title="window笔记本"></a>window笔记本</h2><pre><code>1. 打开vscode安装位置，进入bin文件夹，复制路径 eg：E:\Microsoft VS Code\bin；
+2. 回到桌面，右键我的电脑，高级系统设置 ，环境变量，编辑path值，在原来的path后面加上eg ;E:\Microsoft VS Code\bin(英文的分号+vscode的bin路径)
+3. 打开终端输入命令：code &lt;dir&gt;  (dir - 对应的文件夹路径)
+</code></pre>
+
       
     </div>
 
@@ -292,6 +306,18 @@
           <span class="site-state-item-count">1</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
