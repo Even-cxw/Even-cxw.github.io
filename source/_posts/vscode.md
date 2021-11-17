@@ -13,7 +13,9 @@ comments: false
 2. `command + shift + p `打开命令面板
 3. 输入shell（选择"install code command in PATH"）<font color="green">【如下图】</font>
 4. 打开终端输入命令：`code <dir> ` (dir - 对应的文件夹路径)
+
 <!-- more -->
+
 ![](/images/vscode.png)
 ------
 
