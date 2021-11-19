@@ -1,13 +1,14 @@
 ---
-title: typescript + jquery
+title: typescript/webpack项目初始化
 date: 2021-11-17 14:30:24
 categories: typescript
-tags: [typescript, jqeury, webpack]
+tags: [typescript, webpack]
 comments: false
----、
+---
 
 
-> 当只做几个单页面的时候，并不需要用到其他框架，可以考虑ts+jquery+webpack简单方便,
+> 当只做几个单页面的时候，并不需要用到其他框架，可以考虑ts+jquery+webpack简单方便,[代码地址](https://github.com/Even-cxw/TypeScript/tree/main/ts05-webpack-jquery)。
+
 
 # 版本
 - node -v `v10.15.3`
@@ -32,7 +33,10 @@ comments: false
 - 新建目录proect并在当前目录执行`npm init` 一路回车，会在当前目录下生成package.json
 - 修改package.json文件，找到`scripts`对象，<font color="red">莫急、等webpack配置完才可运行</font>
 ```javascript
-
+  "dev": "cross-env NODE_ENV=sit webpack-dev-server",
+  "sit": "cross-env NODE_ENV=sit webpack",
+  "uat": "cross-env NODE_ENV=uat webpack",
+  "pat": "cross-env NODE_ENV=pat webpack"
 ```
 - 下载插件`npm install cross-env -S` 
 > cross-env作用：当我们在打包的时候需要区分**测试环境**、**生产环境**，不同环境打包配置不一样，cross-env可以自定义变量传递到node.js环境中。[官方解释](https://www.npmjs.com/package/cross-env)
@@ -76,8 +80,79 @@ process.env.NODE_ENV = 'sit'
 - 当前页面新建文件`webpack.config.js`  
 > `mode`模式可根据大家爱好自行修改，当然模式不一样，打包后的代码也不一样。
 ```javascript
-
-
+const path = require('path');
+const fs = require('fs');
+const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const actCodeUUIDSit = '7ba408f51c5c42b98133eeec145e70ca';
+const actCodeUUIDUat = 'ba408f51c5c42b98133eeec145e70ca';
+let actCodeUUID = process.env.NODE_ENV == 'sit'?actCodeUUIDSit:actCodeUUIDUat;
+let dirpath ='dist/' + process.env.NODE_ENV + '/'+ actCodeUUID;
+module.exports = {
+  mode: 'none',
+  entry: {
+    ...entryPath(__dirname+'/src/js')
+  },
+  output: {
+    path: path.resolve(__dirname, dirpath+'/js'),
+    publicPath: 'js',
+    filename: '[name].js',
+  },
+  devServer: {
+    port: 9999,
+    contentBase: 'src',
+    proxy: {
+      '/pfhd-external-gateway': {
+       target: 'http://172.29.24.150',
+       changeOrigin: true,
+       pathRewrite: {
+         '^/pfhd-external-gateway': '/pfhd-external-gateway'
+       }
+     }
+   },
+  },
+  resolve:{
+    alias: {
+      // jquery:path.resolve(__dirname, './src/js/jquery.js')
+    },
+  },
+  plugins: [
+    // new webpack.ProvidePlugin({
+    //   $:'jquery',
+    // }),
+    new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.actCodeUUID': JSON.stringify(actCodeUUID),
+    }),
+    new CopyPlugin({
+      patterns:[
+        ...copyPath(__dirname+'/src')
+      ]
+    })
+  ]
+}
+// 读取入口文件
+function entryPath(currentDirPath) {
+  let entryObj = {};
+  let arrPath = fs.readdirSync(currentDirPath)
+  arrPath.forEach((item) => {
+    entryObj[item.split('.')[0]] = path.resolve(__dirname, './src/js/'+item)
+  })
+  return entryObj;
+}
+// 读取需要copy的文件
+function copyPath(currentDirPath) {
+  let copyPathArr = [];
+  let arrPath = fs.readdirSync(currentDirPath)
+  arrPath.forEach((item) => {
+    if (item.indexOf('js') == -1 && item.indexOf('ts') == -1) {
+      let obj = {from:__dirname+'/src/'+item,to:__dirname+'/'+dirpath+'/'+item}
+      copyPathArr.push(obj);
+    }
+  })
+  return copyPathArr;
+}
 ```
 
 **1、配置文件中用到了node.js模块`path`、`fs`、`process`**
