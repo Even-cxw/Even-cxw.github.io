@@ -192,11 +192,11 @@ function base64ToBlob() {
 
 
 ### 4、如何实现blob转成base64？
-- FileReader
+- [FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
 ```javascript
 var reader = new FileReader();
-	reader.onload = function (e) {
-		callback(e.target.result);
+reader.onload = function (e) {
+	callback(e.target.result);
 }
 reader.readAsDataURL(blob);
 
