@@ -27,13 +27,14 @@
 <meta property="og:site_name" content="Even小屋">
 <meta property="og:description" content="一、下载逻辑【先区分是请求方式】 1、get请求12&#x2F;&#x2F; 直接打开下载window.open() 2、post请求 若后端返回数据为application&#x2F;octet-stream格式   application&#x2F;octet-stream: 需要转成blob对象，在通过createObjectURL转成连接。12345678&#x2F;&#x2F; res为后端返回的数据流var blob &#x3D; new Blob([&amp;">
 <meta property="og:locale">
+<meta property="og:image" content="https://even-cxw.github.io/images/blob.png">
 <meta property="og:image" content="https://even-cxw.github.io/images/download/download01.png">
 <meta property="article:published_time" content="2021-11-22T08:15:24.000Z">
-<meta property="article:modified_time" content="2021-11-23T09:25:37.785Z">
+<meta property="article:modified_time" content="2021-11-24T03:35:46.168Z">
 <meta property="article:author" content="Even">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://even-cxw.github.io/images/download/download01.png">
+<meta name="twitter:image" content="https://even-cxw.github.io/images/blob.png">
 
 <link rel="canonical" href="https://even-cxw.github.io/2021/11/22/download/">
 
@@ -123,22 +124,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">7</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">6</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">6</span></a>
-
-  </li>
-        <li class="menu-item menu-item-document">
-
-    <a href="/document/" rel="section"><i class="fa fa-align-left fa-fw"></i>文档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">8</span></a>
 
   </li>
   </ul>
@@ -199,7 +195,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-23 17:25:37" itemprop="dateModified" datetime="2021-11-23T17:25:37+08:00">2021-11-23</time>
+                <time title="Modified: 2021-11-24 11:35:46" itemprop="dateModified" datetime="2021-11-24T11:35:46+08:00">2021-11-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -342,6 +338,10 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建TypedArray实例</span></span><br><span class="line"><span class="keyword">var</span> TypedArray = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(object);</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p><strong>2、第二个参数：</strong><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob">官方文档</a>有说是<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/media/media_mimeref.asp">MIME</a>媒体类型，白话意思:”定义下载文件的后缀名”</p>
+<p><strong>3、blob</strong>是前端操作数据的核心对象，很多数据处理都需要他在中间做<code>转换</code>,如图！！！<br><img src="/images/blob.png"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/File">File</a>对象大家都很熟悉，当我们通过<code>input</code>框选择照片的时候， 可以抓取到file对象，当你在浏览器控制台中打开file对象时，会发现<font color="red">file的原型指向blob对象</font><code>file并没有定义任何api,都是继承blob对象</code>， 由此可见blob对象的重要性。</li>
+</ul>
 <hr>
 <h2 id="三、问题"><a href="#三、问题" class="headerlink" title="三、问题?"></a>三、问题?</h2><h3 id="1、blob对象MIME参数可以定义后缀名，a标签的download也可以定义后缀名，哪个优先级更高"><a href="#1、blob对象MIME参数可以定义后缀名，a标签的download也可以定义后缀名，哪个优先级更高" class="headerlink" title="1、blob对象MIME参数可以定义后缀名，a标签的download也可以定义后缀名，哪个优先级更高?"></a>1、blob对象MIME参数可以定义后缀名，a标签的download也可以定义后缀名，哪个优先级更高?</h3><blockquote>
 <p><code>download</code>的优先级更高<br>download没有定义后缀名的时候以<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/media/media_mimeref.asp">MIME</a>为准</p>
@@ -395,7 +395,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">base64ToBlob</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">// mime类型</span></span><br><span class="line">	<span class="keyword">var</span> mimeType = base64URI.split(<span class="string">&#x27;,&#x27;</span>)[<span class="number">0</span>].split(<span class="string">&#x27;:&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;;&#x27;</span>)[<span class="number">0</span>]; </span><br><span class="line">	<span class="comment">// 解码base64</span></span><br><span class="line">	<span class="keyword">var</span> atobBase64 = atob(base64URI.split(<span class="string">&#x27;,&#x27;</span>)[<span class="number">1</span>]); <span class="comment">//base64 解码</span></span><br><span class="line">	<span class="comment">// 创建二进制缓冲区，只能看不能操作</span></span><br><span class="line">	<span class="keyword">var</span> arrayBuffer = <span class="keyword">new</span> <span class="built_in">ArrayBuffer</span>(atobBase64.length);</span><br><span class="line">	<span class="comment">// 创建可以操作视图缓冲区数据的函数api - 只有这样才可以操作数据。</span></span><br><span class="line">	<span class="keyword">var</span> typeArray01 = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(arrayBuffer)</span><br><span class="line">	<span class="comment">// 操作类型数组，将解码barse64数据插入类数组中。</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; atobBase64.length; i++) &#123;</span><br><span class="line">		typeArray01[i] = atobBase64.charCodeAt(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">new</span> Blob([typeArray01], &#123;<span class="attr">type</span>: mimeType&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 <h3 id="4、如何实现blob转成base64？"><a href="#4、如何实现blob转成base64？" class="headerlink" title="4、如何实现blob转成base64？"></a>4、如何实现blob转成base64？</h3><ul>
-<li>FileReader<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">	reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">		callback(e.target.result);</span><br><span class="line">&#125;</span><br><span class="line">reader.readAsDataURL(blob);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader">FileReader</a><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">	callback(e.target.result);</span><br><span class="line">&#125;</span><br><span class="line">reader.readAsDataURL(blob);</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 </ul>
 
     </div>
@@ -418,7 +418,10 @@
     <a href="/2021/11/17/typescript-webpack/" rel="prev" title="typescript/webpack项目初始化">
       <i class="fa fa-chevron-left"></i> typescript/webpack项目初始化
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/26/js-animation/" rel="next" title="精灵图实现动画效果">
+      精灵图实现动画效果 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -491,20 +494,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
