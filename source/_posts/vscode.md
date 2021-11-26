@@ -1,12 +1,18 @@
 ---
-title: 通过终端命令打开vscode编辑器
+title: vscode编辑器
 date: 2021-11-16 14:30:24
 categories: vscode
 tags: [vscode]
 comments: false
 ---
 
-
+## vscode下载
+- [VScode官方](https://code.visualstudio.com/)因为连接境外下载速度很慢，[解决方案](https://blog.csdn.net/m0_55548148/article/details/115587339)
+```javascript
+//外网地址：https://az764295.vo.msecnd.net/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCode-darwin-universal.zip
+//内网地址：https://vscode.cdn.azure.cn/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCode-darwin-universal.zip
+//替换连接：vscode.cdn.azure.cn
+```
 
 ##  mac笔记本
 1. 打开vscode
