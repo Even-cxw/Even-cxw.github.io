@@ -98,6 +98,10 @@ var TypedArray = new Uint8Array(object);
 
 **2、第二个参数：**[官方文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob)有说是[MIME](https://www.w3school.com.cn/media/media_mimeref.asp)媒体类型，白话意思:"定义下载文件的后缀名"
 
+**3、blob**是前端操作数据的核心对象，很多数据处理都需要他在中间做`转换`,如图！！！
+![](/images/blob.png)
+- [File](https://developer.mozilla.org/zh-CN/docs/Web/API/File)对象大家都很熟悉，当我们通过`input`框选择照片的时候， 可以抓取到file对象，当你在浏览器控制台中打开file对象时，会发现<font color="red">file的原型指向blob对象</font>`file并没有定义任何api,都是继承blob对象`， 由此可见blob对象的重要性。
+
 ----
 
 ## 三、问题?
