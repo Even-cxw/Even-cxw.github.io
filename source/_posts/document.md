@@ -37,7 +37,7 @@ comments: false
 - [node](http://nodejs.cn/api/)
 - [react](https://reactjs.org/)
 - [schema](https://schema.org.cn/)
-- [个人博客](https://even-cxw.github.io/)
+- [Even博客](https://even-cxw.github.io/)
 - [nexT主题](https://theme-next.iissnan.com/getting-started.html)
 - [nexT操作文档](https://hexo.io/zh-cn/docs/)
 - [nexT操作文档-个人01](https://www.jianshu.com/p/f054333ac9e6)
@@ -45,7 +45,10 @@ comments: false
 - [jszip-utils](http://stuk.github.io/jszip-utils/) 
 - [jsZip文档](https://stuk.github.io/jszip/documentation/examples.html)
 - [fontawesome图标库-英文版](https://fontawesome.com/)
-- [gulp](https://www.gulpjs.com.cn/docs/getting-started/quick-start/)
+- [gulp官方文档](https://www.gulpjs.com.cn/docs/getting-started/quick-start/)
+- [gulp中文文档](https://github.com/nimoc/gulp-book/blob/master/chapter2.md)
+- [AnnieJS-github](https://github.com/flash2x/AnnieJS)
+- [babel中文官网](https://babel.docschina.org/)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
