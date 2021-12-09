@@ -22,14 +22,14 @@
 
   <meta name="description" content="如图！当UI给如下雪碧图，需要我们实现喇叭播放效果，并且可以控制播放暂停,我们只需要不停切换雪碧图位置来实现动画播放效果。  铺垫生成精灵图JSON网址 地址良心网站，可以将我们雪碧图尺寸大小、x,y位置以json的格式返回给我们(如下！！！) 是不是很惊喜，我们不需要在管ui要数据，不管给什么图我们只要生成json，然后读取数据值实现动画效果，2秒钟搞定动画。12345678910111213">
 <meta property="og:type" content="article">
-<meta property="og:title" content="精灵图实现动画效果">
+<meta property="og:title" content="requestAnimationFrame">
 <meta property="og:url" content="https://even-cxw.github.io/2021/11/26/js-animation/index.html">
 <meta property="og:site_name" content="Even小屋">
 <meta property="og:description" content="如图！当UI给如下雪碧图，需要我们实现喇叭播放效果，并且可以控制播放暂停,我们只需要不停切换雪碧图位置来实现动画播放效果。  铺垫生成精灵图JSON网址 地址良心网站，可以将我们雪碧图尺寸大小、x,y位置以json的格式返回给我们(如下！！！) 是不是很惊喜，我们不需要在管ui要数据，不管给什么图我们只要生成json，然后读取数据值实现动画效果，2秒钟搞定动画。12345678910111213">
 <meta property="og:locale">
 <meta property="og:image" content="https://even-cxw.github.io/images/ic_voice.png">
 <meta property="article:published_time" content="2021-11-26T08:15:24.000Z">
-<meta property="article:modified_time" content="2021-11-26T02:39:06.938Z">
+<meta property="article:modified_time" content="2021-12-06T06:38:28.357Z">
 <meta property="article:author" content="Even">
 <meta property="article:tag" content="javascript">
 <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>精灵图实现动画效果 | Even小屋</title>
+  <title>requestAnimationFrame | Even小屋</title>
   
 
 
@@ -123,17 +123,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">8</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">7</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">8</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">9</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">11</span></a>
 
   </li>
   </ul>
@@ -177,7 +177,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          精灵图实现动画效果
+          requestAnimationFrame
         </h1>
 
         <div class="post-meta">
@@ -186,10 +186,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-11-26 16:15:24 / Modified: 10:39:06" itemprop="dateCreated datePublished" datetime="2021-11-26T16:15:24+08:00">2021-11-26</time>
+              <time title="Created: 2021-11-26 16:15:24" itemprop="dateCreated datePublished" datetime="2021-11-26T16:15:24+08:00">2021-11-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-06 14:38:28" itemprop="dateModified" datetime="2021-12-06T14:38:28+08:00">2021-12-06</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -335,20 +341,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
