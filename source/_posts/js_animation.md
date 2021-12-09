@@ -1,5 +1,5 @@
 ---
-title: 精灵图实现动画效果
+title: requestAnimationFrame
 date: 2021-11-26 16:15:24
 categories: javascript
 tags: [javascript]

@@ -49,6 +49,8 @@ comments: false
 - [gulp中文文档](https://github.com/nimoc/gulp-book/blob/master/chapter2.md)
 - [AnnieJS-github](https://github.com/flash2x/AnnieJS)
 - [babel中文官网](https://babel.docschina.org/)
+- [canvas-MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API)
+- [canvas-MDN-content](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/getContext)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
