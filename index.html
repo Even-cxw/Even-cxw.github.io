@@ -123,12 +123,12 @@
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">8</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a>
 
   </li>
   </ul>
@@ -154,6 +154,193 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/20/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/20/webpack/" class="post-title-link" itemprop="url">webpack</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-20 16:15:24" itemprop="dateCreated datePublished" datetime="2021-12-20T16:15:24+08:00">2021-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-20 15:26:05" itemprop="dateModified" datetime="2022-01-20T15:26:05+08:00">2022-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<blockquote>
+<p>webpack是架构之路的绊脚石, webpack5跟webpack4比做了很大的提升，既要了解不同之处又要区分如何使用。</p>
+</blockquote>
+<blockquote>
+<p>目前各种框架(vue-cli2、vue-cli3、react等)又<strong>集成</strong><code>webpack</code>,导致webpack配置乱套，很是<code>反感</code>，估计这篇文章会很长请耐心开完。</p>
+</blockquote>
+<p><code>基础配置</code>就不讲解了，说一些自己学习中碰到的<code>坑</code>！</p>
+<hr>
+<ol>
+<li>文件中导出了一个函数 <a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/output/#outputlibrary">https://webpack.docschina.org/configuration/output/#outputlibrary</a></li>
+</ol>
+<h1 id="webpack环境搭建"><a href="#webpack环境搭建" class="headerlink" title="webpack环境搭建"></a>webpack环境搭建</h1><h2 id="webpack全局安装"><a href="#webpack全局安装" class="headerlink" title="webpack全局安装"></a>webpack全局安装</h2><ul>
+<li><code>npm install webpack -g</code></li>
+<li>当我们执行<code>webpack --config &#123;文件名&#125;</code> 命令的时候，具体做了哪些？<ol>
+<li>寻找<code>node_modules</code>文件下的<code>.bin</code>文件</li>
+<li><code>.bin</code>在指向真实的配置文件包</li>
+<li>配置文件会作为webpack(config)：<code>config</code>参数对象传递给webpack;<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js 文件</span></span><br><span class="line"><span class="comment">// 会将module.exports暴露的模块传递给webpack</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>node命令执行<code>node &#123;文件名字&#125;</code>,局部安装webpack并引入执行配置对象即可</li>
+</ol>
+<ul>
+<li>这个就很容易理解，直接让node执行配置文件即可，<a target="_blank" rel="noopener" href="https://webpack.docschina.org/api/node/">如何开启webpack配置文件</a> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// node.js文件</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line">webpack(&#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/20/webpack/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/10/ssr/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/10/ssr/" class="post-title-link" itemprop="url">ssr</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-10 16:15:24" itemprop="dateCreated datePublished" datetime="2021-12-10T16:15:24+08:00">2021-12-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-28 16:27:41" itemprop="dateModified" datetime="2021-12-28T16:27:41+08:00">2021-12-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>如果想成为大前端，<code>ssr</code>可以说是成功路上的绊脚石。</p>
+</blockquote>
+<h2 id="ssr学习"><a href="#ssr学习" class="headerlink" title="ssr学习"></a>ssr学习</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6890810591968477191">ssr文章1</a></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -189,7 +376,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-09 11:37:48" itemprop="dateModified" datetime="2021-12-09T11:37:48+08:00">2021-12-09</time>
+                <time title="Modified: 2021-12-09 14:22:14" itemprop="dateModified" datetime="2021-12-09T14:22:14+08:00">2021-12-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -486,7 +673,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-06 14:38:28" itemprop="dateModified" datetime="2021-12-06T14:38:28+08:00">2021-12-06</time>
+                <time title="Modified: 2021-12-28 16:27:16" itemprop="dateModified" datetime="2021-12-28T16:27:16+08:00">2021-12-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -896,175 +1083,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2019/11/18/Vlog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/18/Vlog/" class="post-title-link" itemprop="url">Vlog</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-18 14:30:24" itemprop="dateCreated datePublished" datetime="2019-11-18T14:30:24+08:00">2019-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-22 18:07:17" itemprop="dateModified" datetime="2021-11-22T18:07:17+08:00">2021-11-22</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vlog/" itemprop="url" rel="index"><span itemprop="name">Vlog</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Vlog构思笔记"><a href="#Vlog构思笔记" class="headerlink" title="Vlog构思笔记"></a>Vlog构思笔记</h1><ol>
-<li>构思好后在进行拍摄</li>
-<li>尽量半个月出一个视频</li>
-</ol>
-<h2 id="Vlog01"><a href="#Vlog01" class="headerlink" title="Vlog01"></a>Vlog01</h2><blockquote>
-<p>一个爆米花引起的血案，开启了自己的第一个vlog。</p>
-</blockquote>
-<h3 id="不足"><a href="#不足" class="headerlink" title="不足"></a>不足</h3><ul>
-<li>没有整体构思，按照视频瞎来。</li>
-<li>音频没有卡点。</li>
-</ul>
-<h2 id="Vlog02"><a href="#Vlog02" class="headerlink" title="Vlog02"></a>Vlog02</h2><blockquote>
-<p>个人介绍</p>
-</blockquote>
-<h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><ol>
-<li>hello,大家好我叫Even，这是我第二个Vlog短视频。 [抖音截图]</li>
-<li>为什么要做短视频呢，跟个人性格有关系，喜欢一些新鲜事物挑战自己，也跟自己的职业有关系吧，[程序员图]</li>
-<li>做短视频的目的呢: 算是副业吧！为了记录自己的生活，等老了-看到自己的杰作，留下美好的回忆。 <h3 id="设备介绍"><a href="#设备介绍" class="headerlink" title="设备介绍"></a>设备介绍</h3></li>
-<li>目前设备的话，相机是管朋友借的、支架的话自己买的-某宝100多、电脑自己本身就有。最大的成本就是个人时间。 [图片]</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2019/11/17/mac/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/17/mac/" class="post-title-link" itemprop="url">Mac</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-11-17 14:30:24" itemprop="dateCreated datePublished" datetime="2019-11-17T14:30:24+08:00">2019-11-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-17 14:06:05" itemprop="dateModified" datetime="2021-11-17T14:06:05+08:00">2021-11-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mac/" itemprop="url" rel="index"><span itemprop="name">Mac</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>mac截图快捷键 <code>command + shift + 5</code></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1134,14 +1152,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -1179,7 +1197,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

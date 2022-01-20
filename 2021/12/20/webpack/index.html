@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"even-cxw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="webpack是架构之路的绊脚石, webpack5跟webpack4比做了很大的提升，既要了解不同之处又要区分如何使用。   目前各种框架(vue-cli2、vue-cli3、react等)又集成webpack,导致webpack配置乱套，很是反感，估计这篇文章会很长请耐心开完。  基础配置就不讲解了，说一些自己学习中碰到的坑！   文件中导出了一个函数 https:&#x2F;&#x2F;webpack.do">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack">
+<meta property="og:url" content="https://even-cxw.github.io/2021/12/20/webpack/index.html">
+<meta property="og:site_name" content="Even小屋">
+<meta property="og:description" content="webpack是架构之路的绊脚石, webpack5跟webpack4比做了很大的提升，既要了解不同之处又要区分如何使用。   目前各种框架(vue-cli2、vue-cli3、react等)又集成webpack,导致webpack配置乱套，很是反感，估计这篇文章会很长请耐心开完。  基础配置就不讲解了，说一些自己学习中碰到的坑！   文件中导出了一个函数 https:&#x2F;&#x2F;webpack.do">
+<meta property="og:locale">
+<meta property="og:image" content="https://even-cxw.github.io/images/library.jpg">
+<meta property="article:published_time" content="2021-12-20T08:15:24.000Z">
+<meta property="article:modified_time" content="2022-01-20T07:26:05.901Z">
+<meta property="article:author" content="Even">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://even-cxw.github.io/images/library.jpg">
+
+<link rel="canonical" href="https://even-cxw.github.io/2021/12/20/webpack/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>webpack | Even小屋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Even小屋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">美好生活，一路向往</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/20/webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          webpack
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-20 16:15:24" itemprop="dateCreated datePublished" datetime="2021-12-20T16:15:24+08:00">2021-12-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-01-20 15:26:05" itemprop="dateModified" datetime="2022-01-20T15:26:05+08:00">2022-01-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index"><span itemprop="name">webpack</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<blockquote>
+<p>webpack是架构之路的绊脚石, webpack5跟webpack4比做了很大的提升，既要了解不同之处又要区分如何使用。</p>
+</blockquote>
+<blockquote>
+<p>目前各种框架(vue-cli2、vue-cli3、react等)又<strong>集成</strong><code>webpack</code>,导致webpack配置乱套，很是<code>反感</code>，估计这篇文章会很长请耐心开完。</p>
+</blockquote>
+<p><code>基础配置</code>就不讲解了，说一些自己学习中碰到的<code>坑</code>！</p>
+<hr>
+<ol>
+<li>文件中导出了一个函数 <a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/output/#outputlibrary">https://webpack.docschina.org/configuration/output/#outputlibrary</a></li>
+</ol>
+<h1 id="webpack环境搭建"><a href="#webpack环境搭建" class="headerlink" title="webpack环境搭建"></a>webpack环境搭建</h1><h2 id="webpack全局安装"><a href="#webpack全局安装" class="headerlink" title="webpack全局安装"></a>webpack全局安装</h2><ul>
+<li><code>npm install webpack -g</code></li>
+<li>当我们执行<code>webpack --config &#123;文件名&#125;</code> 命令的时候，具体做了哪些？<ol>
+<li>寻找<code>node_modules</code>文件下的<code>.bin</code>文件</li>
+<li><code>.bin</code>在指向真实的配置文件包</li>
+<li>配置文件会作为webpack(config)：<code>config</code>参数对象传递给webpack;<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js 文件</span></span><br><span class="line"><span class="comment">// 会将module.exports暴露的模块传递给webpack</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>node命令执行<code>node &#123;文件名字&#125;</code>,局部安装webpack并引入执行配置对象即可</li>
+</ol>
+<ul>
+<li>这个就很容易理解，直接让node执行配置文件即可，<a target="_blank" rel="noopener" href="https://webpack.docschina.org/api/node/">如何开启webpack配置文件</a> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// node.js文件</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>)</span><br><span class="line">webpack(&#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<span id="more"></span>
+
+<h2 id="切换webpack版本"><a href="#切换webpack版本" class="headerlink" title="切换webpack版本"></a>切换webpack版本</h2><ul>
+<li>现在<code>webpack5</code>已出，但是好多公司都在用<code>webpack3</code>俩者都要兼顾会使用。 </li>
+<li>我全局安装的是webpack5, 要如何切换webpack3进行学习呢？<blockquote>
+<p>查看当前环境版本 <code>webpack -v</code></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">webpack: <span class="number">5.66</span><span class="number">.0</span></span><br><span class="line">webpack-cli: <span class="number">4.9</span><span class="number">.1</span></span><br><span class="line">webpack-dev-server <span class="number">3.11</span><span class="number">.2</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当前文件夹下<code>package.json</code></p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;devDependencies&quot;</span>: &#123;</span><br><span class="line"><span class="attr">&quot;webpack&quot;</span>: <span class="string">&quot;^3.12.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>配置文件webpack.conig.js</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.conig.js文件</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&quot;webpack&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> packagejson = <span class="built_in">require</span>(<span class="string">&quot;./package.json&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> config = &#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">first</span>: <span class="string">&#x27;./src/first.js&#x27;</span>,</span><br><span class="line">        <span class="attr">second</span>: <span class="string">&#x27;./src/second.js&#x27;</span>,</span><br><span class="line">        <span class="attr">vendor</span>: <span class="built_in">Object</span>.keys(packagejson.dependencies)<span class="comment">//获取生产环境依赖的库</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">path</span>: path.resolve(__dirname,<span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</span><br><span class="line">            <span class="attr">name</span>: <span class="string">&#x27;vendor&#x27;</span>,</span><br><span class="line">            <span class="attr">filename</span>: <span class="string">&#x27;[name].js&#x27;</span> </span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = config;</span><br></pre></td></tr></table></figure></li>
+<li>碰到的问题， 在当前文件夹下<code>终端</code>执行 <code>webpack --config weback.conig.js</code> 一直报错<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TypeError: compiler.plugin is not a function</span><br><span class="line">    at CommonsChunkPlugin.apply (/Users/even/Even/continue/packagingTools/webpack-study/webpack-CommonsChunkPlugin/CommonsChunkPlugin01/node_modules/webpack/lib/optimize/CommonsChunkPlugin.js:88:12)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>仔细看第二行 指向了webpack5全局的包，所以报错高版本并不兼容3，切换全局webpack成本有点大。</p>
+</blockquote>
+</li>
+<li>突然想到如果在<code>package.json</code>里面执行命令，是否会指向当前文件的webpack3版本呢？ 果然真的成功了。。。。。<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;build&quot;</span>: <span class="string">&quot;webpack --config webpack.config.js&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h1 id="webpack常规配置"><a href="#webpack常规配置" class="headerlink" title="webpack常规配置"></a>webpack常规配置</h1><h2 id="mode的作用"><a href="#mode的作用" class="headerlink" title="mode的作用"></a>mode的作用</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/mode/">官网的解释</a>就不在重复了. 直接看生成的代码<a href="">gitlab代码</a><blockquote>
+<p>要打包的代码</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;我是a模块&#x27;</span>)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;<span class="keyword">return</span> <span class="string">&#x27;111&#x27;</span>&#125;</span><br><span class="line">a();</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>production</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;我是a模块&quot;</span>),<span class="built_in">window</span>.even=&#123;&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>可以看出代码几乎没怎么变，出来抛出变量之外</li>
+</ul>
+<blockquote>
+<p>development</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function">() =&gt;</span> &#123; </span><br><span class="line"><span class="keyword">var</span> __webpack_modules__ = (&#123;</span><br><span class="line"><span class="string">&quot;./src/a.js&quot;</span>: (<span class="function">() =&gt;</span> &#123;</span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&quot;console.log(&#x27;我是a模块&#x27;)\nfunction a() &#123;return &#x27;111&#x27;&#125;\na();\n\n//# sourceURL=webpack://even/./src/a.js?&quot;</span>);&#125;)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> __webpack_exports__ = &#123;&#125;;</span><br><span class="line">__webpack_modules__[<span class="string">&quot;./src/a.js&quot;</span>]();</span><br><span class="line"><span class="built_in">window</span>.even = __webpack_exports__;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>开发模式下代码完全不一样了，把我们的代码变成字符串了，这又是为什么呢，</li>
+<li>其实是为了方便我们代码的热更新，以及模块化引入。 大家如果对eval不理解可以去看看我的上一篇<a href="">文章</a></li>
+</ul>
+<h2 id="externals"><a href="#externals" class="headerlink" title="externals"></a>externals</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/externals/">externals</a>:防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。</li>
+</ul>
+<h2 id="library、libraryTarget作用"><a href="#library、libraryTarget作用" class="headerlink" title="library、libraryTarget作用"></a>library、libraryTarget作用</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108216236">参考文章</a><br><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/mode/">官网解释</a><br><a href="">个人github代码</a> 不多说直接上图</p>
+</blockquote>
+<ul>
+<li>library : 全局使用的名称变量</li>
+<li>libraryTarget : 暴露方式，是commonjs、commonjs2、umd还是this、var等<br><img src="/images/library.jpg"></li>
+</ul>
+<h2 id="多个webpack配置合并"><a href="#多个webpack配置合并" class="headerlink" title="多个webpack配置合并"></a>多个webpack配置合并</h2><ul>
+<li>当使用<code>webpack-merge</code>合并代码时,第二个参数会覆盖第一个。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack-base.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunckhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// webpack01.js</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123;merge&#125; = <span class="built_in">require</span>(<span class="string">&#x27;webpack-merge&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> base = <span class="built_in">require</span>(<span class="string">&#x27;./webpack-base.js&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> webpackConfig = merge(base,&#123;</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunckhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist2&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line">webpack(webpackConfig,<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>执行命令 node node.js</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><h3 id="cross-env-插件"><a href="#cross-env-插件" class="headerlink" title="cross-env 插件"></a>cross-env 插件</h3><ul>
+<li>以下命令会将环境变量<code>APP_ID</code>的值 插入<code>process.env</code>对象中<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下载插件</span></span><br><span class="line">npm install cross-env -S</span><br><span class="line"><span class="comment">// 使用 在命令行中</span></span><br><span class="line">cross-env APP_ID=<span class="number">111111</span> node ./test.js</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="npm-run-命令-–APP-ID-111111"><a href="#npm-run-命令-–APP-ID-111111" class="headerlink" title="npm run {命令} –APP_ID=111111"></a>npm run {命令} –APP_ID=111111</h3><ul>
+<li>也可以通过npm方式插入环境变量-执行命令<code>npm run dev --APP_ID=111111</code><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json文件下的</span></span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;dev&quot;</span>: <span class="string">&quot;node ./test.js&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>--</code>:代表前缀<code>npm_config_</code><br><code>APP_ID</code>转移成小写，最后会看到属性名为 <code>npm_config_app_id</code>,值为<code>11111</code><br>会将环境变量插入<code>process.env</code>对象中</p>
+</blockquote>
+</li>
+<li>当然也可以放多个参数如 <code>npm run dev --APP_ID=111111 --APP=22222</code>等</li>
+</ul>
+<h2 id="如何删除文件"><a href="#如何删除文件" class="headerlink" title="如何删除文件"></a>如何删除文件</h2><h3 id="rimraf"><a href="#rimraf" class="headerlink" title="rimraf"></a>rimraf</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/rimraf">npm包</a><code>rimraf</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// node包 代码</span></span><br><span class="line"><span class="keyword">const</span> rm = <span class="built_in">require</span>(<span class="string">&#x27;rimraf&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line">rm(path.join(__dirname,<span class="string">&#x27;./dist/index01.js&#x27;</span>),<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="clean-webpack-plugin"><a href="#clean-webpack-plugin" class="headerlink" title="clean-webpack-plugin"></a>clean-webpack-plugin</h3></li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/clean-webpack-plugin">webpack插件</a><code>clean-webpack-plugin</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack插件代码</span></span><br><span class="line"><span class="keyword">const</span> &#123;CleanWebpackPlugin&#125; = <span class="built_in">require</span>(<span class="string">&#x27;clean-webpack-plugin&#x27;</span>);</span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>俩者差距还是很大的，一个是node包好处是可以删除任意文件任意目录。一个是webpack插件只能删除打包的路径并全量删除。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="webpack优化"><a href="#webpack优化" class="headerlink" title="webpack优化"></a>webpack优化</h1><h2 id="CommonsChunkPlugin"><a href="#CommonsChunkPlugin" class="headerlink" title="CommonsChunkPlugin"></a>CommonsChunkPlugin</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012828879">文章中大佬写的和很详细</a>,他是关于webapck3的相关配置；</li>
+<li><a href="">分离出第三方库、自定义公共模块、webpack运行文件</a></li>
+<li><a href="">单独分离出第三方库、自定义公共模块、webpack运行文件</a></li>
+<li><a href="">抽离第三方库和自定义公共模块</a></li>
+<li><a href=""></a></li>
+</ul>
+<h2 id="多个入口文件合并"><a href="#多个入口文件合并" class="headerlink" title="多个入口文件合并"></a>多个入口文件合并</h2><ol>
+<li>在a.js 引入b.js, webpack打包的时候自动会合成<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">import</span> a <span class="keyword">from</span> <span class="string">&#x27;./b.js&#x27;</span></span><br><span class="line"><span class="comment">// 配置文件只有a入口就可</span></span><br><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;node&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;bunld.js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname,<span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>配置入口的时候多个入口<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;node&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: [<span class="string">&#x27;./src/a.js&#x27;</span>, <span class="string">&#x27;./src/b.js&#x27;</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;bunld.js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname,<span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="多个入口文件分别打包"><a href="#多个入口文件分别打包" class="headerlink" title="多个入口文件分别打包"></a>多个入口文件分别打包</h2><ul>
+<li>其实分别打包文件就是将<code>entry</code>变成对象而已，是不是很简单</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;node&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">a</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">        <span class="attr">b</span>: <span class="string">&#x27;./src/b.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name].[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname,<span class="string">&#x27;./dist&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="webpack插件"><a href="#webpack插件" class="headerlink" title="webpack插件"></a>webpack插件</h1><h2 id="DefinePlugin-定义环境变量"><a href="#DefinePlugin-定义环境变量" class="headerlink" title="DefinePlugin - 定义环境变量"></a>DefinePlugin - 定义环境变量</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/define-plugin#root">webpack.DefinePlugin</a>:编译时将你代码中的变量替换为其他值或表达式<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js文件</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a文件&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> a = NAME;</span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;Even&#x27;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 打包好后的文件</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a文件&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> a = Even;</span><br></pre></td></tr></table></figure></li>
+<li>会搜索打包文件变量<code>NAME</code>替换成<code>Even</code>变量。此时代码会报错，因为<code>let a = Even;</code>并没有定义。</li>
+<li>如果想让<code>Even</code>是字符串请如下配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&quot;&#x27;Even&#x27;&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="ExtractTextplugin-文件提取"><a href="#ExtractTextplugin-文件提取" class="headerlink" title="ExtractTextplugin - 文件提取"></a>ExtractTextplugin - 文件提取</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/extract-text-webpack-plugin">ExtractTextplugin</a></li>
+</ul>
+<h1 id="webpack解析器"><a href="#webpack解析器" class="headerlink" title="webpack解析器"></a>webpack解析器</h1><h2 id="webpack-loader"><a href="#webpack-loader" class="headerlink" title="webpack-loader"></a>webpack-loader</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.webpackjs.com/loaders/url-loader/">loader</a>官网会发现loader大概有7个模块,<strong>1、文件，2、JSON，3、转换编译，4、模板，5、样式，6、清理和测试，7、框架</strong></li>
+<li>webpack因为只识别<code>js</code>文件，所以需要这些loader来处理文件转成js,个个大神的开源代码和维护都在社区有明显标注</li>
+</ul>
+<h3 id="vue-loader"><a href="#vue-loader" class="headerlink" title="vue-loader"></a>vue-loader</h3><ul>
+<li>细心的朋友会发现<a target="_blank" rel="noopener" href="https://vue-loader.vuejs.org/zh/">vue-loader</a>并不在上面<a target="_blank" rel="noopener" href="https://www.webpackjs.com/loaders/url-loader/">webpack-loader</a>里面, <code>why?</code>.</li>
+<li><strong>个人理解</strong>: <code>.vue</code>是复杂的文件，文档loader都是处理单个文件,比如<code>.json</code>文件里面全是json数据，而<code>.vue</code>里面有三种<strong>1.style,2.script,3.html</strong>。</li>
+<li>所以：为了把<code>vue</code>文件拆分成loader<code>（如：style-loader、html-loader、script-loader）</code>能够解析的文件,才有了<code>vue-loader</code>插件。<a target="_blank" rel="noopener" href="https://vue-loader.vuejs.org/zh/">单独的配置文档</a><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="comment">// 所有的vue项目，这个插件是必不可少的</span></span><br><span class="line"><span class="keyword">const</span> &#123; VueLoaderPlugin &#125; = <span class="built_in">require</span>(<span class="string">&#x27;vue-loader&#x27;</span>)</span><br><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> VueLoaderPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>完全理解设计者的初衷，一个页面写所有的js、css、html真的很炫酷，不向其他开发者为了显示自己所谓的高端操作，<code>解耦后的代码</code>真的很难下咽,一个函数能搞定的事情非要给你弄三个文件，6个函数。。。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="url-loader"><a href="#url-loader" class="headerlink" title="url-loader"></a>url-loader</h3><ul>
+<li>看到webpack代码,不是很理解<code>limit,name的作用</code>，于是去webpack官网找了很久。。。。才发现他是loader的配置。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line"><span class="attr">test</span>: <span class="regexp">/\.(png|jpe?g|gif|svg)(\?.*)?$/</span>,</span><br><span class="line">loader: <span class="string">&#x27;url-loader&#x27;</span>,</span><br><span class="line">    <span class="attr">options</span>: &#123;</span><br><span class="line">        <span class="attr">limit</span>: <span class="number">10000</span>,</span><br><span class="line">        <span class="attr">name</span>: path.join(<span class="string">&quot;../build&quot;</span>, APP_ID, <span class="string">&#x27;img/[name].[hash:7].[ext]&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li>limit:低于指定的限制时，可以返回一个 DataURL。</li>
+<li>name:这个参数让我很困惑,url-loader并没有对此字段做解释，查了(url-loader)[<a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/file-loader]%E4%B9%8B%E5%90%8E%E6%89%8D%E6%89%BE%E5%88%B0">https://github.com/webpack-contrib/file-loader]之后才找到</a>.</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/10/ssr/" rel="prev" title="ssr">
+      <i class="fa fa-chevron-left"></i> ssr
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">webpack环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">webpack全局安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2webpack%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">切换webpack版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E5%B8%B8%E8%A7%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">webpack常规配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mode%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">mode的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#externals"><span class="nav-number">2.2.</span> <span class="nav-text">externals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#library%E3%80%81libraryTarget%E4%BD%9C%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">library、libraryTarget作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AAwebpack%E9%85%8D%E7%BD%AE%E5%90%88%E5%B9%B6"><span class="nav-number">2.4.</span> <span class="nav-text">多个webpack配置合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.5.</span> <span class="nav-text">设置环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-env-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.5.1.</span> <span class="nav-text">cross-env 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-run-%E5%91%BD%E4%BB%A4-%E2%80%93APP-ID-111111"><span class="nav-number">2.5.2.</span> <span class="nav-text">npm run {命令} –APP_ID&#x3D;111111</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">2.6.</span> <span class="nav-text">如何删除文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rimraf"><span class="nav-number">2.6.1.</span> <span class="nav-text">rimraf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clean-webpack-plugin"><span class="nav-number">2.6.2.</span> <span class="nav-text">clean-webpack-plugin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">webpack优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonsChunkPlugin"><span class="nav-number">3.1.</span> <span class="nav-text">CommonsChunkPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6"><span class="nav-number">3.2.</span> <span class="nav-text">多个入口文件合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%88%86%E5%88%AB%E6%89%93%E5%8C%85"><span class="nav-number">3.3.</span> <span class="nav-text">多个入口文件分别打包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">webpack插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DefinePlugin-%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.</span> <span class="nav-text">DefinePlugin - 定义环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExtractTextplugin-%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96"><span class="nav-number">4.2.</span> <span class="nav-text">ExtractTextplugin - 文件提取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">webpack解析器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-loader"><span class="nav-number">5.1.</span> <span class="nav-text">webpack-loader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-loader"><span class="nav-number">5.1.1.</span> <span class="nav-text">vue-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-loader"><span class="nav-number">5.1.2.</span> <span class="nav-text">url-loader</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Even</p>
+  <div class="site-description" itemprop="description">爱一切</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Even-cxw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Even-cxw" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Even</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
