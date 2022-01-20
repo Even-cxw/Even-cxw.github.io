@@ -84,106 +84,135 @@ window.requestAnimationFrame(function fn(DOMHighResTimeStamp) {
 });
 ```
 
-## 代码如下
+### 代码如下地址
 - [github地址](https://github.com/Even-cxw/demo/tree/main/%E9%9B%AA%E7%A2%A7%E5%8A%A8%E7%94%BB%E5%9B%BE)
+
+
+----
+
+## 变速
+
+### 如何控制变速呢?
+> 当我们做九宫格或者其他动画的时候某些`动画需要由快到慢`等执行,直接看代码解析
 ```javascript
- // 生成精灵图JSON网址: https://www.leshylabs.com/apps/sstool/;
-  /**
-   * @desc 动画函数，移动雪碧图
-   * @param {Element} dom 需要插入的dom
-   * @param {string} key 雪碧图名称
-   * @param {number} speed 动画频率/毫秒
-   */
-  class AnimationHelp {
-    constructor(dom, key, speed) {
-      // 记录动画开启/结束状态
-      this.isStart = false;
-      // 存雪碧图的宽高、x\y坐标点。
-      this.imageAttribute = {};
-      // 当前时间
-      this.startTime = window.performance.now();
-      // 当前动画x,y下角标
-      this.nowFramesIndex = 0;
-      this.dom = dom;
-      this.speed = speed;
-      this.imageUrl = "./static/" + key + ".png";
-      this.getJSONData(key);
-    }
+// 循环执行render函数
+function render(timestamp) {
+  // elapsedTime上一次执行的时间间隔
+  const elapsedTime = timestamp - startTime;
+  // 如果在speed之外，将执行条件语句里的函数
+  if (elapsedTime > speed) {
+    startTime = timestamp;
+    // 动画执行逻辑
+    rotate()
+  }
+  timer = window.requestAnimationFrame(render);
+}
+```
+- 通过注释的理解我们是不是可以改变`speed`的大小来调节`条件语句`执行频率来达到`变速`效果。
+- 至于如何控制speed有很多方法，[简单的demo代码]()大家可以参考下！
 
-    // 得到雪碧图JSON数据
-    getJSONData(key) {
-      let url = './static/allAnimation.json';
-      $.get(url, result => {
-        let keyData = result[key];
-        this.imageAttribute.height = keyData[0].height;
-        this.imageAttribute.width = keyData[0].width;
-        this.imageAttribute.childrens = [];
-        for (let item of keyData) {
-          let value = [];
-          value.push(item.x);
-          value.push(item.y);
-          this.imageAttribute.childrens.push(value);
-        }
-        console.log('this.imageAttribute', this.imageAttribute);
-        this.initSpriteMap();
-        this.start();
-      });
-    }
+### 封装`变速`方法(AnimationFrame)！
+> 反向推需求！
+#### 参数
+1. 需要初始频率，定义为`speed`
+2. 需要初始是加速、减速、匀速、定义为`speedFlag` 默认`匀速`
+3. countCallback:Function 控制匀速降速函数
+4. fun:Function,动画函数，每次循环会执行次函数。
+#### 类函数方法
+1. 抛出：升速、降速、匀速
+2. 抛出：暂停
 
-    // 初始化雪碧图
-    initSpriteMap() {
-      this.spriteMapDiv = document.createElement('div');
-      this.dom.appendChild(this.spriteMapDiv);
-      let divCss = {
-        height: this.imageAttribute.height + 'px',
-        width: this.imageAttribute.width + 'px',
-        overflow: 'hidden'
-      };
-      $(this.spriteMapDiv).css(divCss);
-      this.img  = document.createElement('img');
-      this.img.src = this.imageUrl
-      $(this.spriteMapDiv).append(this.img);
-    }
-
-    // 停止动画
-    stop() {
-      if (!this.isStart) return;
-      cancelAnimationFrame(this.animationId);
-      let initX = this.imageAttribute.childrens[0][0];
-      let initY = this.imageAttribute.childrens[0][1];
-      this.img && $(this.img).css("transform", `translate(-${initX}px, -${initY}px)`);
-      this.isStart = false;
-    }
-
-    // 开始动画
-    start() {
-      if (this.isStart) return;
-      this.isStart = true;
-      this.repeatAnimation();
-    }
-
-    // 循环开始动画
-    repeatAnimation() {
-      let that = this;
-      that.animationId = requestAnimationFrame(function fn(timestamp) {
-        that.rander(timestamp);
-        that.animationId = requestAnimationFrame(fn);
-      });
-    }
-
-    rander(timestamp) {
-      const elapsedTime = timestamp - this.startTime;
-      if (elapsedTime > this.speed) {
-        this.startTime = timestamp;
-        if (this.imageAttribute.childrens.length <= this.nowFramesIndex) {
-          this.nowFramesIndex = 0;
-        }
-        let x = this.imageAttribute.childrens[this.nowFramesIndex][0];
-        let y = this.imageAttribute.childrens[this.nowFramesIndex][1];
-        $(this.img).css("transform", `translate(-${x}px, -${y}px)`);
-        this.nowFramesIndex++;
-      }
+- 使用 [github地址](https://github.com/Even-cxw/demo/tree/main/%E5%8F%98%E9%80%9F)
+```javascript
+new AnimationFrame({
+  mainFun:function() {console.log('我是主要逻辑函数')},
+  countCallback: function(count){
+    if (count == 10) {
+      console.log('开始加速')
+      this.quicken()
+    } else if (count == 20) {
+      console.log('开始减速')
+      this.slow()
+    } else if (count == 25) {
+      console.log('暂停')
+      this.stop();
     }
   }
+})
+```
 
+- 类函数代码
+```javascript
+/**
+ * @desc AnimationFrame控制快慢类
+ * @param {speedFlag|number} 0:定速 1:加速 -1:减速
+ * @param {speed|number} 频率
+ * @param {countCallback|Function} 变频函数
+ * @param {mainFun|Function} 主要业务逻辑函数
+ * @param {changeSpeed:numeber} 加速/减速-频率值
+*/
+// var speedFlag = 1 // 快慢节奏
+// var count = 0 // 执行了几个
+// var speed = 330 // 动画频率/毫秒 (多少秒执行一次fun)
+// var timer = null // 执行id
+// var startTime = window.performance.now();
+
+class AnimationFrame {
+	constructor({speedFlag=0, speed = 500, changeSpeed = 50, countCallback = () => {}, mainFun = () => {} } = {}) {
+		this.speedFlag = speedFlag;
+		this.speed = speed;
+		this.mainFun = mainFun;
+		this.countCallback = countCallback;
+		this.timer = null;
+		this.startTime = window.performance.now();
+		this.count = 0;
+		this.changeSpeed = changeSpeed;
+		this.isStop = false;
+		this.render();
+	}
+	// 主函数
+	render(timestamp) {
+		if (this.isStop) return;
+    const elapsedTime = timestamp - this.startTime;
+    if (elapsedTime > this.speed) {
+        this.startTime = timestamp;
+        this.animate();
+				this.handleSpeed();
+    }
+    this.timer = window.requestAnimationFrame(this.render.bind(this));
+	}
+	// 执行动画函数
+	animate() {
+		this.countCallback(this.count);
+		if (this.isStop) return;
+		this.mainFun(this.count);
+		this.count++
+	}
+	// 处理频率函数
+	handleSpeed() {
+		if (this.speedFlag === 1) {
+			// 当减到最小值时，自动变匀速；
+			this.speed>this.changeSpeed?this.speed -= this.changeSpeed:this.speedFlag = 0;
+		} else if (this.speedFlag === -1) {
+			this.speed += this.changeSpeed;
+		}
+	}
+	// 加速
+	quicken() {
+		this.speedFlag = 1
+	}
+	// 减速
+	slow() {
+		this.speedFlag = -1
+	}
+	// 匀速
+	equally() {
+		this.speedFlag = 0
+	}
+	// 停止
+	stop() {
+		cancelAnimationFrame(this.timer);
+		this.isStop = true;
+	}
+}
 ```

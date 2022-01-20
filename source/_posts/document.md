@@ -34,6 +34,7 @@ comments: false
 - [微前端-文档](https://qiankun.umijs.org/zh/cookbook)
 - [bootcdn网址](https://www.bootcdn.cn/)
 - [webpack文档](https://webpack.docschina.org/)
+- [webpack-loader文档](https://www.webpackjs.com/loaders/url-loader/)
 - [node](http://nodejs.cn/api/)
 - [react](https://reactjs.org/)
 - [schema](https://schema.org.cn/)
@@ -51,10 +52,18 @@ comments: false
 - [babel中文官网](https://babel.docschina.org/)
 - [canvas-MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API)
 - [canvas-MDN-content](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/getContext)
+- [vue-ssr官方文档](https://ssr.vuejs.org/zh/)
+- [ssr-框架](http://doc.ssr-fc.com/docs/features$started)
+- [vue-router官网](https://router.vuejs.org/zh/api/)
+- [阿里画图库](https://antv.vision/zh/)
+
+## 架构之路
+- [vue-loader起步](https://vue-loader.vuejs.org/zh/)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
 - [微信jssdk开发文档](http://caibaojian.com/wxwiki/0030551f015f01ecaa56d20b88ee3c6cb32503bf.html)
+- [微信签名校验地址](https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=jsapisign)
 
 
 #### vue文档
