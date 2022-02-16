@@ -1,0 +1,2235 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px;">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,width=device-width,viewport-fit=cover"/>
+        <meta name="format-detection" content="telephone=no,email=no,adress=no"/>
+        <link rel="stylesheet" type="text/css" href="./css/common.css">
+        <script src="/recon/actjs/UNT20200616161750108/v1/d6dfa955-6c84-4a5f-8868-9ec2a3be0fcb.js"></script>
+        <script src="/recon/actjs/UNT20201124145515993/v1/907681ce-5985-4afb-ba21-ec134366a8c9.js"></script>
+        <script src="/recon/actjs/UNT20200616161647697/v1/06a047b6-1242-4d43-973d-b19bd08d8b1b.js"></script>
+        <script src="/recon/actjs/UNT20200616161705671/v1/da72ffa7-98e3-41fa-95ad-ac06fb8d2626.js"></script>
+        <script src="/recon/actjs/UNT20200615212720834/v1/2d0f946d-4c07-4fd0-9b7f-59601f74b701.js"></script>
+        <script src="/recon/actjs/UNT20200715094835760/v1/00aa7e97-9492-47f8-aa04-c3bb49222316.js"></script>
+        <script src="/recon/actjs/UNT20200615212542538/v1/36db068e-89d7-42f3-8f5d-3a7fe1109b33.js"></script>
+        <script src="/recon/actjs/UNT20200615212617429/v1/faee7553-f40d-4d2a-b8c7-abde855e8f3d.js"></script>
+        <script src="/recon/actjs/JSUNT20200731171441122/0bbec64c-5e2c-4780-9aaa-8ac7d838375b.js"></script>
+        <script src="/recon/actjs/JSUNT20200731171535971/daca884a-3f17-49df-b64c-0c7f753ccc60.js"></script>
+        <script src="/recon/actjs/JSUNT20200616091436457/a259041d-2061-40d4-8e0a-06f71801680d.js"></script>
+        <script src="/recon/actjs/JSUNT20200616112252552/d68643dd-fa3e-4437-a11c-fcaa45d6f84e.js"></script>
+        <script src="/recon/actjs/JSUNT20220125152732141/c76802aa-9ddf-46fa-afa3-5b39bdaabe34.js"></script>
+        <script src="/recon/actjs/JSUNT20200731171558467/c89fe24d-1ab5-4204-8bbe-63fe11401f28.js"></script>
+    </head>
+    <body>
+        <script>
+            var _this16;
+            // axios
+            var baseUrl = window.location.protocol + '//' + window.location.host + '/pfhd-external-gateway';
+            var linkurl = window.location.protocol + '//' + window.location.host + '/';
+            var sercvice = axios.create({
+                baseURL: baseUrl
+            });
+            sercvice.interceptors.request.use(function(config) {
+                if (/get/i.test(config.method)) {
+                    config.params = config.params || {};
+                    config.params.t = Date.parse(new Date()) / 1000;
+                }
+                return config;
+            }, function(error) {
+                return Promise.reject(error);
+            });
+            sercvice.interceptors.response.use(function(response) {
+                if (response.status === 200) {
+                    return response;
+                }
+            }, function(error) {
+                return Promise.reject(error);
+            });
+
+            var axiosGet = function axiosGet(url, params) {
+                return sercvice.get(url, {
+                    params: params
+                });
+            };
+            var axiosPost = function axiosPost(url, data) {
+                return sercvice.post(url, data);
+            };
+            function loadTokenSuccess(json) {
+                var actCode = 'c5863778b064489e8d73e72bf6627b29'
+                if (!json) {
+                    window.location.replace(linkurl + 'recon/error/error.html')
+                    return false
+                }
+                var token = JSON.parse(json).token
+                axiosGet(baseUrl + '/pfhd-external-core/v1/login?actCodeUUID=' + actCode + '&data=' + token + '&channel=app&version=3.0').then(function(res) {
+                    if (res.data.code == 200) {
+                        _this16.initpage()
+                    } else if (res.data.code == 511) {
+                        _this16.closeMask()
+                        return false;
+                    } else {
+                        _this16.closeMask()
+                        _this16.text = res.data.msg;
+                        _this16.classname = 'page-popup-showmsg';
+                    }
+                }).catch(function(err) {
+                    _this16.closeMask()
+                    window.location.replace(linkurl + 'recon/error/error.html')
+                });
+            }
+            function loadTokenFail() {
+                _this16.closeMask()
+                window.location.replace(linkurl + 'recon/error/error.html')
+            }
+
+            function loginWXSuccess(WXUserInfo) {
+                _this16.classname = '';
+                var wxUserInfo = WXUserInfo;
+                if (wxUserInfo === "" || wxUserInfo === null || wxUserInfo === "null" || !wxUserInfo) {
+                    _this16.text = '抱歉，活动太火爆，请您稍后再试'
+                    _this16.classname = 'page-popup-showmsg';
+                } else {
+                    _this16.WXAuthorize(WXUserInfo)
+                }
+
+            }
+
+            window.onload = function() {
+                document.addEventListener('touchstart', function(event) {
+                    if (event.touches.length > 1) {
+                        event.preventDefault();
+                    }
+                })
+                document.addEventListener('gesturestart', function(event) {
+                    event.preventDefault();
+                })
+                document.addEventListener('dblclick', function(event) {
+                    event.preventDefault();
+                })
+            }
+            if (true) {
+                if ('addEventListener'in document) {
+                    document.addEventListener('DOMContentLoaded', function(event) {
+                        FastClick.attach(document.body);
+                    }, false)
+                    FastClick.prototype.onTouchEnd = function(event) {
+                        if (event.target.hasAttribute("type") && event.target.getAttribute("type") == "text") {
+                            event.preventDefault();
+                            return false;
+                        }
+                    }
+                }
+            }
+        </script>
+        <div id="app">
+            <div class="template-wrapper" :style="getCommonStyle(styletemplate,1)">
+                <div class="relative" :style="[getCommonStyle(pageData.commonStyle,1),relativestyle]">
+                    <template v-for="(item, index) in pageData.elements" :key="index">
+                        <div class="page-element-wrapper" @click="handleElementClick(item,$event)" :style="item.elName == 'qk-button-list' ? '' : (item.elName == 'qk-popup' ? [getCommonStyle(item.commonStyle), {transform:'translateY(-50%)'}] : getCommonStyle(item.commonStyle))" v-if="item.isheader != 1 && !item.className" :ref="item.commonStyle.height == 'auto' ? 'heightauto' : ''">
+                            <component :is="item.elName" :class="[item.className, item.maidianname]" v-bind.sync="item.propsValue" :heightstyle="item.elName == 'qk-image' ? item.commonStyle.overflowY : ''"/>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <template v-for="(item, index) in pageData.elements" :key="index">
+                <div class="page-element-wrapper" @click="handleElementClick(item,$event)" :style="item.elName == 'qk-button-list' ? '' : (item.elName == 'qk-popup' ? [getCommonStyle(item.commonStyle), {transform:'translateY(-50%)'}] : getCommonStyle(item.commonStyle))" v-if="item.isheader == '1'" :ref="item.commonStyle.height == 'auto' ? 'heightauto' : ''">
+                    <component :is="item.elName" :class="[item.className, item.maidianname]" v-bind.sync="item.propsValue"/>
+                </div>
+            </template>
+            <div class="popup-wrap" :style="{backgroundColor: pageData.commonStyle.maskBackgroundColor}" v-show="classname">
+                <div id="misk"></div>
+                <div class="dialog">
+                    <template v-for="(item, index) in pageData.elements" :key="index">
+                        <div class="page-element-wrapper" @click="handleElementClick(item,$event)" :style="item.elName == 'qk-button-list' ? '' : (item.elName == 'qk-popup' ? [getCommonStyle(item.commonStyle), {transform:'translateY(-50%)'}] : getCommonStyle(item.commonStyle))" v-if="item.className && item.className == classname" :ref="item.commonStyle.height == 'auto' ? 'heightauto' : ''">
+                            <component :is="item.elName" :class="[item.className, item.maidianname]" v-bind.sync="item.propsValue" :heightstyle="item.elName == 'qk-image' ? item.commonStyle.overflowY : ''"/>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <transition name="fade">
+                <p v-show="showtip" class="tip" id="tipmsg"></p>
+            </transition>
+            <div v-show="isMask" class="loadingcircle">
+                <canvas id="canvas" width="80" height="80" class="mask_content"></canvas>
+            </div>
+        </div>
+        <script>
+
+            new Vue({
+                el: "#app",
+                data: function data() {
+                    return {
+                        pageData: {},
+                        scale: 1,
+                        classname: '',
+                        isloading: true,
+                        text: '',
+                        LuckyNum: '',
+                        returninfo: {
+                            actCode: 'c5863778b064489e8d73e72bf6627b29',
+                            sceneCode: '',
+                            url: '',
+                            Appversion: 409
+                        },
+                        info: {
+                            page: 1
+                        },
+                        scenelist: [],
+                        checkinfo: {},
+                        // 获取验证码接口返回的信息
+                        errorcode: '',
+                        // 验证码提交出错的信息提示
+                        time: 60,
+                        timer: null,
+                        startcountdown: false,
+                        msgtext: '获取验证码',
+                        basetop: 0,
+                        addtop: 0,
+                        errortip: {},
+                        exit: false,
+                        orderlist: [],
+                        // 订单列表
+                        optionlist: [],
+                        // 下拉框列表
+                        showtip: false,
+                        message: '',
+                        actName: '',
+                        styletemplate: {},
+                        checkelement: {},
+                        times: null,
+                        alltime: 0,
+                        orderCode: '',
+                        goodsName: '',
+                        goodsCode: '',
+                        isreturn: false,
+                        cancel: null,
+                        relativestyle: {},
+                        bodytop: '',
+                        apptop: 0,
+                        appscroll: '',
+                        addheight: 0,
+                        buttongray: {
+                            goods1: false,
+                            goods2: false,
+                            goods3: false,
+                            goods4: false
+                        },
+                        bindbutton: [],
+                        successtype: '',
+                        isMask: false,
+                        moretimemsg: '活动火爆，请您稍候再试（领奖结果以“领奖记录”显示为准)。',
+                        btnindex: '',
+                        drawtype: '',
+                        checkStep: 'draw',
+                        userid: '',
+                        clientHeight: '',
+                        wxCallEvent: '',
+                        // 微信授权结束以后回调的事件
+                        showsuccess: false,
+                        imageCodeTip: '',
+                        // 图文验证码的提示
+                        islocak: false,
+                        // 组件/全局都有islocak变量，组件：锁局部组件点击事件，全局：锁所有组件点击事件
+                    }
+                },
+                created: function created() {
+                    this.showMask()
+                    _this16 = this
+                    var _this2 = this;
+                    this.scale = document.body.clientWidth / 375;
+                    this.returninfo.url = window.location.protocol + '//' + window.location.host + '/pfhd-external-gateway';
+                    this.pageData = {
+                        "uuid": "17bc352d-4d55-49ac-9645-f595452a809d",
+                        "name": "index",
+                        "description": "",
+                        "elements": [{
+                            "uuid": "6626ac68-7b43-407a-8878-aa3ae3230bae",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 170,
+                                "height": 48,
+                                "top": 625,
+                                "left": 12,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/ljlq2.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 4
+                            },
+                            "event": {
+                                "vueJsMethod": "draw",
+                                "success": "if(res.data.code == 200){if(res.data.data.externalNotiyType== '0000' || !res.data.data.externalNotiyType){\t\t\t\t\t\t\t\t\tthis.checkStep = 'draw';\t\t\t\t\t\t\t}else{\t\t\t\t\t\t\t\t\tthis.checkStep = 'charge';\t\t\t\t\t\t\t\t}this.goodsName = '获得了' + res.data.data.goodsName;this.orderCode = res.data.data.orderCode;}else{this.text = res.data.msg;this.classname = 'page-popup-showmsg';}",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 1,
+                                "needLoginFlag": 1,
+                                "vueJsRequest": "poolCode,goodsCode",
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "抽奖接口"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "popup0",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "2",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "maidianname": "draw",
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "f50d47d7-bf13-4d5d-850d-af3722684138",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 170,
+                                "height": 48,
+                                "top": 625,
+                                "left": 204,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/lqjl.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 4,
+                                "right": 12
+                            },
+                            "event": {
+                                "vueJsMethod": "orderList",
+                                "success": "if(res.data.code == 200){sessionStorage.setItem('orderlist',JSON.stringify(res.data.collection));window.location.href = 'myprize.html';}else{this.text = res.data.msg;this.classname = 'page-popup-showmsg';}",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 1,
+                                "needLoginFlag": 1,
+                                "vueJsRequest": "page",
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "活动订单列表查询接口"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "popup0",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": null,
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "77e7b3ee-e222-4c06-9e24-deeaf7fc973c",
+                            "elName": "qk-popup",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 67,
+                                "height": 63,
+                                "top": 17,
+                                "left": 24,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": null,
+                                "backgroundImage": "",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 101
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {},
+                            "valueType": "String",
+                            "className": "popup0",
+                            "vueUrl": "/recon/actjs/UNT20200615212542538/v1/97a21134-77d4-49e8-8feb-d352c9c66dba.js",
+                            "unitShowAttr": null,
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix"
+                        }, {
+                            "uuid": "e42b9fc2-e919-4a5b-b95f-e87c87692384",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 170,
+                                "height": 48,
+                                "top": 625,
+                                "left": 12,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/lqjl.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 4,
+                                "right": 12
+                            },
+                            "event": {
+                                "vueJsMethod": "orderList",
+                                "success": "if(res.data.code == 200){sessionStorage.setItem('orderlist',JSON.stringify(res.data.collection));window.location.href = 'myprize.html';}else{this.text = res.data.msg;this.classname = 'page-popup-showmsg';}",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 1,
+                                "needLoginFlag": 1,
+                                "vueJsRequest": "page",
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "活动订单列表查询接口"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "popup1",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": 1,
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "37b311fb-b333-431d-85df-0baf4fee7150",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 169,
+                                "height": 56,
+                                "top": 555,
+                                "left": 103,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/ljlq.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 4
+                            },
+                            "event": {
+                                "vueJsMethod": "draw",
+                                "success": "if(res.data.code == 200){if(res.data.data.externalNotiyType== '0000' || !res.data.data.externalNotiyType){\t\t\t\t\t\t\t\t\tthis.checkStep = 'draw';\t\t\t\t\t\t\t}else{\t\t\t\t\t\t\t\t\tthis.checkStep = 'charge';\t\t\t\t\t\t\t\t}this.goodsName = '获得了' + res.data.data.goodsName;this.orderCode = res.data.data.orderCode;}else{this.text = res.data.msg;this.classname = 'page-popup-showmsg';}",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 1,
+                                "needLoginFlag": 1,
+                                "vueJsRequest": "poolCode,goodsCode",
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "抽奖接口"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "popup1",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "2",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "maidianname": "draw",
+                            "ispopup": "1",
+                            "zIndex": null
+                        }, {
+                            "uuid": "849bc985-b6a0-4167-84bd-7cbaa0ad440a",
+                            "elName": "qk-popup",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 67,
+                                "height": 63,
+                                "top": 18,
+                                "left": 118,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": null,
+                                "backgroundImage": "",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 101
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {},
+                            "valueType": "String",
+                            "className": "popup1",
+                            "vueUrl": "/recon/actjs/UNT20200615212542538/v1/97a21134-77d4-49e8-8feb-d352c9c66dba.js",
+                            "unitShowAttr": null,
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": null
+                        }, {
+                            "uuid": "6e4b426f-11eb-4f94-9651-38fb8a2d50d7",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 170,
+                                "height": 48,
+                                "top": 625,
+                                "left": 10,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/hhr.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 4
+                            },
+                            "event": {
+                                "vueJsMethod": "eventlink",
+                                "success": "",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 0,
+                                "needLoginFlag": null,
+                                "vueJsRequest": "url",
+                                "allEvent": [],
+                                "before": "this.checkelement.event.url = this.info.poolurl;",
+                                "vueJsName": "跳转",
+                                "url": "1"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "popup1",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": 2,
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "ad512a21-6e6e-473d-afb3-724a34ffa378",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 67,
+                                "height": 24,
+                                "top": 690,
+                                "left": 154,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/hdxz.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 10
+                            },
+                            "event": {
+                                "vueJsMethod": "eventlink",
+                                "success": "",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 0,
+                                "needLoginFlag": null,
+                                "vueJsRequest": "url",
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "跳转",
+                                "url": "https://www.spdbccc.com.cn/zh/wap/channel/app/18years/hdtk.html"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": 2,
+                            "ispopup": "0"
+                        }, {
+                            "uuid": "e6617bbe-b002-4ea5-8ee5-13f150bcdd8f",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 169,
+                                "height": 56,
+                                "top": 620,
+                                "left": 103,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/tjbk.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 4
+                            },
+                            "event": {
+                                "vueJsMethod": "eventlink",
+                                "success": "",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 0,
+                                "needLoginFlag": null,
+                                "vueJsRequest": "url",
+                                "allEvent": [],
+                                "before": "this.checkelement.event.url = this.info.poolurl;",
+                                "vueJsName": "跳转",
+                                "url": "1"
+                            },
+                            "propsValue": {
+                                "text": ""
+                            },
+                            "valueType": "String",
+                            "className": "popup2",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/c4d2e3c0-435e-4fd9-95fb-60dd3ce83442.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": 3,
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "24f3eea9-eacb-4b14-94c6-b6b69272f536",
+                            "elName": "qk-popup",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 67,
+                                "height": 63,
+                                "top": 18,
+                                "left": 213,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": null,
+                                "backgroundImage": "",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 101
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {},
+                            "valueType": "String",
+                            "className": "popup2",
+                            "vueUrl": "/recon/actjs/UNT20200615212542538/v1/97a21134-77d4-49e8-8feb-d352c9c66dba.js",
+                            "unitShowAttr": null,
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "zIndex": 1
+                        }, {
+                            "uuid": "ef6a029a-f8e5-438f-8ac9-058c05e2f63d",
+                            "elName": "qk-popup",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 346,
+                                "height": 406,
+                                "top": 184,
+                                "left": 12.5,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/bg1.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 101
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {},
+                            "valueType": "String",
+                            "className": "success",
+                            "vueUrl": "/recon/actjs/UNT20200615212542538/v1/97a21134-77d4-49e8-8feb-d352c9c66dba.js",
+                            "unitShowAttr": null,
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix"
+                        }, {
+                            "uuid": "4d35f730-a367-4678-889b-5d3ae934dff1",
+                            "elName": "qk-text",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 206,
+                                "height": 45,
+                                "top": 477,
+                                "left": 82,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 14,
+                                "fontWeight": 500,
+                                "lineHeight": 22,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 101
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {
+                                "text": "",
+                                "labeltext": "showmsg",
+                                "checkfor": ""
+                            },
+                            "valueType": "String",
+                            "className": "success",
+                            "vueUrl": "/recon/actjs/UNT20200615212617429/v1/8b9eaab0-b60e-4ef0-ab04-c85067abd086.js",
+                            "unitShowAttr": null,
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "5fd39f7e-5ca7-4f4a-9139-ac8103d06960",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 105,
+                                "height": 36,
+                                "top": 531,
+                                "left": 135,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/btn_qd.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 101
+                            },
+                            "event": {
+                                "vueJsMethod": "closePopup",
+                                "success": "",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 0,
+                                "needLoginFlag": 1,
+                                "vueJsRequest": null,
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "关闭弹窗"
+                            },
+                            "propsValue": {
+                                "text": "",
+                                "buttonStyle": {
+                                    "bindkey": "",
+                                    "backgroundColor": "",
+                                    "isdisabled": "",
+                                    "backgroundImage": ""
+                                }
+                            },
+                            "valueType": "String",
+                            "className": "success",
+                            "vueUrl": "/recon/actjs/UNT20200615212720834/v1/d955e897-843d-4055-ab7d-43163e2baddb.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix",
+                            "ispopup": "1"
+                        }, {
+                            "uuid": "9f93efb2-c1d1-4272-9999-e3909a0d8b3d",
+                            "elName": "qk-popup",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 346,
+                                "height": 406,
+                                "top": 104.5,
+                                "left": 14.5,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": null,
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": null,
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/bg2.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 102,
+                                "borderTopLeftRadius": 10,
+                                "borderTopRightRadius": 10,
+                                "borderBottomLeftRadius": 10,
+                                "borderBottomRightRadius": 10
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {},
+                            "valueType": "String",
+                            "className": "page-popup-showmsg",
+                            "vueUrl": "",
+                            "unitShowAttr": "",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix"
+                        }, {
+                            "uuid": "01063eb6-e9f5-4c39-9af7-c302c7bd566a",
+                            "elName": "qk-button",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 105,
+                                "height": 36,
+                                "top": 451.25,
+                                "left": 135,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 16,
+                                "fontWeight": 500,
+                                "lineHeight": 16,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "/recon/template/images/template/TPL20220114092510144/btn_qd.png",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 102
+                            },
+                            "event": {
+                                "vueJsMethod": "closePopup",
+                                "success": "",
+                                "fail": "",
+                                "checkEvent": [],
+                                "ajaxFlag": 0,
+                                "needLoginFlag": null,
+                                "vueJsRequest": null,
+                                "allEvent": [],
+                                "before": "",
+                                "vueJsName": "关闭弹窗"
+                            },
+                            "propsValue": {
+                                "text": "",
+                                "buttonStyle": {
+                                    "bindkey": "",
+                                    "backgroundColor": "",
+                                    "isdisabled": "",
+                                    "backgroundImage": ""
+                                }
+                            },
+                            "valueType": "String",
+                            "className": "page-popup-showmsg",
+                            "vueUrl": "/recon/actjs/UNT20201210133517878/v1/f6b2e69c-bc10-4b96-8add-41c07ec9906e.js",
+                            "unitShowAttr": "text",
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix"
+                        }, {
+                            "uuid": "aecc7c6b-59a5-46d0-9c91-7592c69df145",
+                            "elName": "qk-text",
+                            "commonStyle": {
+                                "position": "absolute",
+                                "width": 204,
+                                "height": 55,
+                                "top": 375,
+                                "left": 95,
+                                "rotate": 0,
+                                "paddingTop": 0,
+                                "paddingLeft": 0,
+                                "paddingRight": 0,
+                                "paddingBottom": 0,
+                                "marginTop": 0,
+                                "marginLeft": 0,
+                                "marginRight": 0,
+                                "marginBottom": 0,
+                                "borderTopWidth": 0,
+                                "borderBottomWidth": 0,
+                                "borderLeftWidth": 0,
+                                "borderRightWidth": 0,
+                                "borderColor": "",
+                                "borderStyle": "solid",
+                                "borderRadius": 0,
+                                "boxShadow": "",
+                                "fontSize": 14,
+                                "fontWeight": 500,
+                                "lineHeight": 22,
+                                "letterSpacing": 0,
+                                "textAlign": "center",
+                                "color": "#000000",
+                                "backgroundColor": "",
+                                "backgroundImage": "",
+                                "backgroundSize": "100% 100%",
+                                "opacity": 1,
+                                "zIndex": 102
+                            },
+                            "event": {
+                                "vueJsName": "",
+                                "vueJsUrl": "",
+                                "vueJsMethod": "",
+                                "success": "",
+                                "fail": ""
+                            },
+                            "propsValue": {
+                                "text": "",
+                                "labeltext": "showmsg",
+                                "checkfor": ""
+                            },
+                            "valueType": "String",
+                            "className": "page-popup-showmsg",
+                            "vueUrl": "/recon/actjs/UNT20201210133704329/v1/2ec33c07-5d43-435d-8b12-50cb200913a2.js",
+                            "unitShowAttr": null,
+                            "burialPoint": "",
+                            "isheader": "2",
+                            "isForm": false,
+                            "heighttype": "fix"
+                        }],
+                        "commonStyle": {
+                            "backgroundColor": "",
+                            "backgroundImage": "/recon/image/c5863778b064489e8d73e72bf6627b29/indexbg.jpg",
+                            "backgroundSize": "100% 100%",
+                            "maskBackgroundColor": "rgba(0, 0, 0, 0.5)"
+                        },
+                        "config": {},
+                        "usetype": ["/recon/actjs/UNT20200615212720834/v1/2d0f946d-4c07-4fd0-9b7f-59601f74b701.js", "/recon/actjs/UNT20200715094835760/v1/00aa7e97-9492-47f8-aa04-c3bb49222316.js", "/recon/actjs/UNT20200615212542538/v1/36db068e-89d7-42f3-8f5d-3a7fe1109b33.js", "/recon/actjs/UNT20200615212617429/v1/faee7553-f40d-4d2a-b8c7-abde855e8f3d.js"],
+                        "event": {
+                            "vueJsMethod": "activitySceneList",
+                            "success": "if (res.data.code == 200) {this.scenelist = res.data.collection;this.returninfo.sceneCode = this.scenelist[0].mappingCode;\n\t\t\t\t\t\tvar _this = this;\n\t\t\t\t\t\tpoolCheck.call(_this,{},_this.returninfo).then(function(res){\n\t\t\t\t\t\t\tif(res.data.code == 200){var isShow = '';res.data.collection.forEach(function(val,index){if(val.qualifiedFlag){_this.pageData.elements.forEach(function(item){if(item.className == 'popup' + (val.showSeq%10) && val.showSeq<100 && (!isShow || isShow == item.className)){isShow = item.className;item.className = '';_this.info.poolurl = val.relateDesc;}})}});if(isShow == ''){_this.pageData.elements.forEach(function(item){if(item.className == 'popup0'){item.className = '';}})}}else if(res.data.code == 630 || res.data.code == 761 || res.data.code == 830){_this.pageData.elements.forEach(function(item){if(item.className == 'popup0'){item.className = '';}})}else{_this.text = res.data.msg;_this.classname = 'page-popup-showmsg';}\n\t\t\t\t\t\t}).catch(function (err) {\n                            _this.showerror(err);\n                        });\n\t\t\t\t\t} else {this.text = res.data.msg;this.classname = 'page-popup-showmsg';}",
+                            "fail": "",
+                            "checkEvent": [{
+                                "vueJsMethod": "poolCheck",
+                                "success": "if(res.data.code == 200){\nvar isShow = '';\nres.data.collection.forEach(function(val,index){\nif(val.qualifiedFlag){\n_this.pageData.elements.forEach(function(item){\nif(item.className == 'popup' + (val.showSeq%10) && val.showSeq<100 && (!isShow || isShow == item.className)){\nisShow = item.className;\nitem.className = '';\n_this.info.poolurl = val.relateDesc;\n}\n})\n}\n});\nif(isShow == ''){\n_this.pageData.elements.forEach(function(item){\nif(item.className == 'popup0'){\nitem.className = '';\n}\n})\n}\n}else if(res.data.code == 630 || res.data.code == 761 || res.data.code == 830){\n_this.pageData.elements.forEach(function(item){\nif(item.className == 'popup0'){\nitem.className = '';\n}\n})\n}else{\n_this.text = res.data.msg;\n_this.classname = 'page-popup-showmsg';\n}",
+                                "fail": "",
+                                "suCheck": "",
+                                "failCheck": "",
+                                "vueJsRequest": null
+                            }],
+                            "ajaxFlag": 1,
+                            "needLoginFlag": 1,
+                            "vueJsRequest": "page",
+                            "allEvent": ["qualifiedCheck", "poolCheck"],
+                            "before": "",
+                            "vueJsName": "活动场次列表接口",
+                            "suCheck": "poolCheck"
+                        },
+                        "basejs": ["/recon/actjs/UNT20200616161750108/v1/d6dfa955-6c84-4a5f-8868-9ec2a3be0fcb.js", "/recon/actjs/UNT20201124145515993/v1/907681ce-5985-4afb-ba21-ec134366a8c9.js", "/recon/actjs/UNT20200616161647697/v1/06a047b6-1242-4d43-973d-b19bd08d8b1b.js", "/recon/actjs/UNT20200616161705671/v1/da72ffa7-98e3-41fa-95ad-ac06fb8d2626.js"],
+                        "allevent": ["/recon/actjs/JSUNT20200731171441122/0bbec64c-5e2c-4780-9aaa-8ac7d838375b.js", "/recon/actjs/JSUNT20200731171535971/daca884a-3f17-49df-b64c-0c7f753ccc60.js", "/recon/actjs/JSUNT20200616091436457/a259041d-2061-40d4-8e0a-06f71801680d.js", "/recon/actjs/JSUNT20200616112252552/d68643dd-fa3e-4437-a11c-fcaa45d6f84e.js", "/recon/actjs/JSUNT20220125152732141/c76802aa-9ddf-46fa-afa3-5b39bdaabe34.js", "/recon/actjs/JSUNT20200731171558467/c89fe24d-1ab5-4204-8bbe-63fe11401f28.js"],
+                        "hasPopup": true,
+                        "popupClassList": [{
+                            "className": "page-popup-showmsg",
+                            "uuid": "bb31d043-5c4c-4933-bcb8-174a4ccb039f"
+                        }, {
+                            "className": "popup0",
+                            "uuid": "77e7b3ee-e222-4c06-9e24-deeaf7fc973c"
+                        }, {
+                            "className": "popup1",
+                            "uuid": "849bc985-b6a0-4167-84bd-7cbaa0ad440a"
+                        }, {
+                            "className": "popup2",
+                            "uuid": "24f3eea9-eacb-4b14-94c6-b6b69272f536"
+                        }, {
+                            "className": "success",
+                            "uuid": "ef6a029a-f8e5-438f-8ac9-058c05e2f63d"
+                        }],
+                        "confuses": "",
+                        "lazyLoading": "",
+                        "isIndex": "1",
+                        "isRule": "0",
+                        "height": 801,
+                        "hidePopup": [],
+                        "burialPoint": "2"
+                    }
+                    this.actName = '周年庆感恩回馈活动'
+                    if ('undefined' == '111') {
+                        if (this.pageData.burialPoint == 2) {
+                            this.pageuserBehavior();
+                        }
+                        this.initpage()
+                    } else {
+                        this.checklogin()
+                    }
+                    if ('活动火爆，请您稍候再试（领奖结果以“领取记录”显示为准)。' && '活动火爆，请您稍候再试（领奖结果以“领取记录”显示为准)。' != 'undefined') {
+                        this.moretimemsg = '活动火爆，请您稍候再试（领奖结果以“领取记录”显示为准)。'
+                    }
+                    if (window.location.href.indexOf('/index.html') != -1) {
+                        axiosGet(this.returninfo.url + '/pfhd-external-core/v1/vue/error/term').then(function(res) {
+                            sessionStorage.setItem('errortip', res.data.data);
+                            _this2.errortip = JSON.parse(res.data.data);
+                        }).catch(function(err) {});
+                    }
+                    // 如果有头部并且在app之外展示							
+                    var hasheader = false
+                    this.pageData.elements.forEach(function(item) {
+                        if (item.isheader == '1' && item.elName == 'qk-text') {
+                            hasheader = item
+                        }
+                    });
+                    if (hasheader) {
+                        var appVersion = window.navigator.userAgent.toLowerCase();
+                        if (appVersion.indexOf("spdb/") == -1) {
+                            this.addheight = hasheader.commonStyle.height;
+                            this.styletemplate.marginTop = this.addheight;
+                        }
+                        this.pageData.elements.forEach(function(element) {
+                            if (element.isheader == '1' && appVersion.indexOf("spdb/") != -1) {
+                                element.commonStyle.display = 'none';
+                            }
+                        });
+                    }
+                    this.pageData.elements.forEach(function(element) {
+                        element.commonStyle.originaltop = element.commonStyle.top;
+                        element.commonStyle.originalheight = element.commonStyle.height;
+                    });
+                    this.errortip = JSON.parse(sessionStorage.getItem('errortip'));
+                    this.pageData.commonStyle.height = this.pageData.height;
+                    this.styletemplate = {
+                        marginTop: this.styletemplate.marginTop,
+                        height: this.pageData.height
+                    };
+                },
+                watch: {
+                    buttongray: {
+                        handler: function handler(val) {
+                            this.bindbutton.forEach(function(item) {
+                                if (val[item.propsValue.buttonStyle.bindkey]) {
+                                    // true代表了可以点击
+                                    if (item.defaultstyle.type == 1) {
+                                        item.commonStyle.backgroundColor = item.propsValue.buttonStyle.backgroundColor;
+                                    } else {
+                                        item.commonStyle.backgroundImage = item.propsValue.buttonStyle.backgroundImage;
+                                    }
+                                } else {
+                                    if (item.defaultstyle.type == 1) {
+                                        item.commonStyle.backgroundColor = item.defaultstyle.backgroundColor;
+                                    } else {
+                                        item.commonStyle.backgroundImage = item.defaultstyle.backgroundImage;
+                                    }
+                                }
+                            });
+                        },
+
+                        deep: true
+                    },
+                    text: function text(val) {
+                        this.showmsg(1);
+                    },
+                    errorcode: function errorcode(val) {
+                        this.showmsg(2);
+                    },
+                    msgtext: function msgtext() {
+                        this.showmsg(3);
+                    },
+                    LuckyNum: function LuckyNum(val) {
+                        this.showmsg(4);
+                    },
+                    actName: function actName(val) {
+                        this.showmsg(5);
+                    },
+                    imageCodeTip: function imageCodeTip(val) {
+                        this.showmsg(6);
+                    },
+                    scenelist: {
+                        handler: function handler(val) {
+                            this.returninfo.sceneCode = val[0] ? val[0].mappingCode : '';
+                            this.pageData.elements.forEach(function(element) {
+                                if (element.elName == 'qk-button-list') {
+                                    element.propsValue.list = val;
+                                }
+                            });
+                        },
+
+                        deep: true
+                    },
+                    orderlist: {
+                        handler: function handler(val) {
+                            this.pageData.elements.forEach(function(element) {
+                                if (element.elName == 'qk-table' || element.elName == 'qk-recaletable' || element.elName == 'qk-list') {
+                                    element.propsValue.list = val;
+                                }
+                            });
+                            if (this.info.page == 1 && val.length == 10) {
+                                this.info.page = 2;
+                                this.getorderlist();
+                            }
+                            if (this.info.page > 1) {
+                                if (val.length == 10 * this.info.page) {
+                                    this.info.page++;
+                                    this.getorderlist();
+                                }
+                            }
+                        },
+
+                        deep: true
+                    },
+                    optionlist: {
+                        handler: function handler(val) {
+                            var _this3 = this;
+
+                            this.pageData.elements.forEach(function(element) {
+                                if (element.elName == 'qk-select') {
+                                    element.propsValue.optionlist = _this3.optionlist;
+                                }
+                            });
+                        },
+
+                        deep: true
+                    },
+                    classname: function classname(val) {
+
+                        var _that = this;
+                        if (val && val != '') {
+                            if (_that.bodytop == 0) {
+                                _that.bodytop = _that.appscroll;
+                            }
+                            var a = false
+                            _that.pageData.elements.forEach(function(v) {
+                                if (v.commonStyle.height == 'auto' && v.className == val) {
+                                    a = true
+                                }
+                            });
+                            if (!a) {
+                                _that.changepopup();
+                            }
+                            setTimeout(function() {
+                                document.getElementById('app').style.overflow = 'hidden';
+                            }, 50)
+                        } else {
+                            document.getElementById('app').style.overflow = 'auto';
+                            document.getElementsByClassName('popup-wrap')[0].style.top = 0;
+                        }
+                    },
+
+                    checkinfo: {
+                        handler: function handler(val) {
+                            var imgurl = 'data:image/jpg;base64,' + val.data;
+                            // 验证码图片地址
+                            this.replaceimg(imgurl);
+                            var wordsNums = '';
+                            if (val.extObj) {
+                                var wordsType = typeof val.extObj == 'string' ? JSON.parse(val.extObj) : val.extObj;
+                                // 输入第几个数字，输入第一或者输入第一，第三个数字。											
+                                for (var i = 0; i < wordsType.length; i++) {
+                                    if (i + 1 == wordsType.length) {
+                                        wordsNums += "第" + wordsType[i] + "个字";
+                                    } else {
+                                        wordsNums += "第" + wordsType[i] + "个，";
+                                    }
+                                }
+                            } else {
+                                wordsNums = '计算结果';
+                            }
+                            this.imageCodeTip = '请输入' + wordsNums;
+                        },
+
+                        deep: true
+                    },
+                    startcountdown: function startcountdown(val) {
+                        if (val) {
+                            this.time = 60;
+                            this.countdown();
+                        } else {
+                            this.time = 60;
+                        }
+                    },
+                    addtop: function addtop(val) {
+                        var _this4 = this;
+
+                        // text的高度变动了
+                        var element = {}
+                        this.pageData.elements.forEach(function(v) {
+                            if (v.commonStyle.height == 'auto' && v.className == _this4.classname) {
+                                element = v
+                            }
+                        })
+
+                        var top = element.commonStyle.originaltop;
+                        var newtop = 0;
+                        this.pageData.elements.forEach(function(element) {
+                            if (element.commonStyle.originaltop >= top && element.className == _this4.classname && element.elName != 'qk-text' && element.elName != 'qk-popup') {
+                                // text下面的元素
+                                element.commonStyle.top = element.commonStyle.originaltop * _this4.scale + val + 'px';
+                            }
+                            if (element.elName == 'qk-popup' && element.className == _this4.classname) {
+                                element.commonStyle.height = element.commonStyle.originalheight * _this4.scale + val - 3 + 'px';
+                            }
+                            if (_this4.classname == 'page-popup-showmsg') {
+                                if (element.elName == 'qk-popup' && element.className == _this4.classname) {
+                                    var newform = JSON.parse(JSON.stringify(element.commonStyle));
+                                    newform.top = document.body.clientHeight / 2 + 'px';
+                                    element.commonStyle = JSON.parse(JSON.stringify(newform));
+                                    var a = '';
+                                    newtop = (document.body.clientHeight - newform.originalheight * _this4.scale - val) / 2 - element.commonStyle.originaltop * _this4.scale;
+                                }
+                                if (element.className == _this4.classname && element.elName != 'qk-popup' && newtop != 0) {
+                                    if (element.elName == 'qk-text' || element.commonStyle.originaltop < top) {
+                                        element.commonStyle.top = element.commonStyle.originaltop * _this4.scale + newtop + 'px';
+                                    } else {
+                                        element.commonStyle.top = element.commonStyle.originaltop * _this4.scale + val + newtop + 'px';
+                                    }
+                                }
+                            }
+                        });
+                    },
+                    orderCode: function orderCode(val) {
+                        this.isreturn = false;
+                        this.showMask();
+                        this.setTime();
+                    },
+                    showtip: function showtip(val) {
+                        if (val) {
+                            document.getElementById('tipmsg').innerHTML = this.message;
+                        }
+                    }
+                },
+                mounted: function mounted() {
+
+                    this.clientHeight = document.body.clientHeight
+                    this.canvasloading()
+                    // this.showMask()
+                    var _this5 = this;
+
+                    var info = {}
+                    if (false) {
+                        getVersion.call(this, 517).then(function(res) {}).catch(function(err) {
+                            _this5.text = err;
+                            _this5.classname = 'page-popup-showmsg';
+                        })
+                    }
+
+                    var hasbutton = false;
+                    this.pageData.elements.forEach(function(item) {
+                        if (item.elName == 'qk-button' && item.propsValue.buttonStyle && (item.propsValue.buttonStyle.isdisabled == '1' || item.propsValue.buttonStyle.isdisabled == '0')) {
+                            hasbutton = true
+                        }
+                    })
+                    if (hasbutton) {
+                        this.pageData.elements.forEach(function(val) {
+                            if (val.elName == 'qk-button' && val.propsValue.buttonStyle && (val.propsValue.buttonStyle.isdisabled == '1' || val.propsValue.buttonStyle.isdisabled == '0')) {
+                                _this5.bindbutton.push(val);
+                            }
+                        });
+
+                        this.bindbutton.forEach(function(val) {
+                            if (val.commonStyle.backgroundColor) {
+                                val.defaultstyle = {
+                                    type: 1,
+                                    backgroundColor: val.commonStyle.backgroundColor
+                                };
+                            }
+                            if (val.commonStyle.backgroundImage) {
+                                val.defaultstyle = {
+                                    type: 2,
+                                    backgroundImage: val.commonStyle.backgroundImage
+                                };
+                            }
+                        });
+                    }
+                    this.$nextTick(function() {
+                        new Function(_this5.pageData.script).call(_this5);
+                    });
+                    var _thistop = this;
+                    document.addEventListener('scroll', function(event) {
+                        _thistop.bodytop = document.documentElement.scrollTop || document.body.scrollTop;
+                    });
+                    document.getElementById('app').addEventListener('scroll', function(event) {
+                        _thistop.bodytop = document.getElementById('app').scrollTop;
+                        _thistop.appscroll = document.getElementById('app').scrollTop;
+                    });
+                    document.getElementById('misk').addEventListener('touchstart', function(event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        return false;
+                    });
+                },
+                methods: {
+                    // 转盘、九宫格-开始转动，
+                    handleTurn() {
+                        var isSudoku = false;
+                        var _this = this;
+                        this.pageData.elements.forEach(function(val) {
+                            var elNameArr = ['qk-turntable', 'qk-sudoku']
+                            if (elNameArr.indexOf(val.elName) > -1) {
+                                isSudoku = true;
+                                // 锁住-不可点击
+                                _this.islocak = true;
+                                // 查找当前中奖商品角标
+                                var prizeindex = "";
+                                var isArray = Object.prototype.toString.call(val.propsValue.info.goodsList) === "[object Array]";
+                                if (isArray) {
+                                    prizeindex = val.propsValue.info.goodsList.findIndex(function(item) {
+                                        return _this.goodsCode == item.goodsCode;
+                                    })
+                                }
+                                if (typeof prizeindex === 'number' && prizeindex >= 0) {
+                                    _this.$set(val.propsValue.info, 'goodsCode', _this.goodsCode);
+                                    _this.$set(val.propsValue.info, 'prizeindex', prizeindex);
+                                } else {
+                                    _this.islocak = false;
+                                    _this.showerror();
+                                }
+                            }
+                        })
+                        return isSudoku;
+                    },
+                    // 转盘九宫格-旋转结束
+                    turnAfter() {
+                        this.islocak = false;
+                        this.text = this.goodsName;
+                        this.classname = this.info.classname || 'page-popup-showmsg';
+                    },
+                    changepopup: function changepopup() {
+                        var _this6 = this;
+                        var newtop = 0;
+                        this.pageData.elements.forEach(function(element) {
+                            if (element.elName == 'qk-popup' && element.className == _this6.classname) {
+                                var newform = JSON.parse(JSON.stringify(element.commonStyle));
+                                newform.top = _this6.clientHeight / 2 + 'px';
+                                element.commonStyle = JSON.parse(JSON.stringify(newform));
+                                newtop = (_this6.clientHeight - newform.height * _this6.scale) / 2 - element.commonStyle.originaltop * _this6.scale;
+                            }
+                            if (element.className == _this6.classname && element.elName != 'qk-popup' && newtop != 0) {
+                                element.commonStyle.top = element.commonStyle.originaltop * _this6.scale + newtop + 'px';
+                            }
+                        });
+                    },
+                    handleElementClick: function handleElementClick(item, event) {
+                        var _this7 = this;
+                        if (item.burialPoint == 2) {
+                            this.userBehavior(item);
+                        }
+                        if (!item.event.vueJsMethod) {
+                            return;
+                        }
+                        // 全局锁： 所有组件不可被点击；
+                        if (this.islocak)
+                            return;
+                        if (this.exit) {
+                            if (window.jsspdb) {
+                                window.jsspdb.lifeGoBack();
+                            } else if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.jsspdb) {
+                                window.webkit.messageHandlers.jsspdb.postMessage({
+                                    "method": "lifeGoBack",
+                                    "arguments": []
+                                });
+                            } else {
+                                this.classname = '';
+                            }
+                        }
+                        // 如果是有根据输入框内容判定是否置灰的按钮，在此做判断
+                        if (this.bindbutton.length && item.propsValue.buttonStyle && item.propsValue.buttonStyle.isdisabled == '1' && (item.commonStyle.backgroundColor == item.defaultstyle.backgroundColor || item.commonStyle.backgroundImage == item.defaultstyle.backgroundImage)) {
+                            return false;
+                        }
+                        // 列表按钮事件
+                        if (item.propsValue.btnConfig && item.propsValue.btnConfig.event && event.target.className.indexOf('btnStyle') != -1) {
+                            this.btnindex = event.target.className.replace('btnStyle btnStyle', '');
+                            new Function(item.propsValue.btnConfig.event.before).call(this);
+                            if (item.propsValue.btnConfig.event.vueJsMethod == 'getwxUserInfo') {
+                                this.wxCallEvent = item.propsValue.btnConfig.event.success;
+                                getwxUserInfo()
+                                return;
+                            }
+
+                            return false;
+                        }
+
+                        // 列表绑定的是订单分页查询，点击不需要再查询
+                        if (item.elName == 'qk-list' || item.elName == 'qk-table' || item.elName == 'qk-recaletable') {
+                            return false;
+                        }
+
+                        // /**
+                        //  * @desc 转盘、九宫格、当在旋转时不可在被点击
+                        //  * @var {elNameArr|Array} 所需暂停的组件名字
+                        // */
+                        var elNameArr = ['qk-turntable', 'qk-sudoku']
+                        if (elNameArr.indexOf(item.elName) > -1 && event.target.className.indexOf('point') == -1) {
+                            return false;
+                        }
+
+                        if (!this.returninfo.sceneCode && item.event.success) {
+                            this.showMask();
+                            var indexevent = activitySceneList
+                            if ('undefined' == '111') {
+                                indexevent = simpleScene
+                            }
+                            indexevent.call(this, {
+                                page: 1
+                            }, this.returninfo).then(function(res) {
+                                _this7.closeMask();
+                                if (res.data.code == 200) {
+                                    _this7.scenelist = res.data.collection;
+                                    _this7.returninfo.sceneCode = _this7.scenelist[0].mappingCode;
+                                } else if (res.data.code == 401) {
+                                    _this7.exit = true;
+                                    _this7.text = res.data.msg;
+                                    _this7.classname = 'page-popup-showmsg';
+                                } else {
+                                    _this7.text = res.data.msg;
+                                    _this7.classname = 'page-popup-showmsg';
+                                }
+                            }).catch(function(err) {
+                                _this7.closeMask();
+                                _this7.showerror(err);
+                            });
+                            return
+                        }
+                        _this7.clickevent(item, event);
+                    },
+                    clickevent: function clickevent(item, event) {
+                        this.checkelement = item;
+                        var _this8 = this;
+                        this.isloading = true;
+
+                        // 按钮列表的判断
+                        if (item.elName == 'qk-button-list') {
+                            this.returninfo.sceneCode = this.scenelist[parseInt(event.target.className.split('').reverse().join())].sceneCode;
+                        }
+
+                        if (item.event.before) {
+                            new Function(item.event.before).call(this);
+                        }
+                        if (!this.isloading) {
+                            return;
+                        }
+                        var info = {};
+                        if (item.event.vueJsRequest) {
+                            var list = item.event.vueJsRequest.split(',');
+                            list.forEach(function(item) {
+                                if (item == 'data') {
+                                    info.data = {};
+                                    _this8.pageData.elements.forEach(function(element) {
+                                        if (element.isform == 2) {
+                                            info.data[element.propsValue.label] = element.propsValue.value;
+                                        }
+                                    });
+                                    info.data = JSON.stringify(info.data);
+                                } else {
+                                    if (_this8.info.hasOwnProperty(item)) {
+                                        info[item] = _this8.info[item];
+                                    } else {
+                                        _this8.pageData.elements.forEach(function(element) {
+                                            if (element.propsValue.label == item && element.isform != 2) {
+                                                info[item] = element.propsValue.value;
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+
+                        if (!item.event.success) {
+                            new Function('return ' + '(' + item.event.vueJsMethod + ')')().call(this, item.event, info, this.returninfo);
+                            return;
+                        }
+                        if (item.event.vueJsMethod == 'getwxUserInfo') {
+                            this.wxCallEvent = item.event.success;
+                            getwxUserInfo()
+                            return;
+                        }
+                        this.showMask();
+                        new Function('return ' + '(' + item.event.vueJsMethod + ')')().call(this, info, this.returninfo, item.event).then(function(res) {
+                            _this8.closeMask();
+                            if (res.data.code == 401) {
+                                _this8.exit = true;
+                                _this8.text = res.data.msg;
+                                _this8.classname = 'page-popup-showmsg';
+                            } else if (res.data.code == 511) {
+                                // 防刷
+                                return false;
+                            } else {
+                                new Function('res',item.event.success).call(_this8, res);
+                            }
+                        }).catch(function(err) {
+                            _this8.closeMask();
+                            _this8.showerror(err);
+                        });
+                    },
+                    getCommonStyle: function getCommonStyle(styleObj, index) {
+                        var needUnitStr = ['width', 'height', 'lineHeight', 'left', 'top', 'right', 'bottom', 'paddingTop', 'paddingLeft', 'paddingRight', 'paddingBottom', 'marginTop', 'marginLeft', 'marginRight', 'marginBottom', 'borderTopWidth', 'borderBottomWidth', 'borderLeftWidth', 'borderRightWidth', 'fontSize', 'borderRadius', 'borderTopRightRadius', 'borderTopLeftRadius', 'borderBottomLeftRadius', 'borderBottomRightRadius', 'letterSpacing'];
+                        var style = {};
+                        for (var key in styleObj) {
+                            if (needUnitStr.indexOf(key) != -1 && (typeof styleObj[key] == 'number' || parseInt(styleObj[key]) == styleObj[key])) {
+                                style[key] = styleObj[key] / 3.75 + 'vw';
+                            } else {
+                                style[key] = styleObj[key];
+                            }
+                        }
+                        style.transform = 'rotate(' + style.rotate + 'deg)';
+                        style.backgroundImage = style.backgroundImage ? 'url(' + style.backgroundImage + ')' : '';
+                        if (typeof styleObj.bottom == 'number' && typeof styleObj.height == 'number') {
+                            style.top = 'initial';
+                        }
+                        if (typeof styleObj.right == 'number') {
+                            style.left = 'initial';
+                        }
+                        if (style.fontWeight >= 600) {
+                            style.fontWeight = 'bold';
+                        }
+                        return style;
+                    },
+                    showmsg: function showmsg(index) {
+                        var _this9 = this;
+
+                        this.pageData.elements.forEach(function(item) {
+                            if (item.className == _this9.classname && item.elName == 'qk-text') {
+                                if (index == 1 && item.propsValue.labeltext == 'showmsg') {
+                                    item.propsValue.text = _this9.text;
+                                    _this9.$nextTick(function() {
+                                        _this9.addtop = _this9.$refs.heightauto ? _this9.$refs.heightauto[0].clientHeight - _this9.basetop : 0;
+                                    });
+                                }
+                            }
+                            if (index == 2 && item.propsValue.labeltext == 'errorcode' && item.elName == 'qk-text') {
+                                item.propsValue.text = _this9.errorcode;
+                            }
+                            if (index == 3 && item.propsValue.labeltext == 'msgtext' && item.elName == 'qk-text') {
+                                item.propsValue.text = _this9.msgtext;
+                            }
+                            if (index == 4 && item.propsValue.labeltext == 'LuckyNum' && item.elName == 'qk-text') {
+                                item.propsValue.text = _this9.LuckyNum;
+                            }
+                            if (index == 5 && item.propsValue.labeltext == 'actName' && item.elName == 'qk-text') {
+                                item.propsValue.text = _this9.actName;
+                            }
+                            if (index == 6 && item.propsValue.labeltext == 'imageCodeTip' && item.elName == 'qk-text') {
+                                item.propsValue.text = _this9.imageCodeTip;
+                            }
+                        });
+                    },
+                    replaceimg: function replaceimg(val) {
+                        this.pageData.elements.forEach(function(item) {
+                            if (item.elName == 'qk-code') {
+                                item.propsValue.codeimg = val;
+                            }
+                        });
+                    },
+                    countdown: function countdown() {
+                        var _this10 = this;
+
+                        if (this.time <= 0) {
+                            clearTimeout(this.timer);
+                            this.msgtext = '获取验证码';
+                            this.startcountdown = false;
+                            return;
+                        }
+                        this.time--;
+                        this.msgtext = '倒计时' + this.time + '秒';
+                        this.timer = setTimeout(function() {
+                            _this10.countdown();
+                        }, 1000);
+                    },
+                    userBehavior: function userBehavior(val) {
+                        var origin = window.location.origin;
+                        var path = window.location.pathname;
+                        var pageUrl = origin + path;
+                        var pageName = '';
+                        var list = path.split('/');
+                        if (list[list.length - 1] && list[list.length - 1].indexOf('.html') != -1) {
+                            pageName = list[list.length - 1].split('.html')[0];
+                        } else {
+                            pageName = 'index';
+                        }
+                        var userid = this.userid
+
+                        if (this.pageData.burialPoint == 2) {
+                            cbasclick(val.maidianname, '', '', '', '{actCode:"MHHD20220125000000002"}');
+                        } else {
+                            cbasclick(val.maidianname, '', '', '', '{actCode:"MHHD20220125000000002"}');
+                            maidian(userid, 16, pageUrl, pageName, "", "hdpt", "", "", "", "", "", "", "{actCode:'MHHD20220125000000002'}");
+                        }
+                    },
+                    pageuserBehavior: function pageuserBehavior() {
+                        var origin = window.location.origin;
+                        var path = window.location.pathname;
+                        var pageUrl = origin + path;
+                        var pageName = this.pageData.name;
+                        var userid = this.userid
+                        cbasclick('', '', '', '', '{actCode:"MHHD20220125000000002"}');
+                        maidian(userid, 16, pageUrl, pageName, "", "hdpt", "", "", "", "", "", "", "{actCode:'MHHD20220125000000002'}");
+                    },
+                    getorderlist: function getorderlist() {
+                        var _this11 = this;
+
+                        var info = {
+                            page: this.info.page
+                        };
+                        this.pageData.elements.forEach(function(item) {
+                            if (item.event.vueJsMethod == 'orderList' && (item.elName == 'qk-list' || item.elName == 'qk-table' || item.elName == 'qk-recaletable')) {
+                                var event = item.event;
+                                new Function('return ' + '(' + event.vueJsMethod + ')')().call(_this11, info, _this11.returninfo, event).then(function(res) {
+                                    if (res.data.code == 401) {
+                                        _this11.exit = true;
+                                        _this11.text = res.data.msg;
+                                        _this11.classname = 'page-popup-showmsg';
+                                    } else if (res.data.code == 650) {} else {
+                                        new Function('res',event.success).call(_this11, res);
+                                    }
+                                }).catch(function(err) {
+                                    _this11.showerror(err);
+                                });
+                            }
+                        })
+
+                    },
+                    checkResult: function checkResult() {
+                        var _this12 = this;
+
+                        var CancelToken = axios.CancelToken;
+                        var time = new Date().getTime();
+                        var _this = this;
+                        axios.get(this.returninfo.url + '/pfhd-external-core/v1/result/check/' + this.returninfo.sceneCode + '?orderCode=' + this.orderCode + '&checkStep=' + this.checkStep + '&t=' + time, {
+                            cancelToken: new CancelToken(function executor(c) {
+                                _this.cancel = c;
+                            }
+                            )
+                        }).then(function(res) {
+                            _this12.isreturn = true;
+                            if (res.data.code == 200) {
+                                // 此刻九宫格开始转动
+                                if (_this12.handleTurn())
+                                    return;
+                                if (_this12.successtype) {
+                                    window.location.href = _this12.info.classname;
+                                } else {
+                                    _this12.text = _this12.goodsName;
+                                    _this12.classname = _this12.info.classname || 'page-popup-showmsg';
+                                }
+                                _this12.closeMask();
+                            } else if (res.data.code == 401) {
+                                _this12.exit = true;
+                                _this12.text = res.data.msg;
+                                _this12.classname = 'page-popup-showmsg';
+                            } else if (res.data.code == 610) {
+                                _this12.isreturn = false;
+                            } else if (res.data.code == 651) {
+                                _this12.showsuccess = true;
+                                _this12.text = res.data.msg;
+                                _this12.classname = 'page-popup-showmsg';
+                            } else {
+                                _this12.text = res.data.msg;
+                                _this12.classname = 'page-popup-showmsg';
+                            }
+                        }).catch(function(err) {
+                            if (axios.isCancel(err)) {
+                                _this12.isreturn = false;
+                            } else {
+                                _this12.isreturn = true;
+                                _this12.showerror(err);
+                            }
+                        });
+                    },
+                    setTime: function setTime() {
+                        if (this.isreturn || this.alltime == 5) {
+                            this.closeMask();
+                            clearTimeout(this.times);
+                            this.times = null;
+                            this.isreturn = false;
+                            if (this.alltime == 5) {
+                                this.text = this.moretimemsg;
+                                this.classname = 'page-popup-showmsg';
+                            }
+                            this.alltime = 0;
+                            return;
+                        }
+                        if (this.cancel) {
+                            this.cancel();
+                        }
+                        this.checkResult();
+                        this.alltime += 0.5;
+                        this.times = setTimeout(this.setTime, 500);
+                    },
+                    showerror: function showerror(err) {
+                        this.closeMask()
+                        var _this13 = this;
+                        console.error(err);
+                        var code;
+                        if (err && err.response && err.response.status) {
+                            code = err.response.status;
+                        }
+                        if (!code) {
+                            this.message = '活动太给力，客官喘口气';
+                            this.showtip = true;
+                            setTimeout(function() {
+                                _this13.showtip = false;
+                            }, 2000);
+                            return false;
+                        }
+                        if (this.errortip && this.errortip[code]) {
+                            if (this.errortip[code].indexOf('http') != -1) {
+                                window.location.href = this.errortip[code];
+                            } else {
+                                this.message = this.errortip[code];
+                                this.showtip = true;
+                                setTimeout(function() {
+                                    _this13.showtip = false;
+                                }, 2000);
+                            }
+                        } else {
+                            this.message = '活动太给力，客官喘口气';
+                            this.showtip = true;
+                            setTimeout(function() {
+                                _this13.showtip = false;
+                            }, 2000);
+                        }
+                    },
+                    canvasloading() {
+                        //加载动画
+                        var canvas = document.getElementById('canvas')
+                          , //获取canvas元素
+                        context = canvas.getContext('2d')
+                          , //获取画图环境，指明为2d
+                        centerX = canvas.width / 2
+                          , //Canvas中心点x轴坐标
+                        centerY = canvas.height / 2
+                          , //Canvas中心点y轴坐标
+                        rad = Math.PI * 2 / 100
+                          , //将360度分成100份，那么每一份就是rad度
+                        speed = 0;
+                        var newNum = 0;
+                        //绘制圆弧
+                        function blueCircle(n, g) {
+                            context.save();
+                            context.strokeStyle = "rgb(250,250,250)";
+                            //设置描边样式
+                            context.lineWidth = 3;
+                            //设置线宽
+                            context.beginPath();
+                            //路径开始
+                            context.arc(centerX, centerY, 18, -Math.PI / 2 + g, -Math.PI / 2 + n * rad + g, false);
+                            //用于绘制圆弧context.arc(x坐标，y坐标，半径，起始角度，终止角度，顺时针/逆时针)
+                            context.stroke();
+                            //绘制
+                            context.closePath();
+                            //路径结束
+                            context.restore();
+                        }
+                        //动画循环
+                        function drawFrame() {
+                            window.requestAnimationFrame(drawFrame);
+                            //清除canvas绘图空间，重新绘制圆弧
+                            context.clearRect(0, 0, canvas.width, canvas.height);
+                            blueCircle(speed, newNum);
+                            if (speed > 100) {
+                                //弧度超过一周,重新画弧
+                                newNum += 0.5;
+                                speed = 0;
+                            }
+                            speed += 1.5;
+                        }
+                        drawFrame();
+                    },
+                    showMask: function showMask() {
+                        this.isMask = true;
+
+                    },
+                    closeMask: function closeMask() {
+                        this.isMask = false;
+                    },
+                    checklogin() {
+                        var baseUrl = window.location.protocol + '//' + window.location.host + '/';
+                        var _this14 = this;
+                        axiosGet(this.returninfo.url + '/pfhd-external-core/v1/login/check/' + this.returninfo.actCode).then(function(res) {
+                            if (res.data.code == 401) {
+                                _this14.login()
+                            } else {
+                                _this14.userid = res.data.data.memberNo
+                                if (_this14.pageData.burialPoint == 2) {
+                                    _this14.pageuserBehavior();
+                                }
+                                _this14.initpage()
+                            }
+                        }).catch(function(err) {
+                            _this14.closeMask()
+                            window.location.replace(baseUrl + 'recon/error/error.html')
+                        });
+                    },
+                    login() {
+                        var appVersion = window.navigator.userAgent.toLowerCase();
+                        if (appVersion.indexOf("spdb/") != -1) {
+                            appVersion = appVersion.split("spdb/")[1].split(";")[0]
+                            appVersion = appVersion.split(".")[0] + appVersion.split(".")[1] + appVersion.split(".")[2]
+                            var versionNum = parseInt(appVersion);
+                            if (versionNum < 616) {
+                                this.login2()
+                            } else {
+                                this.login3()
+                            }
+                        } else if (appVersion.match(/MicroMessenger/i) == "micromessenger") {
+                            //微信
+                            this.wxlogin()
+                        } else {
+                            this.login2()
+                        }
+                    },
+                    login2() {
+                        var url = encodeURIComponent(window.location.href)
+                        var baseUrl = window.location.protocol + '//' + window.location.host + '/';
+                        axiosGet(this.returninfo.url + '/pfhd-external-core/v1/oauth?actCodeUUID=' + this.returninfo.actCode + '&index=' + url).then(function(res) {
+                            if (res.data.code == 200) {
+                                window.location.replace(res.data.data)
+                            } else {
+                                window.location.replace(baseUrl + 'recon/error/error.html')
+                            }
+                        }).catch(function(err) {
+                            window.location.replace(baseUrl + 'recon/error/error.html')
+                        });
+                    },
+                    login3() {
+                        var _this18 = this
+                        var options = {};
+                        options.flag = "56A47A2BC2923FD53174D503B100A096";
+                        options.clientId = "uaap03102005001";
+                        options.bindFlag = "10";
+                        var optionsStr = JSON.stringify(options);
+                        if (window.jsspdb) {
+                            window.jsspdb.loadToken(optionsStr);
+                        } else {
+                            try {
+                                window.webkit.messageHandlers.jsspdb.postMessage({
+                                    "method": "loadToken:",
+                                    "arguments": [optionsStr]
+                                });
+                            } catch (e) {
+                                _this18.closeMask()
+                                var url = window.location.protocol + '//' + window.location.host + '/';
+                                window.location.replace(url + 'recon/error/error.html')
+                            }
+                        }
+                    },
+                    wxlogin() {
+                        if (window.location.href.indexOf('userToken') == -1) {
+                            this.login2()
+                            return false
+                        }
+                        var token = window.location.href.split('=')[window.location.href.split('=').length - 1]
+                        var _this17 = this
+                        axiosGet(this.returninfo.url + '/pfhd-external-core/v1/login?actCodeUUID=' + this.returninfo.actCode + '&data=' + token + '&channel=wx&version=3.0').then(function(res) {
+                            if (res.data.code == 200) {
+                                _this17.initpage()
+                            } else if (res.data.code == 511) {
+                                return false;
+                            } else {
+                                _this17.text = res.data.msg;
+                                _this17.classname = 'page-popup-showmsg';
+                                _this17.closeMask()
+                            }
+                        }).catch(function(err) {
+                            _this17.closeMask()
+                            var url = window.location.protocol + '//' + window.location.host + '/';
+                            window.location.replace(url + 'recon/error/error.html')
+                        });
+                    },
+                    initpage() {
+                        var _this15 = this
+                        if (_this15.pageData.event.before) {
+                            new Function(_this15.pageData.event.before).call(_this15);
+                        }
+
+                        var info = {}
+                        if (_this15.pageData.event.vueJsRequest) {
+                            var list = _this15.pageData.event.vueJsRequest.split(',');
+                            list.forEach(function(item) {
+                                _this15.pageData.elements.forEach(function(element) {
+                                    if (element.elName == 'qk-input' && element.propsValue.label == item) {
+                                        info[item] = element.propsValue.value;
+                                    }
+                                });
+                                if (item == 'actCode') {
+                                    info.actCode = _this15.returninfo.actCode;
+                                }
+                                if (item == 'sceneCode') {
+                                    info.sceneCode = _this15.returninfo.sceneCode;
+                                }
+                                if (item == 'page') {
+                                    info.page = 1;
+                                }
+                            });
+                        }
+                        if (_this15.pageData.event.vueJsMethod) {
+                            _this15.showMask();
+                            new Function('return ' + '(' + _this15.pageData.event.vueJsMethod + ')')().call(_this15, info, _this15.returninfo).then(function(res) {
+                                _this15.closeMask();
+                                if (res.data.code == 401) {
+                                    _this15.exit = true;
+                                    _this15.text = res.data.msg;
+                                    _this15.classname = 'page-popup-showmsg';
+                                } else if (res.data.code == 511) {
+                                    return false;
+                                } else {
+                                    new Function('res',_this15.pageData.event.success).call(_this15, res);
+                                }
+                            }).catch(function(err) {
+                                _this15.closeMask()
+                                _this15.showerror(err);
+                            });
+                        } else {
+                            _this15.closeMask()
+                        }
+                    },
+                    WXAuthorize(wxUserInfo) {
+                        var _this19 = this;
+                        _this19.showMask()
+                        try {
+                            var wxinfo = encodeURIComponent(wxUserInfo)
+                            axiosGet(baseUrl + '/pfhd-external-core/v1/wx/authorize/' + this.returninfo.sceneCode + '?wxUserInfo=' + wxinfo).then(function(res) {
+                                if (res.data.code == 200) {
+                                    // 执行配置的方法
+                                    _this19.closeMask()
+                                    new Function('res',_this19.wxCallEvent).call(_this19);
+                                } else if (res.data.code == 511) {
+                                    _this19.closeMask()
+                                    return false;
+                                } else {
+                                    _this19.closeMask()
+                                    _this19.text = res.data.msg;
+                                    _this19.classname = 'page-popup-showmsg';
+                                }
+                            }).catch(function(err) {
+                                _this19.closeMask()
+                                _this19.showerror(err);
+                            });
+                        } catch (err) {
+                            alert(err)
+                        }
+
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

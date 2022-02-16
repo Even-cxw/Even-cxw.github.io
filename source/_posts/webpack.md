@@ -20,10 +20,11 @@ comments: true
 # webpack环境搭建
 ## webpack全局安装
 - `npm install webpack -g`
+- 当我们执行命令`webpack`的时候，会自动寻找`webpack.config.js`文件，作为配置文件首选，若是其他文件，需要执行如下命令来告诉webpack要执行的文件。
 - 当我们执行`webpack --config {文件名}` 命令的时候，具体做了哪些？
     1. 寻找`node_modules`文件下的`.bin`文件
     2. `.bin`在指向真实的配置文件包
-    3. 配置文件会作为webpack(config)：`config`参数对象传递给webpack;
+    3. 配置文件会作为webpack(config)：`config`（便是module.export暴露出的对象）参数对象传递给webpack;
     ```javascript
     // webpack.config.js 文件
     // 会将module.exports暴露的模块传递给webpack
@@ -119,6 +120,7 @@ TypeError: compiler.plugin is not a function
 ----
 
 # webpack常规配置
+
 ## mode的作用
 - [官网的解释](https://webpack.docschina.org/configuration/mode/)就不在重复了. 直接看生成的代码[gitlab代码]()
 > 要打包的代码
@@ -149,6 +151,41 @@ window.even = __webpack_exports__;
 - 开发模式下代码完全不一样了，把我们的代码变成字符串了，这又是为什么呢，
 - 其实是为了方便我们代码的热更新，以及模块化引入。 大家如果对eval不理解可以去看看我的上一篇[文章]()
 
+
+## 路径 [借鉴博客](https://zhuanlan.zhihu.com/p/36354511)
+
+- 官网说：如果服务器下有文件需要设置webpack的publicPath配置，但又是为什么？
+1. 我们先了解一下路径问题：
+> 绝对路径指文件的完整路径，包括文件传输的协议HTTP、FTP等，一般用于网站的外部链接，
+> 相对路径是指相对于当前文件的路径，它包含了从当前文件指向目的文件的路径，适用于网站的内部链接。
+> 根路径的设置以“/”开头，后面紧跟文件路径，例如：/download/index.html。根路径必须在配置好的`服务器环境中`才能使用。
+2. 如何使用根路径：
+```javascript
+<script src="/subVue/b.js"></script>
+```
+> 选择`路径`文件夹  利用http-server开服务  [代码]()
+> 完全模拟生产环境服务器下的文件了，直接点击index.html就可以加载到`b.js`文件。
+3. 修改webpack的publicPath其实就是修改了`script`引入路径变成根路径。代码如下
+```javascript
+// 当我们把publickPath设置成subVue时，html-webpack-plugin 插件自动替换根路径
+<script src="/subVue/b.js"></script>
+```
+
+
+### output.path
+- [官网地址](https://webpack.js.org/configuration/output/#outputpath): 参数`绝对路径`，将压缩好的代码打包到当前位置。
+
+### output.publicPath
+- 打包的配置
+- [官网地址](https://www.webpackjs.com/guides/public-path/): 参数`相对路径`是`相对于build之后的index.html的`，打包后得到的html中可以看到。
+- 项目中引用css，js，img等资源时候的一个基础路径 `静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径`
+
+### devServer.publicPath
+- 在开发阶段，我们借用devServer启动一个开发服务器进行开发，这里也会配置一个publicPath，这里的publicPath路径下的打包文件可以在浏览器中访问。
+
+### __webpack_public_path__ 
+- [官网地址](https://webpack.js.org/api/module-variables/#importmetawebpackhot):决定了output.publicPath的值，用于来指定应用程序中所有的资源的基本路径.
+- 这个变脸可以让我们在js代码中指定 output.publicPath变量；
 
 ## externals
 - [externals](https://webpack.docschina.org/configuration/externals/):防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。
@@ -206,7 +243,7 @@ cross-env APP_ID=111111 node ./test.js
 ```
 
 ### npm run {命令} --APP_ID=111111
-- 也可以通过npm方式插入环境变量-执行命令`npm run dev --APP_ID=111111`
+- 也可以通过npm方式插入环境变量-执行命令`npm run dev --APP_ID=111111` 切记： 一定是要在run后面跟参数；
 ```json
 // package.json文件下的
 "scripts": {
@@ -306,6 +343,9 @@ module.exports = {
 ----
 
 # webpack插件
+
+## [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin)  [借鉴博客](https://juejin.cn/post/6844903853708541959)
+
 ## DefinePlugin - 定义环境变量
 - [webpack.DefinePlugin](https://webpack.docschina.org/plugins/define-plugin#root):编译时将你代码中的变量替换为其他值或表达式
 ```javascript
