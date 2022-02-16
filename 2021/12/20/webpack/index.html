@@ -29,7 +29,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://even-cxw.github.io/images/library.jpg">
 <meta property="article:published_time" content="2021-12-20T08:15:24.000Z">
-<meta property="article:modified_time" content="2022-01-20T07:26:05.901Z">
+<meta property="article:modified_time" content="2022-02-16T03:10:42.568Z">
 <meta property="article:author" content="Even">
 <meta property="article:tag" content="webpack">
 <meta name="twitter:card" content="summary">
@@ -123,17 +123,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">9</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">9</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">16</span></a>
 
   </li>
   </ul>
@@ -194,7 +194,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-01-20 15:26:05" itemprop="dateModified" datetime="2022-01-20T15:26:05+08:00">2022-01-20</time>
+                <time title="Modified: 2022-02-16 11:10:42" itemprop="dateModified" datetime="2022-02-16T11:10:42+08:00">2022-02-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,10 +231,11 @@
 </ol>
 <h1 id="webpack环境搭建"><a href="#webpack环境搭建" class="headerlink" title="webpack环境搭建"></a>webpack环境搭建</h1><h2 id="webpack全局安装"><a href="#webpack全局安装" class="headerlink" title="webpack全局安装"></a>webpack全局安装</h2><ul>
 <li><code>npm install webpack -g</code></li>
+<li>当我们执行命令<code>webpack</code>的时候，会自动寻找<code>webpack.config.js</code>文件，作为配置文件首选，若是其他文件，需要执行如下命令来告诉webpack要执行的文件。</li>
 <li>当我们执行<code>webpack --config &#123;文件名&#125;</code> 命令的时候，具体做了哪些？<ol>
 <li>寻找<code>node_modules</code>文件下的<code>.bin</code>文件</li>
 <li><code>.bin</code>在指向真实的配置文件包</li>
-<li>配置文件会作为webpack(config)：<code>config</code>参数对象传递给webpack;<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js 文件</span></span><br><span class="line"><span class="comment">// 会将module.exports暴露的模块传递给webpack</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>配置文件会作为webpack(config)：<code>config</code>（便是module.export暴露出的对象）参数对象传递给webpack;<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js 文件</span></span><br><span class="line"><span class="comment">// 会将module.exports暴露的模块传递给webpack</span></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">main</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;a.[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname, <span class="string">&#x27;./dist&#x27;</span>),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ul>
@@ -288,6 +289,36 @@
 <li>开发模式下代码完全不一样了，把我们的代码变成字符串了，这又是为什么呢，</li>
 <li>其实是为了方便我们代码的热更新，以及模块化引入。 大家如果对eval不理解可以去看看我的上一篇<a href="">文章</a></li>
 </ul>
+<h2 id="路径-借鉴博客"><a href="#路径-借鉴博客" class="headerlink" title="路径 借鉴博客"></a>路径 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36354511">借鉴博客</a></h2><ul>
+<li>官网说：如果服务器下有文件需要设置webpack的publicPath配置，但又是为什么？</li>
+</ul>
+<ol>
+<li>我们先了解一下路径问题：<blockquote>
+<p>绝对路径指文件的完整路径，包括文件传输的协议HTTP、FTP等，一般用于网站的外部链接，<br>相对路径是指相对于当前文件的路径，它包含了从当前文件指向目的文件的路径，适用于网站的内部链接。<br>根路径的设置以“/”开头，后面紧跟文件路径，例如：/download/index.html。根路径必须在配置好的<code>服务器环境中</code>才能使用。</p>
+</blockquote>
+</li>
+<li>如何使用根路径：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;/subVue/b.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>选择<code>路径</code>文件夹  利用http-server开服务  <a href="">代码</a><br>完全模拟生产环境服务器下的文件了，直接点击index.html就可以加载到<code>b.js</code>文件。</p>
+</blockquote>
+</li>
+<li>修改webpack的publicPath其实就是修改了<code>script</code>引入路径变成根路径。代码如下<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当我们把publickPath设置成subVue时，html-webpack-plugin 插件自动替换根路径</span></span><br><span class="line">&lt;script src=<span class="string">&quot;/subVue/b.js&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="output-path"><a href="#output-path" class="headerlink" title="output.path"></a>output.path</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/output/#outputpath">官网地址</a>: 参数<code>绝对路径</code>，将压缩好的代码打包到当前位置。</li>
+</ul>
+<h3 id="output-publicPath"><a href="#output-publicPath" class="headerlink" title="output.publicPath"></a>output.publicPath</h3><ul>
+<li>打包的配置</li>
+<li><a target="_blank" rel="noopener" href="https://www.webpackjs.com/guides/public-path/">官网地址</a>: 参数<code>相对路径</code>是<code>相对于build之后的index.html的</code>，打包后得到的html中可以看到。</li>
+<li>项目中引用css，js，img等资源时候的一个基础路径 <code>静态资源最终访问路径 = output.publicPath + 资源loader或插件等配置路径</code></li>
+</ul>
+<h3 id="devServer-publicPath"><a href="#devServer-publicPath" class="headerlink" title="devServer.publicPath"></a>devServer.publicPath</h3><ul>
+<li>在开发阶段，我们借用devServer启动一个开发服务器进行开发，这里也会配置一个publicPath，这里的publicPath路径下的打包文件可以在浏览器中访问。</li>
+</ul>
+<h3 id="webpack-public-path"><a href="#webpack-public-path" class="headerlink" title="webpack_public_path"></a><strong>webpack_public_path</strong></h3><ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.js.org/api/module-variables/#importmetawebpackhot">官网地址</a>:决定了output.publicPath的值，用于来指定应用程序中所有的资源的基本路径.</li>
+<li>这个变脸可以让我们在js代码中指定 output.publicPath变量；</li>
+</ul>
 <h2 id="externals"><a href="#externals" class="headerlink" title="externals"></a>externals</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/configuration/externals/">externals</a>:防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。</li>
 </ul>
@@ -309,7 +340,7 @@
 <li>以下命令会将环境变量<code>APP_ID</code>的值 插入<code>process.env</code>对象中<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下载插件</span></span><br><span class="line">npm install cross-env -S</span><br><span class="line"><span class="comment">// 使用 在命令行中</span></span><br><span class="line">cross-env APP_ID=<span class="number">111111</span> node ./test.js</span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="npm-run-命令-–APP-ID-111111"><a href="#npm-run-命令-–APP-ID-111111" class="headerlink" title="npm run {命令} –APP_ID=111111"></a>npm run {命令} –APP_ID=111111</h3><ul>
-<li>也可以通过npm方式插入环境变量-执行命令<code>npm run dev --APP_ID=111111</code><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json文件下的</span></span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;dev&quot;</span>: <span class="string">&quot;node ./test.js&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>也可以通过npm方式插入环境变量-执行命令<code>npm run dev --APP_ID=111111</code> 切记： 一定是要在run后面跟参数；<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json文件下的</span></span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;dev&quot;</span>: <span class="string">&quot;node ./test.js&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p><code>--</code>:代表前缀<code>npm_config_</code><br><code>APP_ID</code>转移成小写，最后会看到属性名为 <code>npm_config_app_id</code>,值为<code>11111</code><br>会将环境变量插入<code>process.env</code>对象中</p>
 </blockquote>
@@ -344,7 +375,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>)</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&#x27;node&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: &#123;</span><br><span class="line">        <span class="attr">a</span>: <span class="string">&#x27;./src/a.js&#x27;</span>,</span><br><span class="line">        <span class="attr">b</span>: <span class="string">&#x27;./src/b.js&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">        <span class="attr">filename</span>: <span class="string">&#x27;[name].[chunkhash].js&#x27;</span>,</span><br><span class="line">        <span class="attr">path</span>: path.join(__dirname,<span class="string">&#x27;./dist&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h1 id="webpack插件"><a href="#webpack插件" class="headerlink" title="webpack插件"></a>webpack插件</h1><h2 id="DefinePlugin-定义环境变量"><a href="#DefinePlugin-定义环境变量" class="headerlink" title="DefinePlugin - 定义环境变量"></a>DefinePlugin - 定义环境变量</h2><ul>
+<h1 id="webpack插件"><a href="#webpack插件" class="headerlink" title="webpack插件"></a>webpack插件</h1><h2 id="html-webpack-plugin-借鉴博客"><a href="#html-webpack-plugin-借鉴博客" class="headerlink" title="html-webpack-plugin  借鉴博客"></a><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/html-webpack-plugin">html-webpack-plugin</a>  <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903853708541959">借鉴博客</a></h2><h2 id="DefinePlugin-定义环境变量"><a href="#DefinePlugin-定义环境变量" class="headerlink" title="DefinePlugin - 定义环境变量"></a>DefinePlugin - 定义环境变量</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/plugins/define-plugin#root">webpack.DefinePlugin</a>:编译时将你代码中的变量替换为其他值或表达式<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js文件</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a文件&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> a = NAME;</span><br><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line">plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&#x27;Even&#x27;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">]</span><br><span class="line"><span class="comment">// 打包好后的文件</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a文件&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> a = Even;</span><br></pre></td></tr></table></figure></li>
 <li>会搜索打包文件变量<code>NAME</code>替换成<code>Even</code>变量。此时代码会报错，因为<code>let a = Even;</code>并没有定义。</li>
 <li>如果想让<code>Even</code>是字符串请如下配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="attr">plugins</span>: [</span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">        <span class="string">&#x27;NAME&#x27;</span>: <span class="string">&quot;&#x27;Even&#x27;&quot;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
@@ -391,7 +422,10 @@
     <a href="/2021/12/10/ssr/" rel="prev" title="ssr">
       <i class="fa fa-chevron-left"></i> ssr
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/01/25/vue/" rel="next" title="vue">
+      vue <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -450,7 +484,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">webpack环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">webpack全局安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2webpack%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">切换webpack版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E5%B8%B8%E8%A7%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">webpack常规配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mode%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">mode的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#externals"><span class="nav-number">2.2.</span> <span class="nav-text">externals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#library%E3%80%81libraryTarget%E4%BD%9C%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">library、libraryTarget作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AAwebpack%E9%85%8D%E7%BD%AE%E5%90%88%E5%B9%B6"><span class="nav-number">2.4.</span> <span class="nav-text">多个webpack配置合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.5.</span> <span class="nav-text">设置环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-env-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.5.1.</span> <span class="nav-text">cross-env 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-run-%E5%91%BD%E4%BB%A4-%E2%80%93APP-ID-111111"><span class="nav-number">2.5.2.</span> <span class="nav-text">npm run {命令} –APP_ID&#x3D;111111</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">2.6.</span> <span class="nav-text">如何删除文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rimraf"><span class="nav-number">2.6.1.</span> <span class="nav-text">rimraf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clean-webpack-plugin"><span class="nav-number">2.6.2.</span> <span class="nav-text">clean-webpack-plugin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">webpack优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonsChunkPlugin"><span class="nav-number">3.1.</span> <span class="nav-text">CommonsChunkPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6"><span class="nav-number">3.2.</span> <span class="nav-text">多个入口文件合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%88%86%E5%88%AB%E6%89%93%E5%8C%85"><span class="nav-number">3.3.</span> <span class="nav-text">多个入口文件分别打包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">webpack插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DefinePlugin-%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.</span> <span class="nav-text">DefinePlugin - 定义环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExtractTextplugin-%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96"><span class="nav-number">4.2.</span> <span class="nav-text">ExtractTextplugin - 文件提取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">webpack解析器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-loader"><span class="nav-number">5.1.</span> <span class="nav-text">webpack-loader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-loader"><span class="nav-number">5.1.1.</span> <span class="nav-text">vue-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-loader"><span class="nav-number">5.1.2.</span> <span class="nav-text">url-loader</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="nav-number">1.</span> <span class="nav-text">webpack环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">webpack全局安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E6%8D%A2webpack%E7%89%88%E6%9C%AC"><span class="nav-number">1.2.</span> <span class="nav-text">切换webpack版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E5%B8%B8%E8%A7%84%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">webpack常规配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mode%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">mode的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84-%E5%80%9F%E9%89%B4%E5%8D%9A%E5%AE%A2"><span class="nav-number">2.2.</span> <span class="nav-text">路径 借鉴博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#output-path"><span class="nav-number">2.2.1.</span> <span class="nav-text">output.path</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#output-publicPath"><span class="nav-number">2.2.2.</span> <span class="nav-text">output.publicPath</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#devServer-publicPath"><span class="nav-number">2.2.3.</span> <span class="nav-text">devServer.publicPath</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-public-path"><span class="nav-number">2.2.4.</span> <span class="nav-text">webpack_public_path</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#externals"><span class="nav-number">2.3.</span> <span class="nav-text">externals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#library%E3%80%81libraryTarget%E4%BD%9C%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">library、libraryTarget作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AAwebpack%E9%85%8D%E7%BD%AE%E5%90%88%E5%B9%B6"><span class="nav-number">2.5.</span> <span class="nav-text">多个webpack配置合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.6.</span> <span class="nav-text">设置环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#cross-env-%E6%8F%92%E4%BB%B6"><span class="nav-number">2.6.1.</span> <span class="nav-text">cross-env 插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#npm-run-%E5%91%BD%E4%BB%A4-%E2%80%93APP-ID-111111"><span class="nav-number">2.6.2.</span> <span class="nav-text">npm run {命令} –APP_ID&#x3D;111111</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">2.7.</span> <span class="nav-text">如何删除文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#rimraf"><span class="nav-number">2.7.1.</span> <span class="nav-text">rimraf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#clean-webpack-plugin"><span class="nav-number">2.7.2.</span> <span class="nav-text">clean-webpack-plugin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E4%BC%98%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">webpack优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CommonsChunkPlugin"><span class="nav-number">3.1.</span> <span class="nav-text">CommonsChunkPlugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%90%88%E5%B9%B6"><span class="nav-number">3.2.</span> <span class="nav-text">多个入口文件合并</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E5%88%86%E5%88%AB%E6%89%93%E5%8C%85"><span class="nav-number">3.3.</span> <span class="nav-text">多个入口文件分别打包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E6%8F%92%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">webpack插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#html-webpack-plugin-%E5%80%9F%E9%89%B4%E5%8D%9A%E5%AE%A2"><span class="nav-number">4.1.</span> <span class="nav-text">html-webpack-plugin  借鉴博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DefinePlugin-%E5%AE%9A%E4%B9%89%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">4.2.</span> <span class="nav-text">DefinePlugin - 定义环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExtractTextplugin-%E6%96%87%E4%BB%B6%E6%8F%90%E5%8F%96"><span class="nav-number">4.3.</span> <span class="nav-text">ExtractTextplugin - 文件提取</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#webpack%E8%A7%A3%E6%9E%90%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">webpack解析器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-loader"><span class="nav-number">5.1.</span> <span class="nav-text">webpack-loader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vue-loader"><span class="nav-number">5.1.1.</span> <span class="nav-text">vue-loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#url-loader"><span class="nav-number">5.1.2.</span> <span class="nav-text">url-loader</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -464,20 +498,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
