@@ -7,41 +7,40 @@ comments: true
 ---
 
 ----
-> webpack是架构之路的绊脚石, webpack5跟webpack4比做了很大的提升，既要了解不同之处又要区分如何使用。
 
-> 目前各种框架(vue-cli2、vue-cli3、react等)又**集成**`webpack`,导致webpack配置乱套，很是`反感`，估计这篇文章会很长请耐心开完。
-
-`基础配置`就不讲解了，说一些自己学习中碰到的`坑`！
-
+- 版本：
+	`"webpack": "^4.31.0",`
+	`"webpack-cli": "^3.3.2",`
+	`"webpack-dev-server": "^3.3.1"`
 ----
 
-1. 文件中导出了一个函数 https://webpack.docschina.org/configuration/output/#outputlibrary
-
 # webpack环境搭建
-## webpack全局安装
-- `npm install webpack -g`
-- 当我们执行命令`webpack`的时候，会自动寻找`webpack.config.js`文件，作为配置文件首选，若是其他文件，需要执行如下命令来告诉webpack要执行的文件。
+
+## 配置⽂文件名称
+- webpack 默认配置⽂文件:`webpack.config.js`
+- 可以通过 `webpack --config 指定配置⽂文件`
 - 当我们执行`webpack --config {文件名}` 命令的时候，具体做了哪些？
-    1. 寻找`node_modules`文件下的`.bin`文件
-    2. `.bin`在指向真实的配置文件包
-    3. 配置文件会作为webpack(config)：`config`（便是module.export暴露出的对象）参数对象传递给webpack;
-    ```javascript
-    // webpack.config.js 文件
-    // 会将module.exports暴露的模块传递给webpack
-    const path = require('path')
-    module.exports = {
-        mode: 'none',
-        entry: {
-            main: './src/a.js',
-        },
-        output: {
-            filename: 'a.[chunkhash].js',
-            path: path.join(__dirname, './dist'),
-        }
+1. 寻找`node_modules`文件下的`.bin`文件
+2. `.bin`在指向真实的配置文件包
+3. 配置文件会作为webpack(config)：`config`（便是module.export暴露出的对象）参数对象传递给webpack;
+```javascript
+// webpack.config.js 文件
+// 会将module.exports暴露的模块传递给webpack
+const path = require('path')
+module.exports = {
+    mode: 'none',
+    entry: {
+        main: './src/a.js',
+    },
+    output: {
+        filename: 'a.[chunkhash].js',
+        path: path.join(__dirname, './dist'),
     }
-    ```
-2. node命令执行`node {文件名字}`,局部安装webpack并引入执行配置对象即可
-- 这个就很容易理解，直接让node执行配置文件即可，[如何开启webpack配置文件](https://webpack.docschina.org/api/node/) 
+}
+```
+
+## `node 执行webpack配置文件`
+- [如何开启webpack配置文件](https://webpack.docschina.org/api/node/) 
 ```javascript
 // node.js文件
 const path = require('path')
@@ -64,9 +63,13 @@ webpack({
 
 <!-- more -->
 
-## 切换webpack版本
-- 现在`webpack5`已出，但是好多公司都在用`webpack3`俩者都要兼顾会使用。 
-- 我全局安装的是webpack5, 要如何切换webpack3进行学习呢？
+## 通过npm srcript 运行 webpack
+
+- 碰到的问题， 在当前文件夹下`终端`执行 `webpack --config weback.conig.js` 一直报错,报错片段如下！
+```
+TypeError: compiler.plugin is not a function
+    at CommonsChunkPlugin.apply (/Users/even/Even/continue/packagingTools/webpack-study/webpack-CommonsChunkPlugin/CommonsChunkPlugin01/node_modules/webpack/lib/optimize/CommonsChunkPlugin.js:88:12)
+```
 > 查看当前环境版本 `webpack -v`
 ```javascript
 webpack: 5.66.0
@@ -105,11 +108,7 @@ const config = {
 }
 module.exports = config;
 ```
-- 碰到的问题， 在当前文件夹下`终端`执行 `webpack --config weback.conig.js` 一直报错
-```
-TypeError: compiler.plugin is not a function
-    at CommonsChunkPlugin.apply (/Users/even/Even/continue/packagingTools/webpack-study/webpack-CommonsChunkPlugin/CommonsChunkPlugin01/node_modules/webpack/lib/optimize/CommonsChunkPlugin.js:88:12)
-```
+
 > 仔细看第二行 指向了webpack5全局的包，所以报错高版本并不兼容3，切换全局webpack成本有点大。
 - 突然想到如果在`package.json`里面执行命令，是否会指向当前文件的webpack3版本呢？ 果然真的成功了。。。。。
 ```json
@@ -119,37 +118,115 @@ TypeError: compiler.plugin is not a function
 ```
 ----
 
+## webpack文件监听
+- 文件监听是在发现源码发⽣生变化时，⾃动重新构建出新的输出⽂文件。
+- webpack 开启监听模式，有两种⽅方式: 唯⼀一缺陷:`每次需要⼿手动刷新浏览器器`
+```javascript
+//启动 webpack 命令时，带上 --watch 参数 
+//在配置 webpack.config.js 中设置 watch: true
+```
+- ⽂文件监听的原理理分析
+```javascript
+//轮询判断⽂文件的最后编辑时间是否变化 某个⽂文件发⽣生了了变化，并不不会⽴立刻告诉监听者，⽽而是先缓存起来，等 aggregateTimeout
+module.export = {
+//默认 false，也就是不不开启
+watch: true, //只有开启监听模式时，watchOptions才有意义 
+	wathcOptions: {
+		//默认为空，不监听的文件或者文件夹，支持正则匹配
+		ignored: /node_modules/,
+		//监听到变化发生后会等300ms再去执行，默认300ms
+		aggregateTimeout: 300, //判断文件是否发生变化是通过不停询问系统指定文件有没有变化实现的，默认每秒问1000次 
+		poll: 1000
+	} 
+}
+
+```
+
+## 文件指纹
+- 文件指纹: 打包后输出的⽂文件名的后缀,文件指纹如何生成?
+```javascript
+// Hash:和整个项⽬目的构建相关，只要项⽬目⽂文件有修改，整个项⽬目构建的 hash 值就会更更改,
+// Chunkhash:和 webpack 打包的 chunk 有关，不不同的 entry 会⽣生成不不同的 chunkhash 值
+// Contenthash:根据⽂文件内容来定义 hash ，⽂文件内容不不变，则 contenthash 不不变
+```
+
+
 # webpack常规配置
 
-## mode的作用
-- [官网的解释](https://webpack.docschina.org/configuration/mode/)就不在重复了. 直接看生成的代码[gitlab代码]()
-> 要打包的代码
+## Entry的用法
+- 单入口：entry是一个字符串
 ```javascript
-// a.js
-console.log('我是a模块')
-function a() {return '111'}
-a();
+module.exports = {
+	entry: './path/to/my/entry/file.js'
+};
 ```
-> production
+- 多入口：entry是一个对象
 ```javascript
-console.log("我是a模块"),window.even={};
+module.exports = { 
+	entry: {
+		app: './src/app.js',
+		adminApp: './src/adminApp.js'
+	}
+};
 ```
-- 可以看出代码几乎没怎么变，出来抛出变量之外
 
-> development
+## Output 的⽤用法
+- 单⼊入⼝口配置
 ```javascript
-(() => { 
-var __webpack_modules__ = ({
-"./src/a.js": (() => {
-eval("console.log('我是a模块')\nfunction a() {return '111'}\na();\n\n//# sourceURL=webpack://even/./src/a.js?");})
-});
-var __webpack_exports__ = {};
-__webpack_modules__["./src/a.js"]();
-window.even = __webpack_exports__;
-})();
+module.exports = {
+	entry: './path/to/my/entry/file.js' 
+	output: {
+		filename: 'bundle.js'
+		path: __dirname + '/dist' 
+	}
+};
 ```
-- 开发模式下代码完全不一样了，把我们的代码变成字符串了，这又是为什么呢，
-- 其实是为了方便我们代码的热更新，以及模块化引入。 大家如果对eval不理解可以去看看我的上一篇[文章]()
+- 多⼊入⼝口配置
+```javascript
+module.exports = { 
+	entry: {
+		app: './src/app.js',
+		search: './src/search.js' },
+		output: {
+		filename: '[name].js', path: __dirname + '/dist'
+	} 
+};
+```
+## 核⼼心概念之 Loaders
+- loaders的用法
+```javascript
+const path = require('path');
+module.exports = { 
+	output: {
+	filename: 'bundle.js' },
+	module: { 
+		rules: [
+			{ 
+				test: /\.txt$/,   // test 指定匹配规则
+			  use: 'raw-loader' // use 指定使⽤用的 loader 名称
+			} 
+		]
+	} 
+};
+```
+
+## 核⼼心概念之 Plugins
+- 插件⽤用于 bundle ⽂文件的优化，资源管理理和环境变量量注⼊入
+```javascript
+const path = require('path');
+module.exports = { 
+	output: {filename: 'bundle.js' },
+	plugins: [
+		new HtmlWebpackPlugin({template: './src/index.html'}) // 放到 plugins 数组⾥里里
+	] 
+};
+
+```
+
+
+## 核⼼心概念之 Mode
+- [Mode](https://webpack.docschina.org/configuration/mode/)⽤用来指定当前的构建环境是:production、development 还是 none
+
 
 
 ## 路径 [借鉴博客](https://zhuanlan.zhihu.com/p/36354511)
@@ -286,8 +363,29 @@ plugins: [
 - [分离出第三方库、自定义公共模块、webpack运行文件]()
 - [单独分离出第三方库、自定义公共模块、webpack运行文件]()
 - [抽离第三方库和自定义公共模块]()
-- []()
 
+## webpack5 - SplitChunks
+- chunks选项，决定要提取那些模块。
+
+> 默认是async：只提取异步加载的模块出来打包到一个文件中。
+> 异步加载的模块：通过import('xxx')或require(['xxx'],() =>{})加载的模块。
+> initial：提取同步加载和异步加载模块，如果xxx在项目中异步加载了，也同步加载了，那么xxx这个模块会被提取两次，分别打包到不同的文件中。
+> 同步加载的模块：通过 import xxx或require('xxx')加载的模块。
+> all：不管异步加载还是同步加载的模块都提取出来，打包到一个文件中。
+
+- minSize选项：规定被提取的模块在压缩前的大小最小值，单位为字节，默认为30000，只有超过了30000字节才会被提取。
+- maxSize选项：把提取出来的模块打包生成的文件大小不能超过maxSize值，如果超过了，要对其进行分割并打包生成新的文件。单位为字节，默认为0，表示不限制大小。
+- minChunks选项：表示要被提取的模块最小被引用次数，引用次数超过或等于minChunks值，才能被提取。
+- maxAsyncRequests选项：最大的按需(异步)加载次数，默认为 6。
+- maxInitialRequests选项：打包后的入口文件加载时，还能同时加载js文件的数量（包括入口文件），默认为4。
+> 先说一下优先级 maxInitialRequests / maxAsyncRequests <maxSize<minSize。
+- automaticNameDelimiter选项：打包生成的js文件名的分割符，默认为~。
+- name选项：打包生成js文件的名称。
+- cacheGroups选项，核心重点，配置提取模块的方案。里面每一项代表一个提取模块的方案。下面是cacheGroups每项中特有的选项，其余选项和外面一致，若cacheGroups每项中有，就按配置的，没有就使用外面配置的。
+- test选项：用来匹配要提取的模块的资源路径或名称。值是正则或函数。
+- priority选项：方案的优先级，值越大表示提取模块时优先采用此方案。默认值为0。
+- reuseExistingChunk选项：true/false。为true时，如果当前要提取的模块，在已经在打包生成的js文件中存在，则将重用该模块，而不是把当前要提取的模块打包生成新的js文件。
+- enforce选项：true/false。为true时，忽略minSize，minChunks，maxAsyncRequests和maxInitialRequests外面选项
 
 ## 多个入口文件合并
 1. 在a.js 引入b.js, webpack打包的时候自动会合成
@@ -374,13 +472,53 @@ plugins: [
 ```
 
 ## ExtractTextplugin - 文件提取
+- 只在weback3的时候才可使用
 - [ExtractTextplugin](https://www.npmjs.com/package/extract-text-webpack-plugin)
 
+## mini-css-extract-plugin - css提取
+- webpack4之后开始使用此插件
+```javascript
+// 下载
+npm install mini-css-extract-plugin -D
+// webpack中引用
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// 使用时候需要在俩处配置 
+// 1. 规则中
+{
+    test: /\.(less|css)$/,
+    use: [
+        {
+            loader: MiniCssExtractPlugin.loader,
+        },
+        'css-loader',
+        {
+            loader: 'less-loader',
+            options: {
+                lessOptions: {
+                    javascriptEnabled: true,
+                },
+            }
+        }
+    ],
+},
+// 2. 插件中
+new MiniCssExtractPlugin({
+    filename: 'css/base.css',
+    chunkFilename: '[id].css',
+}),
+```
 
 # webpack解析器
 ## webpack-loader
 - [loader](https://www.webpackjs.com/loaders/url-loader/)官网会发现loader大概有7个模块,**1、文件，2、JSON，3、转换编译，4、模板，5、样式，6、清理和测试，7、框架**
 - webpack因为只识别`js`文件，所以需要这些loader来处理文件转成js,个个大神的开源代码和维护都在社区有明显标注
+- 常规选项配置
+1. test: 要检测的文件
+2. loader: 要使用的插件
+3. include: 解析包含的文件
+4. exclude: 解析要排除的文件
+5. options: 插件高级配置选项
+6. use: [] 多个插件配置时使用
 
 ### vue-loader
 - 细心的朋友会发现[vue-loader](https://vue-loader.vuejs.org/zh/)并不在上面[webpack-loader](https://www.webpackjs.com/loaders/url-loader/)里面, `why?`.
@@ -410,3 +548,32 @@ loader: 'url-loader',
 ```
 - limit:低于指定的限制时，可以返回一个 DataURL。
 - name:这个参数让我很困惑,url-loader并没有对此字段做解释，查了(url-loader)[https://github.com/webpack-contrib/file-loader]之后才找到.
+
+### css-loader
+- 代码如下！ [文档](https://www.npmjs.com/package/css-loader)
+```javascript
+// index.js
+import '../css/base.css';
+```
+```css
+// base.less
+#phone {
+    background-image: url('../assets/actrulebtn.png');
+}
+```
+- 问题：在入口文件引入css时,css-loader将url自动处理了，并在`publickpath`中输出了图片,自信看文档有个url选项，是否修改url配置，当设置`url:false`时，不会做额外处理。
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        loader: "css-loader",
+        options: {
+          url: false,
+        },
+      },
+    ],
+  },
+};
+```
