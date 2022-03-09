@@ -1,6 +1,6 @@
 ---
 title: vue
-date: 2022-01-25 16:15:24
+date: 2020-01-25 16:15:24
 categories: vue
 tags: [vue]
 comments: true

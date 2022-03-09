@@ -11,7 +11,6 @@
 4. 定义函数类型的俩种写法
 5. 如何给window全局加变量
 
-
 ### 2022-03-02
 1. webpack 1.hash  2.chunkhash  3.contenthash 有哪些区别？
 
@@ -20,11 +19,12 @@
 2. 返回 Node.js 进程的当前工作目录
 - (过程、进程) （创造）(继承) (表示) (地球仪) (全局化)
 
+### 2022-03-04
+1. 如何删除非空目录 
+2. mode:production对代码做了哪些改变, 目前有三点
 
-
-
-
-
+### 2022-03-07
+1. reduce如何使用
 
 
 
@@ -52,3 +52,11 @@ process.cwd();
 ```
 - (过程、进程)=process （创造)=spawn (继承)=inherit (表示)=express
 - (地球仪)=glob (全局化)=globle
+
+### 2022-03-04
+1. 如何删除非空目录
+```javascript
+// rm -rf ./dist
+// rimraf包
+// clean-webpack-plugin
+```

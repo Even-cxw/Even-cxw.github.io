@@ -118,17 +118,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">10</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">10</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">17</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a>
 
   </li>
   </ul>
@@ -158,105 +158,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/03/01/study/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/01/study/" class="post-title-link" itemprop="url">Untitled</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-03-01 13:54:31" itemprop="dateCreated datePublished" datetime="2022-03-01T13:54:31+08:00">2022-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-03 20:03:26" itemprop="dateModified" datetime="2022-03-03T20:03:26+08:00">2022-03-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><h3 id="2022-02-28"><a href="#2022-02-28" class="headerlink" title="2022-02-28"></a>2022-02-28</h3><ol>
-<li>loader的常规配置</li>
-<li>ts class类函数如何定义后置变量</li>
-</ol>
-<ul>
-<li>单词； 工具、私有</li>
-</ul>
-<h3 id="2022-03-01"><a href="#2022-03-01" class="headerlink" title="2022-03-01"></a>2022-03-01</h3><ol>
-<li>什么是元组。</li>
-<li>什么是断言。</li>
-<li>定义<code>对象数组</code>，对象中有属性为函数，但函数名称未确定。</li>
-<li>定义函数类型的俩种写法</li>
-<li>如何给window全局加变量</li>
-</ol>
-<h3 id="2022-03-02"><a href="#2022-03-02" class="headerlink" title="2022-03-02"></a>2022-03-02</h3><ol>
-<li>webpack 1.hash  2.chunkhash  3.contenthash 有哪些区别？</li>
-</ol>
-<h3 id="2022-03-03"><a href="#2022-03-03" class="headerlink" title="2022-03-03"></a>2022-03-03</h3><ol>
-<li>如何在node环境执行linux命令</li>
-</ol>
-<ul>
-<li>(过程、进程) （创造）(继承) (表示) (地球仪) (全局化)</li>
-</ul>
-<h2 id="答"><a href="#答" class="headerlink" title="答:"></a>答:</h2><h3 id="2022-03-01-1"><a href="#2022-03-01-1" class="headerlink" title="2022-03-01"></a>2022-03-01</h3><ol>
-<li>什么是元组:已知元素数量和类型的数组</li>
-<li>什么是断言<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr: &#123; [key: <span class="built_in">string</span>]: <span class="function">() =&gt;</span> <span class="built_in">void</span> &#125;[] = [];</span><br><span class="line">arr.push(&#123; <span class="attr">a</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125; &#125;);</span><br><span class="line">arr[<span class="number">0</span>].a();</span><br></pre></td></tr></table></figure></li>
-<li>定义函数的俩种写法<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fun01 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>):<span class="title">void</span></span>&#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> fun02:<span class="function">() =&gt;</span> <span class="built_in">void</span> = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="2022-03-03-1"><a href="#2022-03-03-1" class="headerlink" title="2022-03-03"></a>2022-03-03</h3><ol>
-<li>如何在node环境执行linux命令</li>
-</ol>
-<ul>
-<li>(过程、进程)=process （创造)=spawn (继承)=inherit (表示)=express</li>
-<li>(地球仪)=glob (全局化)=globle</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/01/27/node/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -271,7 +172,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/01/27/node/" class="post-title-link" itemprop="url">node</a>
+            <a href="/2022/01/27/node/" class="post-title-link" itemprop="url">执行shell命令</a>
         </h2>
 
         <div class="post-meta">
@@ -280,10 +181,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2022-01-27 16:15:24 / Modified: 16:15:44" itemprop="dateCreated datePublished" datetime="2022-01-27T16:15:24+08:00">2022-01-27</time>
+              <time title="Created: 2022-01-27 16:15:24" itemprop="dateCreated datePublished" datetime="2022-01-27T16:15:24+08:00">2022-01-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-03-09 09:29:59" itemprop="dateModified" datetime="2022-03-09T09:29:59+08:00">2022-03-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -305,191 +212,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>对常用的node如”path\process\module“等熟练使用，当涉及到新的领域，一脸懵，比如：最近想做<code>node环境中执行shell脚本</code></p>
-</blockquote>
-<h1 id="child-process"><a href="#child-process" class="headerlink" title="child_process"></a>child_process</h1><blockquote>
-<p>看着官网总感觉自己是外国人，完全看不懂，想罩着文档写点东西。<code>GG</code>；结束战斗，还是得靠大家的博客来学习，</p>
-</blockquote>
-<h2 id="如何在node环境执行shell脚本"><a href="#如何在node环境执行shell脚本" class="headerlink" title="如何在node环境执行shell脚本"></a>如何在node环境执行shell脚本</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> childprocess = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>)</span><br><span class="line">childprocess.spawn(<span class="string">&#x27;cd mian &amp;&amp; npm run serve&#x27;</span>,&#123;<span class="attr">stdio</span>:<span class="string">&quot;inherit&quot;</span>,<span class="attr">shell</span>:<span class="literal">true</span>&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/01/26/micro/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/26/micro/" class="post-title-link" itemprop="url">micro</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-01-26 16:15:24" itemprop="dateCreated datePublished" datetime="2022-01-26T16:15:24+08:00">2022-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-03 19:32:35" itemprop="dateModified" datetime="2022-03-03T19:32:35+08:00">2022-03-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/micro/" itemprop="url" rel="index"><span itemprop="name">micro</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="执行多个命令"><a href="#执行多个命令" class="headerlink" title="执行多个命令"></a>执行多个命令</h1><h2 id="npm-run-all插件"><a href="#npm-run-all插件" class="headerlink" title="npm-run-all插件"></a>npm-run-all插件</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/npm-run-all">官网地址</a>:介绍很简短，这种小插件不如自己写一个。</li>
-<li>linux系统、shell脚本</li>
+          <h2 id="child-process子进程"><a href="#child-process子进程" class="headerlink" title="child_process子进程"></a>child_process子进程</h2><ul>
+<li>执行shell命令</li>
 </ul>
-<h2 id="node环境执行shell命令"><a href="#node环境执行shell命令" class="headerlink" title="node环境执行shell命令"></a>node环境执行shell命令</h2><ul>
-<li><p>package.json下的script脚本，可以执行shell命令，可以通过不停的<code>cd npm install &amp;&amp; cd.. </code></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;script&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;start&quot;</span>: <span class="string">&quot;cd main &amp;&amp; npm install &amp;&amp; cd.. &amp;&amp; cd vue-sub &amp;&amp; npm install&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>通过<code>child_process.exec</code>执行shell命令</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> childprocess = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>)</span><br><span class="line">childprocess.spawn(<span class="string">&#x27;cd mian &amp;&amp; npm run serve&#x27;</span>,&#123;<span class="attr">stdio</span>:<span class="string">&quot;inherit&quot;</span>,<span class="attr">shell</span>:<span class="literal">true</span>&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> childprocess = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>)</span><br><span class="line">childprocess.spawn(<span class="string">&#x27;cd mian &amp;&amp; npm run serve&#x27;</span>,&#123;<span class="attr">stdio</span>:<span class="string">&quot;inherit&quot;</span>,<span class="attr">shell</span>:<span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除非空目录</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> childprocess = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>)</span><br><span class="line">childprocess.spawn(<span class="string">&#x27;rm -rf dist&#x27;</span>,&#123;<span class="attr">stdio</span>:<span class="string">&quot;inherit&quot;</span>,<span class="attr">shell</span>:<span class="literal">true</span>&#125;)</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
+<h2 id="process获取当前目录路径"><a href="#process获取当前目录路径" class="headerlink" title="process获取当前目录路径"></a>process获取当前目录路径</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前文件所在目录</span></span><br><span class="line"><span class="keyword">let</span> path = process.cwd()</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/01/25/vue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/25/vue/" class="post-title-link" itemprop="url">vue</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2022-01-25 16:15:24 / Modified: 18:08:04" itemprop="dateCreated datePublished" datetime="2022-01-25T16:15:24+08:00">2022-01-25</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="vue-cli3"><a href="#vue-cli3" class="headerlink" title="vue-cli3"></a>vue-cli3</h1><h2 id="吐槽！"><a href="#吐槽！" class="headerlink" title="吐槽！"></a>吐槽！</h2><ul>
-<li>本身webapck的配置就一大堆，又来了vue-cli3的配置，虽然做了简化，但是感觉完全没必要去学，只要能看懂就行<blockquote>
-<p>vue-cli3已经出很久了，一直没有用最近在搞微前端，需要用vue-cli3里面的配置，突然一脸懵，真的是学不过来，哎！<code>简短记录下！</code></p>
-</blockquote>
-</li>
-</ul>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
-<li>webpack的位置文件是新建<code>webpack.config.js</code></li>
-<li>vue的配置文件是新建<code>vue.config.js</code><blockquote>
-<ol>
-<li><code>publicPath</code>会将此参数，传递到<code>process.env.BASE_URL</code></li>
-<li>创建 .env文件设置变量名<code>VUE_APP_&#123;变量名&#125;</code>， 也会传递到<code>process.env.VUE_APP_&#123;变量名&#125;</code></li>
-</ol>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">publicPath</span>: <span class="string">&#x27;/subapp/sub-vue&#x27;</span>,</span><br><span class="line">  <span class="attr">transpileDependencies</span>: [<span class="string">&#x27;common&#x27;</span>],</span><br><span class="line">  <span class="attr">chainWebpack</span>: <span class="function"><span class="params">config</span> =&gt;</span> config.resolve.symlinks(<span class="literal">false</span>),</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">output</span>: &#123;</span><br><span class="line">      <span class="comment">// 把子应用打包成 umd 库格式</span></span><br><span class="line">      <span class="attr">library</span>: <span class="string">`<span class="subst">$&#123;name&#125;</span>-[name]`</span>,</span><br><span class="line">      <span class="attr">libraryTarget</span>: <span class="string">&#x27;umd&#x27;</span>,</span><br><span class="line">      <span class="attr">jsonpFunction</span>: <span class="string">`webpackJsonp_<span class="subst">$&#123;name&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">devServer</span>: &#123;</span><br><span class="line">    <span class="attr">port</span>: process.env.VUE_APP_PORT,</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">      <span class="string">&#x27;Access-Control-Allow-Origin&#x27;</span>: <span class="string">&#x27;*&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="添加element-ui"><a href="#添加element-ui" class="headerlink" title="添加element-ui"></a>添加element-ui</h2><ul>
-<li>执行命令<code>vue add element</code></li>
-<li>有俩个选项 1.全局引入 2.按需引入<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Fully import</span><br><span class="line">Import on demand</span><br></pre></td></tr></table></figure></li>
-<li>我选择的是第二种按需引入，会<code>自动修改我们的配置文件</code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 多个plugins文件</span><br><span class="line"><span class="number">2.</span> bael.config.js文件修改</span><br><span class="line"><span class="number">3.</span> mian.js自动引入</span><br></pre></td></tr></table></figure></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/25/vue/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -539,7 +273,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-02 15:31:43" itemprop="dateModified" datetime="2022-03-02T15:31:43+08:00">2022-03-02</time>
+                <time title="Modified: 2022-03-09 09:12:14" itemprop="dateModified" datetime="2022-03-09T09:12:14+08:00">2022-03-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -589,85 +323,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/10/ssr/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/10/ssr/" class="post-title-link" itemprop="url">ssr</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-10 16:15:24" itemprop="dateCreated datePublished" datetime="2021-12-10T16:15:24+08:00">2021-12-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-28 16:27:41" itemprop="dateModified" datetime="2021-12-28T16:27:41+08:00">2021-12-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>如果想成为大前端，<code>ssr</code>可以说是成功路上的绊脚石。</p>
-</blockquote>
-<h2 id="ssr学习"><a href="#ssr学习" class="headerlink" title="ssr学习"></a>ssr学习</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6890810591968477191">ssr文章1</a></li>
-</ul>
-
       
     </div>
 
@@ -1077,6 +732,353 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/22/download/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/22/download/" class="post-title-link" itemprop="url">资源下载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-22 16:15:24" itemprop="dateCreated datePublished" datetime="2021-11-22T16:15:24+08:00">2021-11-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-24 11:35:46" itemprop="dateModified" datetime="2021-11-24T11:35:46+08:00">2021-11-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、下载逻辑"><a href="#一、下载逻辑" class="headerlink" title="一、下载逻辑"></a>一、下载逻辑</h2><p><font color="red">【先区分是请求方式】</font></p>
+<h3 id="1、get请求"><a href="#1、get请求" class="headerlink" title="1、get请求"></a>1、get请求</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接打开下载</span></span><br><span class="line"><span class="built_in">window</span>.open()</span><br></pre></td></tr></table></figure>
+<h3 id="2、post请求"><a href="#2、post请求" class="headerlink" title="2、post请求"></a>2、post请求</h3><ol>
+<li>若后端返回数据为<code>application/octet-stream格式</code></li>
+</ol>
+<ul>
+<li>application/octet-stream: 需要转成<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob">blob</a>对象，在通过<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL">createObjectURL</a>转成连接。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// res为后端返回的数据流</span></span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">&#x27;res&#x27;</span>],&#123;<span class="attr">type</span>:<span class="string">&#x27;application/vnd.ms-excel&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">var</span> link = URL.createObjectURL(blob)</span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>); <span class="comment">// 生成一个a元素</span></span><br><span class="line"><span class="keyword">let</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&quot;click&quot;</span>); <span class="comment">// 创建一个单击事件</span></span><br><span class="line">a.download = <span class="string">&quot;text.txt&quot;</span>; <span class="comment">// 设置图片名称</span></span><br><span class="line">a.href = link <span class="comment">// 将生成的URL设置为a.href属性</span></span><br><span class="line">a.dispatchEvent(event); <span class="comment">// 触发a的单击事件</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/22/download/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/17/typescript-webpack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/17/typescript-webpack/" class="post-title-link" itemprop="url">typescript/webpack项目初始化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-17 14:30:24" itemprop="dateCreated datePublished" datetime="2021-11-17T14:30:24+08:00">2021-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-19 17:44:23" itemprop="dateModified" datetime="2021-11-19T17:44:23+08:00">2021-11-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index"><span itemprop="name">typescript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>当只做几个单页面的时候，并不需要用到其他框架，可以考虑ts+jquery+webpack简单方便,<a target="_blank" rel="noopener" href="https://github.com/Even-cxw/TypeScript/tree/main/ts05-webpack-jquery">代码地址</a>。</p>
+</blockquote>
+<h1 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h1><ul>
+<li>node -v <code>v10.15.3</code></li>
+<li>npm -v  <code>7.20.6</code></li>
+<li>tsc -v  <code>4.4.3</code> <font color="red">【若没有，请全局安装<code>npm install typescript -g</code>】</font></li>
+<li>webpack -v  <code>5.52.1</code></li>
+<li>webpack-cli -v <code>3.3.12</code> <font color="red">【webpack-cli下载版本过高，会导致版本不兼容等】</font></li>
+<li>webpack-dev-server -v  <code>3.11.2</code></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/17/typescript-webpack/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/16/md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/16/md/" class="post-title-link" itemprop="url">md</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-16 14:30:24 / Modified: 18:30:22" itemprop="dateCreated datePublished" datetime="2021-11-16T14:30:24+08:00">2021-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/md/" itemprop="url" rel="index"><span itemprop="name">md</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="绿色字体"><a href="#绿色字体" class="headerlink" title="绿色字体"></a>绿色字体</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;font color=<span class="string">&quot;green&quot;</span>&gt;【aaaaa】&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>效果图<br><font color="green">【aaaaa】</font></p>
+</blockquote>
+<hr>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/16/md/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/16/vscode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/16/vscode/" class="post-title-link" itemprop="url">vscode编辑器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-16 14:30:24" itemprop="dateCreated datePublished" datetime="2021-11-16T14:30:24+08:00">2021-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-11-26 10:54:04" itemprop="dateModified" datetime="2021-11-26T10:54:04+08:00">2021-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vscode/" itemprop="url" rel="index"><span itemprop="name">vscode</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="vscode下载"><a href="#vscode下载" class="headerlink" title="vscode下载"></a>vscode下载</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VScode官方</a>因为连接境外下载速度很慢，<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_55548148/article/details/115587339">解决方案</a><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//外网地址：https://az764295.vo.msecnd.net/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCode-darwin-universal.zip</span></span><br><span class="line"><span class="comment">//内网地址：https://vscode.cdn.azure.cn/stable/3a6960b964327f0e3882ce18fcebd07ed191b316/VSCode-darwin-universal.zip</span></span><br><span class="line"><span class="comment">//替换连接：vscode.cdn.azure.cn</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="mac笔记本"><a href="#mac笔记本" class="headerlink" title="mac笔记本"></a>mac笔记本</h2><ol>
+<li>打开vscode</li>
+<li><code>command + shift + p </code>打开命令面板</li>
+<li>输入shell（选择”install code command in PATH”）<font color="green">【如下图】</font></li>
+<li>打开终端输入命令：<code>code &lt;dir&gt; </code> (dir - 对应的文件夹路径)</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/16/vscode/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1146,20 +1148,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

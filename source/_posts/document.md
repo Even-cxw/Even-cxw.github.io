@@ -56,6 +56,7 @@ comments: false
 - [ssr-框架](http://doc.ssr-fc.com/docs/features$started)
 - [vue-router官网](https://router.vuejs.org/zh/api/)
 - [阿里画图库](https://antv.vision/zh/)
+- [esLint官网](https://eslint.bootcss.com/docs/user-guide/configuring)
 
 ## 架构之路
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)

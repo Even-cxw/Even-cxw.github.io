@@ -150,6 +150,19 @@ watch: true, //只有开启监听模式时，watchOptions才有意义
 // Contenthash:根据⽂文件内容来定义 hash ，⽂文件内容不不变，则 contenthash 不不变
 ```
 
+## 使用webpack内置的stats
+- stats: 构建的统计信息
+```javascript
+// package.json 中使用 stats
+"build:stats": "webpack --json > stats.json"
+```
+
+## 多进程/多实例构建
+- 使用 HappyPack 解析资源
+
+- 使用 thread-loader
+
+
 
 # webpack常规配置
 
@@ -227,7 +240,55 @@ module.exports = {
 ## 核⼼心概念之 Mode
 - [Mode](https://webpack.docschina.org/configuration/mode/)⽤用来指定当前的构建环境是:production、development 还是 none
 
+1. source map : 通过 source map 定位到源代码
+> mode production 的情况下默认开启开发环境开启，
+```javascript
+// eval: 使⽤用eval包裹模块代码 
+// source map: 产⽣生.map⽂文件 
+//cheap: 不不包含列列信息
+//nline: 将.map作为DataURI嵌⼊入，不不单独⽣生成.map⽂文件 
+//module:包含loader的sourcemap
+devtool: 'source-map'
+```
+2. tree shaking(摇树优化) : 只抽离bundle中有用的代码
+> mode production 的情况下默认开启开发环境开启，
 
+3. scope hoisting : 解决大量闭包代码
+> mode production 的情况下默认开启开发环境开启，
+> 原理理:将所有模块的代码按照引⽤用顺序放在⼀一个函数作⽤用域⾥里里，然后适当的重命名⼀一
+些变量量以防⽌止变量量名冲突
+
+
+## webpack打包库
+> [参考文章](https://zhuanlan.zhihu.com/p/108216236) [官网解释](https://webpack.docschina.org/configuration/mode/)
+- library : 指定的全局变量
+- libraryTarget : 暴露方式，是commonjs、commonjs2、umd还是this、var等
+![](/images/library.jpg)
+- 如何指对 .min 压缩 `npm install terser-webpack-plugin@1.3.0`
+```javascript 
+const TerserPlugin = require('terser-webpack-plugin');
+module.exports = {
+    entry: {
+        'large-number': './src/index.js',
+        'large-number.min': './src/index.js'
+    },
+    output: {
+        filename: '[name].js',
+        library: 'largeNumber',
+        libraryTarget: 'umd',
+        libraryExport: 'default'
+    },
+    mode: 'none',
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                include: /\.min\.js$/,
+            })
+        ]
+    }
+}
+```
 
 ## 路径 [借鉴博客](https://zhuanlan.zhihu.com/p/36354511)
 
@@ -266,15 +327,6 @@ module.exports = {
 
 ## externals
 - [externals](https://webpack.docschina.org/configuration/externals/):防止将某些 import 的包(package)打包到 bundle 中，而是在运行时(runtime)再去从外部获取这些扩展依赖(external dependencies)。
-
-
-## library、libraryTarget作用
-> [参考文章](https://zhuanlan.zhihu.com/p/108216236)
-> [官网解释](https://webpack.docschina.org/configuration/mode/)
-> [个人github代码]() 不多说直接上图
-- library : 全局使用的名称变量
-- libraryTarget : 暴露方式，是commonjs、commonjs2、umd还是this、var等
-![](/images/library.jpg)
 
 
 ## 多个webpack配置合并
@@ -352,13 +404,17 @@ plugins: [
     new CleanWebpackPlugin(),
 ]
 ```
+### script命令删除
+```javascript
+rm -rf ./dist && webpack
+```
 > 俩者差距还是很大的，一个是node包好处是可以删除任意文件任意目录。一个是webpack插件只能删除打包的路径并全量删除。
 
 ----
 
 # webpack优化
 
-## CommonsChunkPlugin
+## CommonsChunkPlugin - 3之后已废弃
 - [文章中大佬写的和很详细](https://segmentfault.com/a/1190000012828879),他是关于webapck3的相关配置；
 - [分离出第三方库、自定义公共模块、webpack运行文件]()
 - [单独分离出第三方库、自定义公共模块、webpack运行文件]()
@@ -442,7 +498,77 @@ module.exports = {
 
 # webpack插件
 
-## [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin)  [借鉴博客](https://juejin.cn/post/6844903853708541959)
+## css文件压缩
+- npm install optimize-css-assets-webpack-plugin -D
+- npm install cssnano -D
+```javascript
+module.exports = { 
+	entry: {
+		app: './src/app.js',
+		search: './src/search.js' 
+	},
+	output: {
+		filename: '[name][chunkhash:8].js', path: __dirname + '/dist'
+	}, 
+	plugins: [
+		new OptimizeCSSAssetsPlugin({ assetNameRegExp: /\.css$/g, cssProcessor: require('cssnano’)
+	]
+```
+
+
+## 自动清理构建目录
+- [借鉴博客](https://juejin.cn/post/6844903853708541959) [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) 
+```javascript
+new HtmlWebpackPlugin({
+		template: path.join(__dirname, 'src/search.html'), // 模板路径
+		filename: 'search.html', // 文件名称
+		chunks: ['search'], // 生成的html用哪些chunk
+		inject: true, // 自动注入
+		minify: {
+				html5: true,
+				collapseWhitespace: true,
+				preserveLineBreaks: false,
+				minifyCSS: true,
+				minifyJS: true,
+				removeComments: false
+		}
+}) 
+```
+
+## 自动清理理构建目录
+ - npm install aotoprefixer -D
+ - npm install postcss-loader -D
+ ```javascript
+{
+		test: /.less$/,
+		use: [
+				'css-loader',
+				'less-loader',
+				{
+						loader: 'postcss-loader',
+						options: {
+								plugins: () => [
+										require('autoprefixer')({
+												browsers: ['last 2 version', '>1%', 'ios 7']
+										})
+								]
+						}
+				},
+		]
+},
+ ```
+
+## 资源内联的意义
+1. raw-loader 内联 html
+- `注意版本问题` npm install raw-loader@0.5.1
+```javascript
+<script>${require('raw-loader!babel-loader!. /meta.html')}</script>
+```
+
+2. raw-loader 内联 JS
+```javascript
+<script>${require('raw-loader!babel-loader!../node_modules/lib-flexible')}</script>
+```
 
 ## DefinePlugin - 定义环境变量
 - [webpack.DefinePlugin](https://webpack.docschina.org/plugins/define-plugin#root):编译时将你代码中的变量替换为其他值或表达式
@@ -577,3 +703,37 @@ module.exports = {
   },
 };
 ```
+
+
+## 规范代码
+[esLint官网](https://eslint.bootcss.com/docs/user-guide/configuring)
+- 新增`.eslintrc.js`文件
+```javascript
+module.exports = {
+    "parser": "babel-eslint", // 使用解析器
+    "extends": "airbnb",  // 继承airbnb
+    // 当前想启用的环境
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    // 定义规则
+    "rules": {
+        "indent": ["error", 4]
+    }
+};
+```
+- npm 下载
+```javascript
+"babel-eslint": "^10.0.1",
+"eslint": "^5.16.0",
+"eslint-config-airbnb": "^17.1.0",
+"eslint-config-airbnb-base": "^13.1.0",
+"eslint-loader": "^2.1.2",
+"eslint-plugin-import": "^2.17.3",
+"eslint-plugin-jsx-a11y": "^6.2.1",
+"eslint-plugin-react": "^7.13.0",
+```
+
+
+## webpack如何暴露库
