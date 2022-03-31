@@ -17,7 +17,6 @@ comments: false
 - [MDN手册](https://developer.mozilla.org/zh-CN/)
 - [lodash.js操作文档](https://www.lodashjs.com/)
 - [高德地图文档](https://lbs.amap.com/api/javascript-api/reference/map/)
-- [postcss文档](https://postcss.org/)
 
 <!-- more -->   
 
@@ -26,7 +25,6 @@ comments: false
 - [koa文档](https://koa.bootcss.com/#introduction)
 - [typescript文档](https://github.com/zhongsp/TypeScript)
 - [高德地图文档](https://lbs.amap.com/api/amap-mobile/gettingstarted)
-- [nginx文档](https://www.nginx.cn/doc/index.html)
 - [A-fram VR体验文档](https://www.techbrood.com/aframe)
 - [桌面端electron-文档](http://www.electronjs.org/docs/tutorial/macos-dock)
 - [linux命令大全-文档](https://www.linuxcool.com/cat)
@@ -57,6 +55,11 @@ comments: false
 - [vue-router官网](https://router.vuejs.org/zh/api/)
 - [阿里画图库](https://antv.vision/zh/)
 - [esLint官网](https://eslint.bootcss.com/docs/user-guide/configuring)
+- [antd官网](https://ant.design/index-cn)
+- [react-router](http://uprogrammer.cn/react-router-cn/index.html)
+- [react-router-dom个人博客](https://segmentfault.com/a/1190000039190541)
+- [腾讯云文档](https://cloud.tencent.com/document/product/213/44971)
+- [百度富文本编辑器UEditor](http://fex.baidu.com/ueditor/#start-start)
 
 ## 架构之路
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)
@@ -75,6 +78,7 @@ comments: false
 - [vue3文档](https://vue3js.cn/docs/zh/guide/migration/introduction.html)
 - [vuex文档](https://vuex.vuejs.org/zh/)
 - [vue Cli](https://cli.vuejs.org/zh/guide/webpack.html)
+- [vite](https://vitejs.cn/guide/)
 
 #### UI文档
 - [vant-ui](https://youzan.github.io/vant/#/zh-CN/quickstart)   
@@ -91,6 +95,8 @@ comments: false
 - [tweenmax博客](https://segmentfault.com/a/1190000007496078)
 - [weui博客](https://blog.csdn.net/gegephp/article/details/88869255)
 - [nginx-缓存设置](https://www.layui.com/)
+- [nginx文档](https://www.nginx.cn/doc/index.html)
+- [nginx-下载地址](http://nginx.org/en/download.html)
 - [SVN使用手册](https://blog.csdn.net/sinat_37812785/article/details/80243207)
 - [字符串的方法](https://www.cnblogs.com/zhangxin2540/p/7054835.html)
 - [正则表达式菜鸟文档](https://www.runoob.com/regexp/regexp-syntax.html)

@@ -16,10 +16,23 @@ comments: false
 ```javascript
 // 解决办法
 // 找到nvm配置目录 、settings.text文件，添加如下配置
-//node_mirror:npm.taobao.org/mirrors/node/
-//npm_mirror:npm.taobao.org/mirrors/npm/
+node_mirror:npm.taobao.org/mirrors/node/
+npm_mirror:npm.taobao.org/mirrors/npm/
 ```
 
+
+# cnpm安装
+```javascript
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+- 替换淘宝镜像
+```javascript
+// 命令
+npm config set registry https://registry.npm.taobao.org
+// 查看是否成功
+npm config get registry
+```
 
 # vscode配置
 ---
@@ -51,3 +64,9 @@ comments: false
 - vscode常用插件
 - Live Serve : 在浏览器中打开index.html，自动热更新
 - typeScript Auto Compiler : 自动转成js文件
+
+
+
+# node问题
+
+- npm ERR! cb() never called!
