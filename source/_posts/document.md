@@ -56,10 +56,14 @@ comments: false
 - [阿里画图库](https://antv.vision/zh/)
 - [esLint官网](https://eslint.bootcss.com/docs/user-guide/configuring)
 - [antd官网](https://ant.design/index-cn)
+- [antd-git-地址](https://github.com/ant-design/ant-design/issues/19191)
 - [react-router](http://uprogrammer.cn/react-router-cn/index.html)
 - [react-router-dom个人博客](https://segmentfault.com/a/1190000039190541)
+- [react-router-dom官网]https://v5.reactrouter.com/web/api/BrowserRouter/basename-string)
+- [react-router-dom-v6版本](https://github.com/remix-run/react-router/blob/main/docs/getting-started/tutorial.md)
 - [腾讯云文档](https://cloud.tencent.com/document/product/213/44971)
 - [百度富文本编辑器UEditor](http://fex.baidu.com/ueditor/#start-start)
+- [江南大学](http://wj.cmjnu.com.cn/)
 
 ## 架构之路
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)

@@ -30,9 +30,30 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 ```javascript
 // 命令
 npm config set registry https://registry.npm.taobao.org
+npm config set disturl https://npm.taobao.org/dist
 // 查看是否成功
 npm config get registry
 ```
+
+# yarn安装
+```js
+// 下载yarn
+npm isntall yarn -g
+// 查看版本
+yarn --version
+// yarn 设置淘宝镜像
+yarn config set registry https://registry.npm.taobao.org/
+yarn config set disturl https://npm.taobao.org/dist
+```
+- yarn命令
+```js
+// 下载依赖
+yarn add 包名
+// 移除依赖
+yarn remove 包名
+```
+
+
 
 # vscode配置
 ---
