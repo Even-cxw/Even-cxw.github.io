@@ -18,7 +18,7 @@ comments: false
 - [lodash.js操作文档](https://www.lodashjs.com/)
 - [高德地图文档](https://lbs.amap.com/api/javascript-api/reference/map/)
 
-<!-- more -->   
+<!-- more -->  
 
 - [mongodb文档](https://www.mongodb.org.cn/)
 - [node-fetch文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
@@ -63,6 +63,8 @@ comments: false
 - [react-router-dom-v6版本](https://github.com/remix-run/react-router/blob/main/docs/getting-started/tutorial.md)
 - [腾讯云文档](https://cloud.tencent.com/document/product/213/44971)
 - [百度富文本编辑器UEditor](http://fex.baidu.com/ueditor/#start-start)
+- [styled-components英文版](https://styled-components.com/docs/advanced#theming)
+- [掘金网](https://juejin.cn/)
 - [江南大学](http://wj.cmjnu.com.cn/)
 
 ## 架构之路
@@ -122,6 +124,7 @@ comments: false
 - [eruda.js调试博客2](https://www.cnblogs.com/aisiqi-love/p/11764627.html)
 - [PDF转word](https://app.xunjiepdf.com/)
 - [easy-mock模拟数据工具](https://easy-mock.com/login)
+- [fastmock模拟数据](https://www.fastmock.site/#/projects)
 - [vorlonjs混合开发调试工具](http://www.vorlonjs.com/)
 - [修改host网址](https://zhuanlan.zhihu.com/p/107334179)
 - [npm环境变量配置](https://www.cnblogs.com/coder-lzh/p/9232192.html)
