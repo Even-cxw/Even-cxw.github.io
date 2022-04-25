@@ -18,13 +18,8 @@ comments: false
 - [lodash.js操作文档](https://www.lodashjs.com/)
 - [高德地图文档](https://lbs.amap.com/api/javascript-api/reference/map/)
 
-<<<<<<< HEAD
 <!-- more -->   
 - [vue2升级vue3官网](https://gogocode.io/zh/docs/vue/element-ui-to-element-plus)
-=======
-<!-- more -->  
-
->>>>>>> a763fc0221aa92481295270599793dd74e935cc6
 - [mongodb文档](https://www.mongodb.org.cn/)
 - [node-fetch文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
 - [koa文档](https://koa.bootcss.com/#introduction)
