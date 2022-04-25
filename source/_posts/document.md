@@ -17,16 +17,19 @@ comments: false
 - [MDN手册](https://developer.mozilla.org/zh-CN/)
 - [lodash.js操作文档](https://www.lodashjs.com/)
 - [高德地图文档](https://lbs.amap.com/api/javascript-api/reference/map/)
-- [postcss文档](https://postcss.org/)
 
+<<<<<<< HEAD
 <!-- more -->   
 - [vue2升级vue3官网](https://gogocode.io/zh/docs/vue/element-ui-to-element-plus)
+=======
+<!-- more -->  
+
+>>>>>>> a763fc0221aa92481295270599793dd74e935cc6
 - [mongodb文档](https://www.mongodb.org.cn/)
 - [node-fetch文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
 - [koa文档](https://koa.bootcss.com/#introduction)
 - [typescript文档](https://github.com/zhongsp/TypeScript)
 - [高德地图文档](https://lbs.amap.com/api/amap-mobile/gettingstarted)
-- [nginx文档](https://www.nginx.cn/doc/index.html)
 - [A-fram VR体验文档](https://www.techbrood.com/aframe)
 - [桌面端electron-文档](http://www.electronjs.org/docs/tutorial/macos-dock)
 - [linux命令大全-文档](https://www.linuxcool.com/cat)
@@ -57,6 +60,17 @@ comments: false
 - [vue-router官网](https://router.vuejs.org/zh/api/)
 - [阿里画图库](https://antv.vision/zh/)
 - [esLint官网](https://eslint.bootcss.com/docs/user-guide/configuring)
+- [antd官网](https://ant.design/index-cn)
+- [antd-git-地址](https://github.com/ant-design/ant-design/issues/19191)
+- [react-router](http://uprogrammer.cn/react-router-cn/index.html)
+- [react-router-dom个人博客](https://segmentfault.com/a/1190000039190541)
+- [react-router-dom官网]https://v5.reactrouter.com/web/api/BrowserRouter/basename-string)
+- [react-router-dom-v6版本](https://github.com/remix-run/react-router/blob/main/docs/getting-started/tutorial.md)
+- [腾讯云文档](https://cloud.tencent.com/document/product/213/44971)
+- [百度富文本编辑器UEditor](http://fex.baidu.com/ueditor/#start-start)
+- [styled-components英文版](https://styled-components.com/docs/advanced#theming)
+- [掘金网](https://juejin.cn/)
+- [江南大学](http://wj.cmjnu.com.cn/)
 
 ## 架构之路
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)
@@ -75,6 +89,7 @@ comments: false
 - [vue3文档](https://vue3js.cn/docs/zh/guide/migration/introduction.html)
 - [vuex文档](https://vuex.vuejs.org/zh/)
 - [vue Cli](https://cli.vuejs.org/zh/guide/webpack.html)
+- [vite](https://vitejs.cn/guide/)
 
 #### UI文档
 - [vant-ui](https://youzan.github.io/vant/#/zh-CN/quickstart)   
@@ -91,6 +106,8 @@ comments: false
 - [tweenmax博客](https://segmentfault.com/a/1190000007496078)
 - [weui博客](https://blog.csdn.net/gegephp/article/details/88869255)
 - [nginx-缓存设置](https://www.layui.com/)
+- [nginx文档](https://www.nginx.cn/doc/index.html)
+- [nginx-下载地址](http://nginx.org/en/download.html)
 - [SVN使用手册](https://blog.csdn.net/sinat_37812785/article/details/80243207)
 - [字符串的方法](https://www.cnblogs.com/zhangxin2540/p/7054835.html)
 - [正则表达式菜鸟文档](https://www.runoob.com/regexp/regexp-syntax.html)
@@ -112,6 +129,7 @@ comments: false
 - [eruda.js调试博客2](https://www.cnblogs.com/aisiqi-love/p/11764627.html)
 - [PDF转word](https://app.xunjiepdf.com/)
 - [easy-mock模拟数据工具](https://easy-mock.com/login)
+- [fastmock模拟数据](https://www.fastmock.site/#/projects)
 - [vorlonjs混合开发调试工具](http://www.vorlonjs.com/)
 - [修改host网址](https://zhuanlan.zhihu.com/p/107334179)
 - [npm环境变量配置](https://www.cnblogs.com/coder-lzh/p/9232192.html)
