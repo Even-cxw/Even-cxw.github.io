@@ -170,6 +170,50 @@ logger('金色小芝麻')
 
 ```
 
+### record记录
+- 可以简化代码
+```ts
+type studentScore = { [ name:string]:number }
+// 也可以用Record简化
+type studentScore = Record<string, number>
+```
+
+### Partial部分的
+- 简化代码
+```ts
+type Coord = Partial<Record<'x' | 'y', number>>;
+// 等同于
+type Coord = {
+	x?: number;
+	y?: number;
+}
+```
+
+### keyof
+```ts
+type Point = { x: number; y: number };
+type P = keyof Point; //p的值可以为 'x' | 'y'
+const a:P = 'x'; 
+```
+
+### typeof
+```ts
+const obj = { x: 10, y: 3 }
+type A = typeof obj;
+const a: A = {
+    x:1,
+    y:1
+}
+```
+
+### ReturnType
+```ts
+function f() {
+  return { x: 10, y: 3 };
+}
+type P = ReturnType<typeof f>; //type P = { x: number; y: number; }
+```
+
 
 ## 函数中的应用
 
@@ -236,7 +280,7 @@ console.log(person2.getName);
 
 ## 接口
 - interface\type区别：`interface可继承， type不可以继承`
-1. interface
+### interface
 ```ts
 interface Person1 {
   name:string, // : 必须要写
@@ -247,7 +291,7 @@ interface Person1 {
   subValue:(val:number) => void,
 }
 ```
-2. type
+### type
 ```ts
 type Person2 = {}
 let person:Person1 = {
@@ -262,7 +306,37 @@ let person:Person1 = {
 
 ```
 
-3. 接口实际应用
+### declare声明
+1. 使用第三方库，使用 declare 关键字来定义它的类型，帮助 TypeScript 判断我们传入的参数类型对不对
+```ts
+declare var jQuery: (selector: string) => any;
+jQuery('#foo');
+```
+
+2. 模块扩展
+```ts
+// 1.ts
+export class AClass {
+  public a:string;
+  constructor(a:string) {
+    this.a = a;
+  }
+ }
+// 2.ts
+import { AClass } from './1';
+// module 后面跟模块名
+declare module './1' {
+   interface AClass {
+    test: (b: number) => number;
+  }
+}
+AClass.prototype.test = (b: number): number => {
+   return b;
+}
+```
+
+
+### 接口实际应用
 ```ts
 // 接口应用到对象中
 type Person2 = {}
