@@ -77,13 +77,13 @@ a.dispatchEvent(event); // 触发a的单击事件
 > 官网解释：二进制数据缓冲区，它是一个字节数组。 个人理解为：无法读取和操作的数据格式，只能看到他的长度看不到内容更别说来`操作此内容`，<font color="green">【那我们来如何操作呢？就有了另外几个api】</font>
 ```javascript
 // 定义长度为4的数据容器, 哈哈，这里只能看不能有任何操作！
-var buffer = new Arraybuffer(4)
+var buffer = new ArrayBuffer(4)
 ```
 - `TypedArray`
 > 这个更是一个`烟雾弹`,TypedArray既不是全局变量也不是函数(所以休想在全局中访问到他),他是`Uint8Array...`等子类的实例化，当我们得到`TypedArray`实例后便可以轻松的使用他的api操作数据了。
 ```javascript
 // 定义长度为4的数据容器, 哈哈，这里只能看不能有任何操作！
-var buffer = new Arraybuffer(4)
+var buffer = new ArrayBuffer(4)
 // 得到TypedArray 这样我就可以操作上面的数据了。
 var TypedArray = new Uint8Array(buffer);
 TypedArray[0] = 32;
@@ -205,3 +205,5 @@ reader.onload = function (e) {
 reader.readAsDataURL(blob);
 
 ```
+
+// application/vnd.openxmlformats-officedocument.wordprocessingml.document

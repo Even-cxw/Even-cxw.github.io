@@ -57,9 +57,9 @@ comments: false
 - [百度富文本编辑器UEditor](http://fex.baidu.com/ueditor/#start-start)
 - [掘金网](https://juejin.cn/)
 - [江南大学](http://wj.cmjnu.com.cn/)
-
-## 架构之路
-- [vue-loader起步](https://vue-loader.vuejs.org/zh/)
+- [cordova](https://cordova.apache.org/docs/en/6.x/guide/cli/index.html)
+- [Android Studio 官网](https://developer.android.google.cn/studio/)
+- [mac版本的Android Studio搭建环境（gradle、jdk、sdk](https://juejin.cn/post/6995473605966430245)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
@@ -78,7 +78,8 @@ comments: false
 - [vite](https://vitejs.cn/guide/)
 - [vue-router官网](https://router.vuejs.org/zh/api/)
 - [vue-ssr官方文档](https://ssr.vuejs.org/zh/)
-
+- [vue-loader起步](https://vue-loader.vuejs.org/zh/)
+- [将要迁移的项目](https://github.com/Ljhhhhhh/h5vue)
 
 #### react文档
 - [antd官网](https://ant.design/index-cn)
@@ -92,6 +93,21 @@ comments: false
 - [styled-components英文版](https://styled-components.com/docs/advanced#theming)
 - [react-router-dom官网]https://v5.reactrouter.com/web/api/BrowserRouter/basename-string)
 - [react-router-dom-v6版本](https://github.com/remix-run/react-router/blob/main/docs/getting-started/tutorial.md)
+- [dva-git官网](https://github.com/dvajs/dva-docs/tree/master/v1/zh-cn/tutorial)
+- [dva.js官网](https://dvajs.com/)
+- [umi.js官网](https://umijs.org/)
+- [react-media](https://www.npmjs.com/package/react-media)
+- [react-container-query](https://github.com/react-container-query/react-container-query)
+- [classname:个人博客](https://www.jianshu.com/p/1125e9848af6)
+##### react项目相关
+- [入职学习-antd](https://ant.design/index-cn)
+- [入职学习-antd-dest-pro](https://pro.ant.design/zh-CN/)
+- [入职学习-dva](https://dvajs.com/)
+- [入职学习-umi](https://umijs.org/)
+- [rc-animate gitHub地址](http://react-component.github.io/animate/)
+- [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
+- [react-media](https://www.npmjs.com/package/react-media)
+- [react-container-query](https://www.npmjs.com/package/react-container-query)
 
 
 #### UI文档
@@ -151,6 +167,7 @@ comments: false
 - [51CTO企业版](https://b.51cto.com/index)
 - [手写vue-MVVM](https://github.com/DMQ/mvvm)
 - [计算机基础](http://www.weixueyuan.net/a/9.html)
+- [font-family详解](https://zhuanlan.zhihu.com/p/313284552)
 #### 软件下载
 - [罗技鼠标软件下载](https://www.logitech.com.cn/zh-cn/promo/ergosetup/logitech-options.html)
 
