@@ -60,6 +60,7 @@ comments: false
 - [cordova](https://cordova.apache.org/docs/en/6.x/guide/cli/index.html)
 - [Android Studio 官网](https://developer.android.google.cn/studio/)
 - [mac版本的Android Studio搭建环境（gradle、jdk、sdk](https://juejin.cn/post/6995473605966430245)
+- [aws-s3-javascript文档](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
@@ -83,6 +84,7 @@ comments: false
 
 #### react文档
 - [antd官网](https://ant.design/index-cn)
+- [antd镜像地址](https://ant-design.gitee.io/index-cn)
 - [antd-git-地址](https://github.com/ant-design/ant-design/issues/19191)
 - [react-router](http://uprogrammer.cn/react-router-cn/index.html)
 - [react-router-dom个人博客](https://segmentfault.com/a/1190000039190541)
@@ -99,6 +101,7 @@ comments: false
 - [react-media](https://www.npmjs.com/package/react-media)
 - [react-container-query](https://github.com/react-container-query/react-container-query)
 - [classname:个人博客](https://www.jianshu.com/p/1125e9848af6)
+- [react-hooks](https://react.docschina.org/docs/hooks-intro.html)
 ##### react项目相关
 - [入职学习-antd](https://ant.design/index-cn)
 - [入职学习-antd-dest-pro](https://pro.ant.design/zh-CN/)
@@ -108,7 +111,7 @@ comments: false
 - [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 - [react-media](https://www.npmjs.com/package/react-media)
 - [react-container-query](https://www.npmjs.com/package/react-container-query)
-
+- [react-组件](https://github.com/react-component)
 
 #### UI文档
 - [vant-ui](https://youzan.github.io/vant/#/zh-CN/quickstart)   
@@ -155,6 +158,9 @@ comments: false
 - [Bulletproof background images](https://backgrounds.cm/)
 - [mac外接显示器设置](https://zhuanlan.zhihu.com/p/161631562)
 - [生成精灵图JSON网址](https://www.leshylabs.com/apps/sstool/)
+- [在线代码压缩工具](https://tool.lu/)
+- [javascript压缩工具](https://jscompress.com/)
+- [图片压缩工具](https://tinypng.com/)
 
 #### 学习
 - [单元测试](https://segmentfault.com/a/1190000013470485)
@@ -168,6 +174,9 @@ comments: false
 - [手写vue-MVVM](https://github.com/DMQ/mvvm)
 - [计算机基础](http://www.weixueyuan.net/a/9.html)
 - [font-family详解](https://zhuanlan.zhihu.com/p/313284552)
+
+- [不规则矩形](https://juejin.cn/post/6844903481111740423)
+- [clip-path](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip-path#%E5%BD%A2%E5%BC%8F%E5%AE%9A%E4%B9%89)
 #### 软件下载
 - [罗技鼠标软件下载](https://www.logitech.com.cn/zh-cn/promo/ergosetup/logitech-options.html)
 
