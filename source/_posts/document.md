@@ -161,6 +161,9 @@ comments: false
 - [在线代码压缩工具](https://tool.lu/)
 - [javascript压缩工具](https://jscompress.com/)
 - [图片压缩工具](https://tinypng.com/)
+- [转base64工具](https://c.runoob.com/)
+- [前端性能监控](https://github.com/GoogleChrome/lighthouse#using-lighthouse-in-chrome-devtools)
+- [测试网站速度](https://juejin.cn/post/6955458234974994469)
 
 #### 学习
 - [单元测试](https://segmentfault.com/a/1190000013470485)
