@@ -30,7 +30,7 @@ comments: false
 - [linux命令大全-文档](https://www.linuxcool.com/cat)
 - [正则表达测-文档](https://regexper.com/)
 - [微前端-文档](https://qiankun.umijs.org/zh/cookbook)
-- [bootcdn网址](https://www.bootcdn.cn/)
+- [插件-bootcdn网址](https://www.bootcdn.cn/)
 - [webpack文档](https://webpack.docschina.org/)
 - [webpack-loader文档](https://www.webpackjs.com/loaders/url-loader/)
 - [node](http://nodejs.cn/api/)
@@ -61,6 +61,10 @@ comments: false
 - [Android Studio 官网](https://developer.android.google.cn/studio/)
 - [mac版本的Android Studio搭建环境（gradle、jdk、sdk](https://juejin.cn/post/6995473605966430245)
 - [aws-s3-javascript文档](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html)
+- [若依](http://doc.ruoyi.vip/ruoyi/)
+- [echarse](https://echarts.apache.org/zh/index.html)
+- [时间格式化-moment.js](http://momentjs.cn/docs/)
+- [datav](http://datav.jiaminghi.com/guide/)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
