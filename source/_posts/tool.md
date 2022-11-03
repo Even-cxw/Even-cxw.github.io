@@ -6,6 +6,11 @@ tags: [vscode，nvm]
 comments: false
 ---
 
+# 查看源地址
+
+- npm config get registry
+- cnpm config get registry
+
 # nvm常用命令
 ---
 

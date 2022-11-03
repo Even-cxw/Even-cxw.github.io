@@ -6,6 +6,14 @@ tags: [git]
 comments: false
 ---
 
+
+# git基本命令
+1. 删除分支 `git branch -d ""`
+2. 拉去远程删除分支： `git remote prune origin`
+
+
+
+
 ## 如何关联俩个仓库
 - 借鉴地址[https://juejin.cn/post/6844903970637365255#heading-1]
 ```js

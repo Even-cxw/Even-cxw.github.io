@@ -106,6 +106,8 @@ comments: false
 - [react-container-query](https://github.com/react-container-query/react-container-query)
 - [classname:个人博客](https://www.jianshu.com/p/1125e9848af6)
 - [react-hooks](https://react.docschina.org/docs/hooks-intro.html)
+- [ahooks](https://ahooks.js.org/zh-CN/hooks/use-request/index)
+- [使用useState注意的5个问题](http://www.bryh.cn/a/58683.html)
 ##### react项目相关
 - [入职学习-antd](https://ant.design/index-cn)
 - [入职学习-antd-dest-pro](https://pro.ant.design/zh-CN/)
