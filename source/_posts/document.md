@@ -82,7 +82,7 @@ comments: false
 - [vue Cli](https://cli.vuejs.org/zh/guide/webpack.html)
 - [vite](https://vitejs.cn/guide/)
 - [vue-router官网](https://router.vuejs.org/zh/api/)
-- [vue-ssr官方文档](https://ssr.vuejs.org/zh/)
+- [vue-ssr官方文档](https://ssr.vuejs.org/zh/) 
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)
 - [将要迁移的项目](https://github.com/Ljhhhhhh/h5vue)
 
@@ -91,7 +91,7 @@ comments: false
 - [antd镜像地址](https://ant-design.gitee.io/index-cn)
 - [antd-git-地址](https://github.com/ant-design/ant-design/issues/19191)
 - [react-router](http://uprogrammer.cn/react-router-cn/index.html)
-- [react-router-dom个人博客](https://segmentfault.com/a/1190000039190541)
+- [react-router-dom个人博客](https://segmentfault.com/a/1190000039190541) 
 - [MobX](https://cn.mobx.js.org/)
 - [mobx-react](https://github.com/mobxjs/mobx-react)
 - [mobx-react:个人博客](https://juejin.cn/post/6906393905558880264)

@@ -12,6 +12,61 @@ comments: false
 2. 拉去远程删除分支： `git remote prune origin`
 
 
+# 查看源地址
+
+- npm config get registry
+- cnpm config get registry
+
+# nvm常用命令
+---
+
+- 切换成默认版本 `nvm alias default v12.7.0`
+- 下载指定版本node `nvm install v12.7.0`
+
+- nvm install报错 `could not retrieve`
+```javascript
+// 解决办法
+// 找到nvm配置目录 、settings.text文件，添加如下配置
+node_mirror:npm.taobao.org/mirrors/node/
+npm_mirror:npm.taobao.org/mirrors/npm/
+```
+
+
+# cnpm安装
+```javascript
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+```
+
+- 替换淘宝镜像
+```javascript
+// 命令
+npm config set registry https://registry.npm.taobao.org
+npm config set disturl https://npm.taobao.org/dist
+// 查看是否成功
+npm config get registry
+```
+
+# yarn安装
+```js
+// 下载yarn
+npm isntall yarn -g
+// 查看版本
+yarn --version
+// yarn 设置淘宝镜像
+yarn config set registry https://registry.npm.taobao.org/
+yarn config set disturl https://npm.taobao.org/dist
+// 切换为yarn自带的镜像源
+yarn config set registry https://registry.yarnpkg.com
+```
+- yarn命令
+```js
+// 下载依赖
+yarn add 包名
+// 移除依赖
+yarn remove 包名
+```
+
+
 
 
 ## 如何关联俩个仓库
@@ -32,7 +87,7 @@ git remote add upstream 替换成源项目url
 git remote -v
 
 #从源分支获取最新的代码
-git fetch upstream
+git fetch upstream 
 
 #切换到主分支
 git checkout master
