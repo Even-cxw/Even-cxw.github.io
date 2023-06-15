@@ -51,11 +51,12 @@ comments: false
 - [canvas-MDN](https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API)
 - [canvas-MDN-content](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLCanvasElement/getContext)
 - [ssr-框架](http://doc.ssr-fc.com/docs/features$started)
-- [阿里画图库](https://antv.vision/zh/)
+- [antv-阿里画图库](https://antv.vision/zh/)
+- [d3-文档](https://blog.csdn.net/wanglufei_1992/article/details/50961050)
 - [esLint官网](https://eslint.bootcss.com/docs/user-guide/configuring)
 - [腾讯云文档](https://cloud.tencent.com/document/product/213/44971)
 - [百度富文本编辑器UEditor](http://fex.baidu.com/ueditor/#start-start)
-- [掘金网](https://juejin.cn/)
+- [ 掘金网 ](https://juejin.cn/)
 - [江南大学](http://wj.cmjnu.com.cn/)
 - [cordova](https://cordova.apache.org/docs/en/6.x/guide/cli/index.html)
 - [Android Studio 官网](https://developer.android.google.cn/studio/)
@@ -65,6 +66,8 @@ comments: false
 - [echarse](https://echarts.apache.org/zh/index.html)
 - [时间格式化-moment.js](http://momentjs.cn/docs/)
 - [datav](http://datav.jiaminghi.com/guide/)
+- [docker中文文档](https://www.coonote.com/docker/docker-tutorial.html)
+- [ppChart](http://ppchart.com/#/)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
@@ -82,7 +85,7 @@ comments: false
 - [vue Cli](https://cli.vuejs.org/zh/guide/webpack.html)
 - [vite](https://vitejs.cn/guide/)
 - [vue-router官网](https://router.vuejs.org/zh/api/)
-- [vue-ssr官方文档](https://ssr.vuejs.org/zh/) 
+- [vue-ssr官方文档](https://ssr.vuejs.org/zh/)
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)
 - [将要迁移的项目](https://github.com/Ljhhhhhh/h5vue)
 

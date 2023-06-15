@@ -19,7 +19,7 @@ ctx.save(); // 将当前状态放入栈中
 ctx.font = "48px serif";
 ctx.fillStyle = 'red';
 ctx.fillText("Hello world", 50, 50);
-
+    
 ctx.restore() // 恢复到最近的保存状态的方法
 ctx.font = "48px serif";
 ctx.fillText("Hello world", 50, 100);

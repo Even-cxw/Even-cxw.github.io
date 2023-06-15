@@ -6,6 +6,29 @@ tags: [docker]
 comments: false
 ---
 
+## 基础知识
+
+- 常见的操作系统：
+1、UNIX操作系属于服务器专用；
+2、MACos操作系统 这是苹果自己的系统；
+3、Linux操作系统一般是用在服务器上，客户端都有；
+4、Solaris操作系统这也是服务器专用。
+5、Window操作系统
+
+- linux内核 - 用来控制硬件设备
+` 服务器的内核一般是： linux内核`
+` macOS 和 iOS 的内核是：NeXTSTEP`
+``
+
+## 查看docker是否安装
+- `docker version` docker版本
+- `docker-compose version` docker-compose版本
+
+## docker的理解
+- docker daemon的意思为：Docker的守护进程；daemon的主要功能包括镜像管理、镜像构建、REST API、身份验证、安全、核心网络以及编排。
+- docker容器 =  new class docker镜像
+- Docker 容器通过 Docker 镜像来创建。
+
 
 ## docker命令
 `docker --help`
@@ -96,3 +119,30 @@ htsc:
 ## example
 - 通过docker创建nginx容器
 > docker run -d --name mynginx nginx
+
+- 华泰服务目录 /app/cloudnet/web/
+1. 查看web补丁包 是否是一级目录
+2. 在web目录下查看是否有docker-compose.yml文件，查看哪些目录被挂在
+```
+volumes:
+  - /app/cloudnet/web-tsc:/web
+```
+3. 将更新的目录mv备份
+```
+mv web-htsc web-htsc.20220235.bak
+```
+4. 将新的web-htsc.zip文件解压到web
+```
+unzip web-htsc.zip
+```
+5. 查看解压后的目录权限
+```
+ll
+```
+6. 重启docker
+```
+docker-compose down
+docker-compose up -d
+```
+```
+```
