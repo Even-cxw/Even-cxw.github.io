@@ -122,12 +122,16 @@ htsc:
 
 - 华泰服务目录 /app/cloudnet/web/
 1. 查看web补丁包 是否是一级目录
+
 2. 在web目录下查看是否有docker-compose.yml文件，查看哪些目录被挂在
+
 ```
 volumes:
   - /app/cloudnet/web-tsc:/web
 ```
+
 3. 将更新的目录mv备份
+
 ```
 mv web-htsc web-htsc.20220235.bak
 ```
