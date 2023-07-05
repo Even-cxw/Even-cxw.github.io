@@ -50,37 +50,67 @@ comments: false
 - docker删除镜像
 `docker rmi centos`
 
+- 构建镜像 根据当前目录下的Dockerfile文件构建标签为1.0的web-htsc镜像
+`docker build -t web-htsc:1.0 .`
+  1. -t : 指定镜像标签 1.0
 
 ### docker容器相关命令
 
+- 容器内配置yum依赖源文件位置
+`/etc/yum.repos.d/`
+
+- 指定镜像创建容器
+`docker run -itd centos-nginx:1.1`
+  1. -i ： 保持容器打开
+  2. -t : 保持容器打开并开个未终端
+  3. -d : 在后台运行
+
 - docker ps -a 查看容器
 `docker ps -a  // 查看所有容器`
-1. | grep web-htsc ：grep过滤为 web-htsc
-2. ps : （Process Status）进程状态
+  1. | grep web-htsc ：grep过滤为 web-htsc
+  2. ps : （Process Status）进程状态
 
 - docker进入某个容器
 `docker exec -it containerid /bin/sh  进入containerid容器`
+  1. deocker exec: 运行Docker容器内的命名
+  2. -it : 保持容器打开并开个未终端
+  3. containerid : 容器id
+  4. /bin/bash : 进入容器后执行的命令 
 
 - 容器退出
-> exit 
+`exit` 
+
+- 查看容器安装了哪些依赖项 - 过滤nginx
+`yum list installed | grep nginx`
 
 - docker基于镜像创建容器
-> docker run --name mydocker -it centos /bin/bash
+`docker run --name mydocker -it centos /bin/bash`
 `当执行run时，如没有centos 会自动pull centos`
-1. --name : 定义容器名字
-2. -i ： 保持容器打开
-3. -it : 保持容器打开并开个未终端
-4. -d : 在后台运行
+  1. --name : 定义容器名字
+  2. -i ： 保持容器打开
+  3. -it : 保持容器打开并开个未终端
+  4. -d : 在后台运行
 
 - docker启动某个id容器
 `docker start <id>`
 
 - docker停止某个id容器
 `docker stop <id>`
-1. -d : 在后台运行
+  1. -d : 在后台运行
 
-- docker查看mynginx容器Pid
-`docker inspect --format "{{.State.Pid}}" mynginx`
+
+## Dockerfile常用命令
+1. FROM: 制作image时依据的基本image
+2. RUN：制作image时执行的命令，一般在Dockerfile中多次出现
+3. CMD：启动docker时执行的命令，在Dockerfile中只出现一次
+4. ENV：设置环境变量
+5. COPY：制作image时，将文件系统中的文件复制到Docker镜像中
+6. WORKDIR：设置工作目录
+7. EXPOSE：设置向外暴露的端口
+8. VOLUME：设置容器与外界映射的目录
+9. ENTRYPOINT：设置容器启动时执行的命令
+10. USER：设置容器启动时的用户名或UID
+11. MAINTAINER：设置镜像作者
 
 
 ## nginx
@@ -116,7 +146,7 @@ htsc:
 > 将/app/cloudnet/web-tsc此文件 解压到 `容器名：web-htsc/web`下 
 
 
-## example
+## 测试环境
 - 通过docker创建nginx容器
 > docker run -d --name mynginx nginx
 
@@ -150,3 +180,14 @@ docker-compose up -d
 ```
 ```
 ```
+
+
+### 生产环境发包
+
+1. 将web压缩包放到测试环境
+2. 生产环境连接测试环境ip, 将web压缩包放到生产环境 `sz 包名`
+3. 切换要发版的ip服务，删除当前版本包 `rm -rf 报名`
+4. 上传包到当前目录 `rz`
+5. 解压包 `unzip 包名`
+6. 锁包 `chomd -R 777 web-htsc`
+6. 重启docker `docker-compose down && docker-compose up -d`

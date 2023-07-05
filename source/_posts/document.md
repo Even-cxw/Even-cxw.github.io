@@ -68,6 +68,7 @@ comments: false
 - [datav](http://datav.jiaminghi.com/guide/)
 - [docker中文文档](https://www.coonote.com/docker/docker-tutorial.html)
 - [ppChart](http://ppchart.com/#/)
+- [动画animation](https://daneden.github.io/animate.css/)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
