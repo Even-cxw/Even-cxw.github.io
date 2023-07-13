@@ -56,8 +56,23 @@ comments: false
 
 ### docker容器相关命令
 
-- 容器内配置yum依赖源文件位置
+- 容器docker的yum源位置 - 并配置yum源
 `/etc/yum.repos.d/`
+  1. CentOS-Linux-AppStream.repo
+  ```yml
+    name=CentOS Linux $releasever - AppStream
+    baseurl=https://mirrors.aliyun.com/centos/8.5.2111/AppStream/x86_64/os/
+    gpgcheck=0
+    enabled=1
+  ```
+  2. CentOS-Linux-BaseOS.repo
+  ```yml
+    name=CentOS Linux $releasever - BaseOS
+    baseurl=https://mirrors.aliyun.com/centos/8.5.2111/BaseOS/x86_64/os/
+    gpgcheck=0
+    enabled=1
+  ```
+
 
 - 指定镜像创建容器
 `docker run -itd centos-nginx:1.1`
@@ -98,6 +113,10 @@ comments: false
 `docker stop <id>`
   1. -d : 在后台运行
 
+- 查看当前docker nginx暴漏ip等配置命令
+`docker inspect <id>`
+
+
 
 ## Dockerfile常用命令
 1. FROM: 制作image时依据的基本image
@@ -112,10 +131,24 @@ comments: false
 10. USER：设置容器启动时的用户名或UID
 11. MAINTAINER：设置镜像作者
 
+ - dockerfile文件
+ 1. -y选择yes选项继续执行下去
+```yml
+  FROM centos:8.4.2105
+
+  COPY CentOS-Linux-AppStream.repo /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+  COPY CentOS-Linux-BaseOS.repo /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+
+  RUN yum repolist
+
+  RUN yum install nginx.x86_64 -y
+```
+
 
 ## nginx
 - docker中nginx常在位置
 `etc/nginx/conf.d/app/`
+  1. etc : 全拼（etcetera）等同于windows中的C盘 - 用于存放系统级别的配置文件
 
 ## linux命令
 - 查看当前目录所在位置
