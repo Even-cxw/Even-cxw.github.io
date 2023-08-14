@@ -6,6 +6,9 @@ tags: [docker]
 comments: false
 ---
 
+[学习文章](https://juejin.cn/post/6844903958532587533?searchId=202307141732377BBE857087E94B23A47C#heading-25)
+
+
 ## 基础知识
 
 - 常见的操作系统：
@@ -118,7 +121,9 @@ comments: false
 
 
 
-## Dockerfile常用命令
+## Dockerfile文件
+> 用于定义 Docker 镜像的文本文件。它包含一系列的指令和配置项，用于指导 Docker 引擎在构建镜像时执行的操作和步骤。
+> 通过编写 Dockerfile，可以将构建镜像的过程自动化
 1. FROM: 制作image时依据的基本image
 2. RUN：制作image时执行的命令，一般在Dockerfile中多次出现
 3. CMD：启动docker时执行的命令，在Dockerfile中只出现一次
@@ -144,6 +149,27 @@ comments: false
   RUN yum install nginx.x86_64 -y
 ```
 
+## docker-compose.yml文件
+> 用于定义和运行多容器的Docker应用程序的文件。通过一个命令即可创建并启动所有相关联的容器。
+1. version：指定docker-compose.yml文件的版本
+2. services：定义各个容器服务
+3. volumes：定义数据卷
+4. networks：定义网络
+5. depends_on：定义服务依赖关系
+6. build：定义构建镜像时的配置文件 eg:dockerfile文件
+7. ports：定义端口映射
+8. environment：定义环境变量
+9. restart：定义容器重启策略
+10. image：定义镜像
+11. container_name：定义容器名
+
+```yml
+version: '2.10.2'
+services:
+  app:
+    image: "centos:1.2"
+    restart: always
+```
 
 ## nginx
 - docker中nginx常在位置
@@ -224,3 +250,9 @@ docker-compose up -d
 5. 解压包 `unzip 包名`
 6. 锁包 `chomd -R 777 web-htsc`
 6. 重启docker `docker-compose down && docker-compose up -d`
+
+
+- touch命令
+> 创建文件
+- echo命令
+> 创建文件并写入内容
