@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"even-cxw.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="学习文章 基础知识 常见的操作系统：1、UNIX操作系属于服务器专用；2、MACos操作系统 这是苹果自己的系统；3、Linux操作系统一般是用在服务器上，客户端都有；4、Solaris操作系统这也是服务器专用。5、Window操作系统  linux内核 - 用来控制硬件设备 服务器的内核一般是： linux内核 macOS 和 iOS 的内核是：NeXTSTEP&#96;&#96;   查看docker是否安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker">
+<meta property="og:url" content="https://even-cxw.github.io/2022/10/12/docker/index.html">
+<meta property="og:site_name" content="Even小屋">
+<meta property="og:description" content="学习文章 基础知识 常见的操作系统：1、UNIX操作系属于服务器专用；2、MACos操作系统 这是苹果自己的系统；3、Linux操作系统一般是用在服务器上，客户端都有；4、Solaris操作系统这也是服务器专用。5、Window操作系统  linux内核 - 用来控制硬件设备 服务器的内核一般是： linux内核 macOS 和 iOS 的内核是：NeXTSTEP&#96;&#96;   查看docker是否安装">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-10-12T08:15:24.000Z">
+<meta property="article:modified_time" content="2023-08-14T03:07:36.511Z">
+<meta property="article:author" content="Even">
+<meta property="article:tag" content="docker">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://even-cxw.github.io/2022/10/12/docker/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>docker | Even小屋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Even小屋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">美好生活，一路向往</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">16</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">24</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/10/12/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-12 16:15:24" itemprop="dateCreated datePublished" datetime="2022-10-12T16:15:24+08:00">2022-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-14 11:07:36" itemprop="dateModified" datetime="2023-08-14T11:07:36+08:00">2023-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903958532587533?searchId=202307141732377BBE857087E94B23A47C#heading-25">学习文章</a></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li><p>常见的操作系统：<br>1、UNIX操作系属于服务器专用；<br>2、MACos操作系统 这是苹果自己的系统；<br>3、Linux操作系统一般是用在服务器上，客户端都有；<br>4、Solaris操作系统这也是服务器专用。<br>5、Window操作系统</p>
+</li>
+<li><p>linux内核 - 用来控制硬件设备<br><code> 服务器的内核一般是： linux内核</code><br><code> macOS 和 iOS 的内核是：NeXTSTEP</code><br>``</p>
+</li>
+</ul>
+<h2 id="查看docker是否安装"><a href="#查看docker是否安装" class="headerlink" title="查看docker是否安装"></a>查看docker是否安装</h2><ul>
+<li><code>docker version</code> docker版本</li>
+<li><code>docker-compose version</code> docker-compose版本</li>
+</ul>
+<h2 id="docker的理解"><a href="#docker的理解" class="headerlink" title="docker的理解"></a>docker的理解</h2><ul>
+<li>docker daemon的意思为：Docker的守护进程；daemon的主要功能包括镜像管理、镜像构建、REST API、身份验证、安全、核心网络以及编排。</li>
+<li>docker容器 =  new class docker镜像</li>
+<li>Docker 容器通过 Docker 镜像来创建。</li>
+</ul>
+<h2 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h2><p><code>docker --help</code></p>
+<h3 id="docker镜像相关命令"><a href="#docker镜像相关命令" class="headerlink" title="docker镜像相关命令"></a>docker镜像相关命令</h3><ul>
+<li><p>yum install docker-io -y 下载</p>
+</li>
+<li><p>/etc/init.d/docker start 启动docker</p>
+</li>
+<li><p>docker搜索镜像<br><code> docker serach centos // docker搜索centos这个镜像</code></p>
+</li>
+<li><p>docker pull 镜像<br><code>docker pull centos // docker pull centos 镜像</code></p>
+</li>
+<li><p>docker查看镜像<br><code>docker images</code></p>
+</li>
+<li><p>docker删除镜像<br><code>docker rmi centos</code></p>
+</li>
+<li><p>构建镜像 根据当前目录下的Dockerfile文件构建标签为1.0的web-htsc镜像<br><code>docker build -t web-htsc:1.0 .</code></p>
+<ol>
+<li>-t : 指定镜像标签 1.0</li>
+</ol>
+</li>
+</ul>
+<h3 id="docker容器相关命令"><a href="#docker容器相关命令" class="headerlink" title="docker容器相关命令"></a>docker容器相关命令</h3><ul>
+<li>容器docker的yum源位置 - 并配置yum源<br><code>/etc/yum.repos.d/</code><ol>
+<li>CentOS-Linux-AppStream.repo<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">name=CentOS</span> <span class="string">Linux</span> <span class="string">$releasever</span> <span class="bullet">-</span> <span class="string">AppStream</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/8.5.2111/AppStream/x86_64/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br></pre></td></tr></table></figure></li>
+<li>CentOS-Linux-BaseOS.repo<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">name=CentOS</span> <span class="string">Linux</span> <span class="string">$releasever</span> <span class="bullet">-</span> <span class="string">BaseOS</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/8.5.2111/BaseOS/x86_64/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>指定镜像创建容器<br><code>docker run -itd centos-nginx:1.1</code></p>
+<ol>
+<li>-i ： 保持容器打开</li>
+<li>-t : 保持容器打开并开个未终端</li>
+<li>-d : 在后台运行</li>
+</ol>
+</li>
+<li><p>docker ps -a 查看容器<br><code>docker ps -a  // 查看所有容器</code></p>
+<ol>
+<li>| grep web-htsc ：grep过滤为 web-htsc</li>
+<li>ps : （Process Status）进程状态</li>
+</ol>
+</li>
+<li><p>docker进入某个容器<br><code>docker exec -it containerid /bin/sh  进入containerid容器</code></p>
+<ol>
+<li>deocker exec: 运行Docker容器内的命名</li>
+<li>-it : 保持容器打开并开个未终端</li>
+<li>containerid : 容器id</li>
+<li>/bin/bash : 进入容器后执行的命令 </li>
+</ol>
+</li>
+<li><p>容器退出<br><code>exit</code> </p>
+</li>
+<li><p>查看容器安装了哪些依赖项 - 过滤nginx<br><code>yum list installed | grep nginx</code></p>
+</li>
+<li><p>docker基于镜像创建容器<br><code>docker run --name mydocker -it centos /bin/bash</code><br><code>当执行run时，如没有centos 会自动pull centos</code></p>
+<ol>
+<li>–name : 定义容器名字</li>
+<li>-i ： 保持容器打开</li>
+<li>-it : 保持容器打开并开个未终端</li>
+<li>-d : 在后台运行</li>
+</ol>
+</li>
+<li><p>docker启动某个id容器<br><code>docker start &lt;id&gt;</code></p>
+</li>
+<li><p>docker停止某个id容器<br><code>docker stop &lt;id&gt;</code></p>
+<ol>
+<li>-d : 在后台运行</li>
+</ol>
+</li>
+<li><p>查看当前docker nginx暴漏ip等配置命令<br><code>docker inspect &lt;id&gt;</code></p>
+</li>
+</ul>
+<h2 id="Dockerfile文件"><a href="#Dockerfile文件" class="headerlink" title="Dockerfile文件"></a>Dockerfile文件</h2><blockquote>
+<p>用于定义 Docker 镜像的文本文件。它包含一系列的指令和配置项，用于指导 Docker 引擎在构建镜像时执行的操作和步骤。<br>通过编写 Dockerfile，可以将构建镜像的过程自动化</p>
+</blockquote>
+<ol>
+<li>FROM: 制作image时依据的基本image</li>
+<li>RUN：制作image时执行的命令，一般在Dockerfile中多次出现</li>
+<li>CMD：启动docker时执行的命令，在Dockerfile中只出现一次</li>
+<li>ENV：设置环境变量</li>
+<li>COPY：制作image时，将文件系统中的文件复制到Docker镜像中</li>
+<li>WORKDIR：设置工作目录</li>
+<li>EXPOSE：设置向外暴露的端口</li>
+<li>VOLUME：设置容器与外界映射的目录</li>
+<li>ENTRYPOINT：设置容器启动时执行的命令</li>
+<li>USER：设置容器启动时的用户名或UID</li>
+<li>MAINTAINER：设置镜像作者</li>
+</ol>
+<ul>
+<li>dockerfile文件</li>
+</ul>
+<ol>
+<li>-y选择yes选项继续执行下去<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">FROM</span> <span class="string">centos:8.4.2105</span></span><br><span class="line"></span><br><span class="line"><span class="string">COPY</span> <span class="string">CentOS-Linux-AppStream.repo</span> <span class="string">/etc/yum.repos.d/CentOS-Linux-AppStream.repo</span></span><br><span class="line"><span class="string">COPY</span> <span class="string">CentOS-Linux-BaseOS.repo</span> <span class="string">/etc/yum.repos.d/CentOS-Linux-BaseOS.repo</span></span><br><span class="line"></span><br><span class="line"><span class="string">RUN</span> <span class="string">yum</span> <span class="string">repolist</span></span><br><span class="line"></span><br><span class="line"><span class="string">RUN</span> <span class="string">yum</span> <span class="string">install</span> <span class="string">nginx.x86_64</span> <span class="string">-y</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="docker-compose-yml文件"><a href="#docker-compose-yml文件" class="headerlink" title="docker-compose.yml文件"></a>docker-compose.yml文件</h2><blockquote>
+<p>用于定义和运行多容器的Docker应用程序的文件。通过一个命令即可创建并启动所有相关联的容器。</p>
+</blockquote>
+<ol>
+<li>version：指定docker-compose.yml文件的版本</li>
+<li>services：定义各个容器服务</li>
+<li>volumes：定义数据卷</li>
+<li>networks：定义网络</li>
+<li>depends_on：定义服务依赖关系</li>
+<li>build：定义构建镜像时的配置文件 eg:dockerfile文件</li>
+<li>ports：定义端口映射</li>
+<li>environment：定义环境变量</li>
+<li>restart：定义容器重启策略</li>
+<li>image：定义镜像</li>
+<li>container_name：定义容器名</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.10.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;centos:1.2&quot;</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><ul>
+<li>docker中nginx常在位置<br><code>etc/nginx/conf.d/app/</code><ol>
+<li>etc : 全拼（etcetera）等同于windows中的C盘 - 用于存放系统级别的配置文件</li>
+</ol>
+</li>
+</ul>
+<h2 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h2><ul>
+<li><p>查看当前目录所在位置<br><code>pwd： 全拼（print working directory）打印工作目录</code></p>
+</li>
+<li><p>重新命名文件<br><code>mv: 全拼（move）会将源文件删除或移动</code></p>
+</li>
+</ul>
+<ol>
+<li>将a.txt命名为b.txt<br><code>mv a.txt b.txt</code></li>
+</ol>
+<ul>
+<li>删除文件<br><code>rm</code></li>
+</ul>
+<h2 id="华讯项目-云网"><a href="#华讯项目-云网" class="headerlink" title="华讯项目-云网"></a>华讯项目-云网</h2><ul>
+<li>docer-compose.yml文件<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">htsc:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">&quot;web-htsc&quot;</span></span><br><span class="line">  <span class="attr">container_name:</span> <span class="string">web-htsc</span></span><br><span class="line">  <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">  <span class="attr">cpus:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">mem_linit:</span> <span class="string">lg</span></span><br><span class="line">  <span class="attr">volumes:</span> </span><br><span class="line">    <span class="bullet">-</span> <span class="string">/app/cloudnet/web-tsc:/web</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li>volumes的作用<blockquote>
+<p>将/app/cloudnet/web-tsc此文件 解压到 <code>容器名：web-htsc/web</code>下 </p>
+</blockquote>
+</li>
+</ol>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li><p>通过docker创建nginx容器</p>
+<blockquote>
+<p>docker run -d –name mynginx nginx</p>
+</blockquote>
+</li>
+<li><p>华泰服务目录 /app/cloudnet/web/</p>
+</li>
+</ul>
+<ol>
+<li><p>查看web补丁包 是否是一级目录</p>
+</li>
+<li><p>在web目录下查看是否有docker-compose.yml文件，查看哪些目录被挂在</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">volumes:</span><br><span class="line">  - /app/cloudnet/web-tsc:/web</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将更新的目录mv备份</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv web-htsc web-htsc.20220235.bak</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>将新的web-htsc.zip文件解压到web<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip web-htsc.zip</span><br></pre></td></tr></table></figure></li>
+<li>查看解压后的目录权限<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll</span><br></pre></td></tr></table></figure></li>
+<li>重启docker<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="生产环境发包"><a href="#生产环境发包" class="headerlink" title="生产环境发包"></a>生产环境发包</h3><ol>
+<li>将web压缩包放到测试环境</li>
+<li>生产环境连接测试环境ip, 将web压缩包放到生产环境 <code>sz 包名</code></li>
+<li>切换要发版的ip服务，删除当前版本包 <code>rm -rf 报名</code></li>
+<li>上传包到当前目录 <code>rz</code></li>
+<li>解压包 <code>unzip 包名</code></li>
+<li>锁包 <code>chomd -R 777 web-htsc</code></li>
+<li>重启docker <code>docker-compose down &amp;&amp; docker-compose up -d</code></li>
+</ol>
+<ul>
+<li>touch命令<blockquote>
+<p>创建文件</p>
+</blockquote>
+</li>
+<li>echo命令<blockquote>
+<p>创建文件并写入内容</p>
+</blockquote>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/docker/" rel="tag"># docker</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/27/git/" rel="prev" title="git操作">
+      <i class="fa fa-chevron-left"></i> git操作
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/05/27/dva/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bdocker%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">查看docker是否安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker%E7%9A%84%E7%90%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">docker的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">docker命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E9%95%9C%E5%83%8F%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">4.1.</span> <span class="nav-text">docker镜像相关命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker%E5%AE%B9%E5%99%A8%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">4.2.</span> <span class="nav-text">docker容器相关命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dockerfile%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">Dockerfile文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker-compose-yml%E6%96%87%E4%BB%B6"><span class="nav-number">6.</span> <span class="nav-text">docker-compose.yml文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">7.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linux%E5%91%BD%E4%BB%A4"><span class="nav-number">8.</span> <span class="nav-text">linux命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8E%E8%AE%AF%E9%A1%B9%E7%9B%AE-%E4%BA%91%E7%BD%91"><span class="nav-number">9.</span> <span class="nav-text">华讯项目-云网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%8E%AF%E5%A2%83"><span class="nav-number">10.</span> <span class="nav-text">测试环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E5%8F%91%E5%8C%85"><span class="nav-number">10.1.</span> <span class="nav-text">生产环境发包</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Even</p>
+  <div class="site-description" itemprop="description">爱一切</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Even-cxw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Even-cxw" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Even</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

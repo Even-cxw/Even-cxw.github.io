@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -118,17 +118,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">17</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">24</span></a>
 
   </li>
   </ul>
@@ -154,6 +154,608 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2023/06/13/11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/13/11/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2023-06-13 14:08:00 / Modified: 14:25:08" itemprop="dateCreated datePublished" datetime="2023-06-13T14:08:00+08:00">2023-06-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+// 编写去除百分号%的方法函数
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2023/05/27/dva/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/05/27/dva/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-05-27 13:32:21" itemprop="dateCreated datePublished" datetime="2023-05-27T13:32:21+08:00">2023-05-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-06-08 15:44:23" itemprop="dateModified" datetime="2023-06-08T15:44:23+08:00">2023-06-08</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="dva学习"><a href="#dva学习" class="headerlink" title="dva学习"></a>dva学习</h3><ul>
+<li><p>put: 执行efects中的方法，不阻塞流程</p>
+<ol>
+<li>yield put一个reducers时，是一个同步操作</li>
+<li>yield put一个effects时，是一个异步操作</li>
+</ol>
+</li>
+<li><p>call: 执行异步请求，阻塞流程</p>
+</li>
+<li><p>dva中efect之间相互调用如何实现同步</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出结果为abc   effects中代码</span></span><br><span class="line"> *<span class="title function_">a</span>(<span class="params">&#123; payload&#125;, &#123;put, call,take&#125;</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">      	  <span class="variable language_">console</span>.<span class="title function_">log</span>(a)</span><br><span class="line">          <span class="keyword">yield</span> <span class="title function_">put</span>(&#123;<span class="attr">type</span>: <span class="string">&#x27;b&#x27;</span>,<span class="attr">payload</span>: &#123;&#125;&#125;); <span class="comment">//触发b</span></span><br><span class="line">          <span class="keyword">yield</span> <span class="title function_">take</span>(<span class="string">&#x27;b/@@end&#x27;</span>) <span class="comment">//直到监听到b结束才继续执行</span></span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(c)</span><br><span class="line">          <span class="keyword">const</span> info = <span class="keyword">yield</span> <span class="title function_">call</span>(serviceA, payload);</span><br><span class="line">          <span class="title function_">put</span>(&#123;</span><br><span class="line">           <span class="attr">type</span>: <span class="string">&#x27;save&#x27;</span>,</span><br><span class="line">           <span class="attr">payload</span>: info,</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125;<span class="keyword">catch</span>(e) &#123;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line"> *<span class="title function_">b</span>(<span class="params">&#123; payload&#125;, &#123;put, call,take&#125;</span>) &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="title function_">call</span>(serviceB, payload);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>dva中不同module的effect之间如何通讯</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mebu为模块名称</span></span><br><span class="line"><span class="keyword">yield</span> <span class="title function_">put</span>(&#123;<span class="attr">type</span>: <span class="string">&#x27;menu/getMenuData&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="hooks学习"><a href="#hooks学习" class="headerlink" title="hooks学习"></a>hooks学习</h3><ul>
+<li>父组件调用子组件方法<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 子组件</span></span><br><span class="line"><span class="keyword">import</span> &#123;useState, useImperativeHandle,forwardRef&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="comment">//props子组件需要接收 ref</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">ChildComp</span> = (<span class="params">props, ref</span>) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> [val, setVal] = <span class="title function_">useState</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="comment">// 此处注意useImperativeHandle方法的的第一个参数是目标元素的ref引用</span></span><br><span class="line">    <span class="title function_">useImperativeHandle</span>(ref, <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">        <span class="comment">// changeVal 就是暴露给父组件的方法, newVal是父组件传递的参数</span></span><br><span class="line">        <span class="attr">changeVal</span>: <span class="function">(<span class="params">newVal</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">setVal</span>(newVal)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;))</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;val&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"> )</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">ChildComp</span> = <span class="title function_">forwardRef</span>(<span class="title class_">ChildComp</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">ChildComp</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 父组件</span></span><br><span class="line"><span class="keyword">import</span> &#123;useRef&#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ChildComp</span> <span class="keyword">from</span> <span class="string">&#x27;./ChildComp.jsx&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">FComp</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> childRef = <span class="title function_">useRef</span>(<span class="literal">null</span>)</span><br><span class="line">    <span class="keyword">const</span> <span class="title function_">updateChildState</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">        <span class="comment">// changeVal就是子组件暴露给父组件的方法</span></span><br><span class="line">        childRef.<span class="property">current</span>.<span class="title function_">changeVal</span>(<span class="number">99</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">ChildComp</span> <span class="attr">ref</span>=<span class="string">&#123;childRef&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">ChildComp</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;updateChildState&#125;</span>&gt;</span>触发子组件方法<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">FComp</span> </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/10/12/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/10/12/docker/" class="post-title-link" itemprop="url">docker</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-10-12 16:15:24" itemprop="dateCreated datePublished" datetime="2022-10-12T16:15:24+08:00">2022-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-08-14 11:07:36" itemprop="dateModified" datetime="2023-08-14T11:07:36+08:00">2023-08-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903958532587533?searchId=202307141732377BBE857087E94B23A47C#heading-25">学习文章</a></p>
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><ul>
+<li><p>常见的操作系统：<br>1、UNIX操作系属于服务器专用；<br>2、MACos操作系统 这是苹果自己的系统；<br>3、Linux操作系统一般是用在服务器上，客户端都有；<br>4、Solaris操作系统这也是服务器专用。<br>5、Window操作系统</p>
+</li>
+<li><p>linux内核 - 用来控制硬件设备<br><code> 服务器的内核一般是： linux内核</code><br><code> macOS 和 iOS 的内核是：NeXTSTEP</code><br>``</p>
+</li>
+</ul>
+<h2 id="查看docker是否安装"><a href="#查看docker是否安装" class="headerlink" title="查看docker是否安装"></a>查看docker是否安装</h2><ul>
+<li><code>docker version</code> docker版本</li>
+<li><code>docker-compose version</code> docker-compose版本</li>
+</ul>
+<h2 id="docker的理解"><a href="#docker的理解" class="headerlink" title="docker的理解"></a>docker的理解</h2><ul>
+<li>docker daemon的意思为：Docker的守护进程；daemon的主要功能包括镜像管理、镜像构建、REST API、身份验证、安全、核心网络以及编排。</li>
+<li>docker容器 =  new class docker镜像</li>
+<li>Docker 容器通过 Docker 镜像来创建。</li>
+</ul>
+<h2 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a>docker命令</h2><p><code>docker --help</code></p>
+<h3 id="docker镜像相关命令"><a href="#docker镜像相关命令" class="headerlink" title="docker镜像相关命令"></a>docker镜像相关命令</h3><ul>
+<li><p>yum install docker-io -y 下载</p>
+</li>
+<li><p>/etc/init.d/docker start 启动docker</p>
+</li>
+<li><p>docker搜索镜像<br><code> docker serach centos // docker搜索centos这个镜像</code></p>
+</li>
+<li><p>docker pull 镜像<br><code>docker pull centos // docker pull centos 镜像</code></p>
+</li>
+<li><p>docker查看镜像<br><code>docker images</code></p>
+</li>
+<li><p>docker删除镜像<br><code>docker rmi centos</code></p>
+</li>
+<li><p>构建镜像 根据当前目录下的Dockerfile文件构建标签为1.0的web-htsc镜像<br><code>docker build -t web-htsc:1.0 .</code></p>
+<ol>
+<li>-t : 指定镜像标签 1.0</li>
+</ol>
+</li>
+</ul>
+<h3 id="docker容器相关命令"><a href="#docker容器相关命令" class="headerlink" title="docker容器相关命令"></a>docker容器相关命令</h3><ul>
+<li>容器docker的yum源位置 - 并配置yum源<br><code>/etc/yum.repos.d/</code><ol>
+<li>CentOS-Linux-AppStream.repo<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">name=CentOS</span> <span class="string">Linux</span> <span class="string">$releasever</span> <span class="bullet">-</span> <span class="string">AppStream</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/8.5.2111/AppStream/x86_64/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br></pre></td></tr></table></figure></li>
+<li>CentOS-Linux-BaseOS.repo<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">name=CentOS</span> <span class="string">Linux</span> <span class="string">$releasever</span> <span class="bullet">-</span> <span class="string">BaseOS</span></span><br><span class="line"><span class="string">baseurl=https://mirrors.aliyun.com/centos/8.5.2111/BaseOS/x86_64/os/</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">enabled=1</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>指定镜像创建容器<br><code>docker run -itd centos-nginx:1.1</code></p>
+<ol>
+<li>-i ： 保持容器打开</li>
+<li>-t : 保持容器打开并开个未终端</li>
+<li>-d : 在后台运行</li>
+</ol>
+</li>
+<li><p>docker ps -a 查看容器<br><code>docker ps -a  // 查看所有容器</code></p>
+<ol>
+<li>| grep web-htsc ：grep过滤为 web-htsc</li>
+<li>ps : （Process Status）进程状态</li>
+</ol>
+</li>
+<li><p>docker进入某个容器<br><code>docker exec -it containerid /bin/sh  进入containerid容器</code></p>
+<ol>
+<li>deocker exec: 运行Docker容器内的命名</li>
+<li>-it : 保持容器打开并开个未终端</li>
+<li>containerid : 容器id</li>
+<li>/bin/bash : 进入容器后执行的命令 </li>
+</ol>
+</li>
+<li><p>容器退出<br><code>exit</code> </p>
+</li>
+<li><p>查看容器安装了哪些依赖项 - 过滤nginx<br><code>yum list installed | grep nginx</code></p>
+</li>
+<li><p>docker基于镜像创建容器<br><code>docker run --name mydocker -it centos /bin/bash</code><br><code>当执行run时，如没有centos 会自动pull centos</code></p>
+<ol>
+<li>–name : 定义容器名字</li>
+<li>-i ： 保持容器打开</li>
+<li>-it : 保持容器打开并开个未终端</li>
+<li>-d : 在后台运行</li>
+</ol>
+</li>
+<li><p>docker启动某个id容器<br><code>docker start &lt;id&gt;</code></p>
+</li>
+<li><p>docker停止某个id容器<br><code>docker stop &lt;id&gt;</code></p>
+<ol>
+<li>-d : 在后台运行</li>
+</ol>
+</li>
+<li><p>查看当前docker nginx暴漏ip等配置命令<br><code>docker inspect &lt;id&gt;</code></p>
+</li>
+</ul>
+<h2 id="Dockerfile文件"><a href="#Dockerfile文件" class="headerlink" title="Dockerfile文件"></a>Dockerfile文件</h2><blockquote>
+<p>用于定义 Docker 镜像的文本文件。它包含一系列的指令和配置项，用于指导 Docker 引擎在构建镜像时执行的操作和步骤。<br>通过编写 Dockerfile，可以将构建镜像的过程自动化</p>
+</blockquote>
+<ol>
+<li>FROM: 制作image时依据的基本image</li>
+<li>RUN：制作image时执行的命令，一般在Dockerfile中多次出现</li>
+<li>CMD：启动docker时执行的命令，在Dockerfile中只出现一次</li>
+<li>ENV：设置环境变量</li>
+<li>COPY：制作image时，将文件系统中的文件复制到Docker镜像中</li>
+<li>WORKDIR：设置工作目录</li>
+<li>EXPOSE：设置向外暴露的端口</li>
+<li>VOLUME：设置容器与外界映射的目录</li>
+<li>ENTRYPOINT：设置容器启动时执行的命令</li>
+<li>USER：设置容器启动时的用户名或UID</li>
+<li>MAINTAINER：设置镜像作者</li>
+</ol>
+<ul>
+<li>dockerfile文件</li>
+</ul>
+<ol>
+<li>-y选择yes选项继续执行下去<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">FROM</span> <span class="string">centos:8.4.2105</span></span><br><span class="line"></span><br><span class="line"><span class="string">COPY</span> <span class="string">CentOS-Linux-AppStream.repo</span> <span class="string">/etc/yum.repos.d/CentOS-Linux-AppStream.repo</span></span><br><span class="line"><span class="string">COPY</span> <span class="string">CentOS-Linux-BaseOS.repo</span> <span class="string">/etc/yum.repos.d/CentOS-Linux-BaseOS.repo</span></span><br><span class="line"></span><br><span class="line"><span class="string">RUN</span> <span class="string">yum</span> <span class="string">repolist</span></span><br><span class="line"></span><br><span class="line"><span class="string">RUN</span> <span class="string">yum</span> <span class="string">install</span> <span class="string">nginx.x86_64</span> <span class="string">-y</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="docker-compose-yml文件"><a href="#docker-compose-yml文件" class="headerlink" title="docker-compose.yml文件"></a>docker-compose.yml文件</h2><blockquote>
+<p>用于定义和运行多容器的Docker应用程序的文件。通过一个命令即可创建并启动所有相关联的容器。</p>
+</blockquote>
+<ol>
+<li>version：指定docker-compose.yml文件的版本</li>
+<li>services：定义各个容器服务</li>
+<li>volumes：定义数据卷</li>
+<li>networks：定义网络</li>
+<li>depends_on：定义服务依赖关系</li>
+<li>build：定义构建镜像时的配置文件 eg:dockerfile文件</li>
+<li>ports：定义端口映射</li>
+<li>environment：定义环境变量</li>
+<li>restart：定义容器重启策略</li>
+<li>image：定义镜像</li>
+<li>container_name：定义容器名</li>
+</ol>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.10.2&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">app:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">&quot;centos:1.2&quot;</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><ul>
+<li>docker中nginx常在位置<br><code>etc/nginx/conf.d/app/</code><ol>
+<li>etc : 全拼（etcetera）等同于windows中的C盘 - 用于存放系统级别的配置文件</li>
+</ol>
+</li>
+</ul>
+<h2 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h2><ul>
+<li><p>查看当前目录所在位置<br><code>pwd： 全拼（print working directory）打印工作目录</code></p>
+</li>
+<li><p>重新命名文件<br><code>mv: 全拼（move）会将源文件删除或移动</code></p>
+</li>
+</ul>
+<ol>
+<li>将a.txt命名为b.txt<br><code>mv a.txt b.txt</code></li>
+</ol>
+<ul>
+<li>删除文件<br><code>rm</code></li>
+</ul>
+<h2 id="华讯项目-云网"><a href="#华讯项目-云网" class="headerlink" title="华讯项目-云网"></a>华讯项目-云网</h2><ul>
+<li>docer-compose.yml文件<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">htsc:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">&quot;web-htsc&quot;</span></span><br><span class="line">  <span class="attr">container_name:</span> <span class="string">web-htsc</span></span><br><span class="line">  <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">  <span class="attr">cpus:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">mem_linit:</span> <span class="string">lg</span></span><br><span class="line">  <span class="attr">volumes:</span> </span><br><span class="line">    <span class="bullet">-</span> <span class="string">/app/cloudnet/web-tsc:/web</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li>volumes的作用<blockquote>
+<p>将/app/cloudnet/web-tsc此文件 解压到 <code>容器名：web-htsc/web</code>下 </p>
+</blockquote>
+</li>
+</ol>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li><p>通过docker创建nginx容器</p>
+<blockquote>
+<p>docker run -d –name mynginx nginx</p>
+</blockquote>
+</li>
+<li><p>华泰服务目录 /app/cloudnet/web/</p>
+</li>
+</ul>
+<ol>
+<li><p>查看web补丁包 是否是一级目录</p>
+</li>
+<li><p>在web目录下查看是否有docker-compose.yml文件，查看哪些目录被挂在</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">volumes:</span><br><span class="line">  - /app/cloudnet/web-tsc:/web</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>将更新的目录mv备份</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv web-htsc web-htsc.20220235.bak</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>将新的web-htsc.zip文件解压到web<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip web-htsc.zip</span><br></pre></td></tr></table></figure></li>
+<li>查看解压后的目录权限<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll</span><br></pre></td></tr></table></figure></li>
+<li>重启docker<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker-compose down</span><br><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="生产环境发包"><a href="#生产环境发包" class="headerlink" title="生产环境发包"></a>生产环境发包</h3><ol>
+<li>将web压缩包放到测试环境</li>
+<li>生产环境连接测试环境ip, 将web压缩包放到生产环境 <code>sz 包名</code></li>
+<li>切换要发版的ip服务，删除当前版本包 <code>rm -rf 报名</code></li>
+<li>上传包到当前目录 <code>rz</code></li>
+<li>解压包 <code>unzip 包名</code></li>
+<li>锁包 <code>chomd -R 777 web-htsc</code></li>
+<li>重启docker <code>docker-compose down &amp;&amp; docker-compose up -d</code></li>
+</ol>
+<ul>
+<li>touch命令<blockquote>
+<p>创建文件</p>
+</blockquote>
+</li>
+<li>echo命令<blockquote>
+<p>创建文件并写入内容</p>
+</blockquote>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/09/27/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/27/git/" class="post-title-link" itemprop="url">git操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-09-27 16:15:24" itemprop="dateCreated datePublished" datetime="2022-09-27T16:15:24+08:00">2022-09-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-02-20 14:50:06" itemprop="dateModified" datetime="2023-02-20T14:50:06+08:00">2023-02-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="git基本命令"><a href="#git基本命令" class="headerlink" title="git基本命令"></a>git基本命令</h1><ol>
+<li>删除分支 <code>git branch -d &quot;&quot;</code></li>
+<li>拉去远程删除分支： <code>git remote prune origin</code></li>
+</ol>
+<h1 id="查看源地址"><a href="#查看源地址" class="headerlink" title="查看源地址"></a>查看源地址</h1><ul>
+<li>npm config get registry</li>
+<li>cnpm config get registry</li>
+</ul>
+<h1 id="nvm常用命令"><a href="#nvm常用命令" class="headerlink" title="nvm常用命令"></a>nvm常用命令</h1><hr>
+<ul>
+<li><p>切换成默认版本 <code>nvm alias default v12.7.0</code></p>
+</li>
+<li><p>下载指定版本node <code>nvm install v12.7.0</code></p>
+</li>
+<li><p>nvm install报错 <code>could not retrieve</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决办法</span></span><br><span class="line"><span class="comment">// 找到nvm配置目录 、settings.text文件，添加如下配置</span></span><br><span class="line"><span class="attr">node_mirror</span>:npm.taobao.org/mirrors/node/</span><br><span class="line">npm_mirror:npm.taobao.org/mirrors/npm/</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="cnpm安装"><a href="#cnpm安装" class="headerlink" title="cnpm安装"></a>cnpm安装</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>替换淘宝镜像<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命令</span></span><br><span class="line">npm config set registry https:<span class="comment">//registry.npm.taobao.org</span></span><br><span class="line">npm config set disturl https:<span class="comment">//npm.taobao.org/dist</span></span><br><span class="line"><span class="comment">// 查看是否成功</span></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="yarn安装"><a href="#yarn安装" class="headerlink" title="yarn安装"></a>yarn安装</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下载yarn</span></span><br><span class="line">npm isntall yarn -g</span><br><span class="line"><span class="comment">// 查看版本</span></span><br><span class="line">yarn --version</span><br><span class="line"><span class="comment">// yarn 设置淘宝镜像</span></span><br><span class="line">yarn config set registry https:<span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line">yarn config set disturl https:<span class="comment">//npm.taobao.org/dist</span></span><br><span class="line"><span class="comment">// 切换为yarn自带的镜像源</span></span><br><span class="line">yarn config set registry https:<span class="comment">//registry.yarnpkg.com</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>yarn命令<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下载依赖</span></span><br><span class="line">yarn add 包名</span><br><span class="line"><span class="comment">// 移除依赖</span></span><br><span class="line">yarn remove 包名</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="如何关联俩个仓库"><a href="#如何关联俩个仓库" class="headerlink" title="如何关联俩个仓库"></a>如何关联俩个仓库</h2><ul>
+<li><p>借鉴地址[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903970637365255#heading-1]">https://juejin.cn/post/6844903970637365255#heading-1]</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#拉取Fork出来的分支</span><br><span class="line">git clone Fork的分支url</span><br><span class="line"></span><br><span class="line">#注意：进入项目根目录，执行下面操作</span><br><span class="line"></span><br><span class="line">#查看所有远程库(remote repo)的远程url</span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line">#添加源分支url</span><br><span class="line">git remote add upstream 替换成源项目url</span><br><span class="line"></span><br><span class="line">#查看所有远程库(remote repo)的远程url</span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line">#从源分支获取最新的代码</span><br><span class="line">git fetch upstream </span><br><span class="line"></span><br><span class="line">#切换到主分支</span><br><span class="line">git checkout master</span><br><span class="line"></span><br><span class="line">#合并本地分支和源分支,本地库和远程的github原仓库同步</span><br><span class="line">git merge upstream/master</span><br><span class="line"></span><br><span class="line">#push到fork分支,本地的仓库提交到github</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure></li>
+<li><p>代码案列</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git remote -v</span><br><span class="line">origin  https:<span class="comment">//github.com/zhengjiaao/YOUR_FORK.git (fetch)</span></span><br><span class="line">origin  https:<span class="comment">//github.com/zhengjiaao/YOUR_FORK.git (push)</span></span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git remote add upstream https:<span class="comment">//github.com/zhengjiaao/ORIGINAL_REPOSITORY.git</span></span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git remote -v</span><br><span class="line">origin  https:<span class="comment">//github.com/zhengjiaao/YOUR_FORK.git (fetch)</span></span><br><span class="line">origin  https:<span class="comment">//github.com/zhengjiaao/YOUR_FORK.git (push)</span></span><br><span class="line">upstream        https:<span class="comment">//github.com/zhengjiaao/ORIGINAL_REPOSITORY.git (fetch)</span></span><br><span class="line">upstream        https:<span class="comment">//github.com/zhengjiaao/ORIGINAL_REPOSITORY.git (push)</span></span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git fetch upstream</span><br><span class="line">From https:<span class="comment">//github.com/zhengjiaao/ORIGINAL_REPOSITORY</span></span><br><span class="line"> * [<span class="keyword">new</span> branch]      master     -&gt; upstream/master</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git checkout master</span><br><span class="line">Already on <span class="string">&#x27;master&#x27;</span></span><br><span class="line">Your branch is up to date <span class="keyword">with</span> <span class="string">&#x27;origin/master&#x27;</span>.</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git merge upstream/master</span><br><span class="line">Already up to date.</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git push origin master</span><br><span class="line">Everything up-to-date</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git push</span><br><span class="line">Everything up-to-date</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git fetch upstream</span><br><span class="line"><span class="attr">remote</span>: Enumerating objects: <span class="number">4</span>, done.</span><br><span class="line"><span class="attr">remote</span>: Counting objects: <span class="number">100</span>% (<span class="number">4</span>/<span class="number">4</span>), done.</span><br><span class="line"><span class="attr">remote</span>: Compressing objects: <span class="number">100</span>% (<span class="number">1</span>/<span class="number">1</span>), done.</span><br><span class="line"><span class="attr">remote</span>: Total <span class="number">3</span> (delta <span class="number">1</span>), reused <span class="number">3</span> (delta <span class="number">1</span>), pack-reused <span class="number">0</span></span><br><span class="line">Unpacking objects: <span class="number">100</span>% (<span class="number">3</span>/<span class="number">3</span>), done.</span><br><span class="line">From https:<span class="comment">//github.com/zhengjiaao/ORIGINAL_REPOSITORY</span></span><br><span class="line">   eb3614a..92539d4  master     -&gt; upstream/master</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git checkout master</span><br><span class="line">Already on <span class="string">&#x27;master&#x27;</span></span><br><span class="line">Your branch is up to date <span class="keyword">with</span> <span class="string">&#x27;origin/master&#x27;</span>.</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git merge upstream/master</span><br><span class="line">Updating eb3614a..92539d4</span><br><span class="line">Fast-forward</span><br><span class="line"> fork.txt | <span class="number">1</span> +</span><br><span class="line"> <span class="number">1</span> file changed, <span class="number">1</span> insertion(+)</span><br><span class="line"> create mode <span class="number">100644</span> fork.txt</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$ git push</span><br><span class="line">Enumerating objects: <span class="number">4</span>, done.</span><br><span class="line">Counting objects: <span class="number">100</span>% (<span class="number">4</span>/<span class="number">4</span>), done.</span><br><span class="line">Delta compression using up to <span class="number">4</span> threads</span><br><span class="line">Compressing objects: <span class="number">100</span>% (<span class="number">2</span>/<span class="number">2</span>), done.</span><br><span class="line">Writing objects: <span class="number">100</span>% (<span class="number">3</span>/<span class="number">3</span>), <span class="number">331</span> bytes | <span class="number">331.00</span> KiB/s, done.</span><br><span class="line">Total <span class="number">3</span> (delta <span class="number">1</span>), reused <span class="number">0</span> (delta <span class="number">0</span>)</span><br><span class="line"><span class="attr">remote</span>: Resolving deltas: <span class="number">100</span>% (<span class="number">1</span>/<span class="number">1</span>), completed <span class="keyword">with</span> <span class="number">1</span> local object.</span><br><span class="line">To https:<span class="comment">//github.com/zhengjiaao/YOUR_FORK.git</span></span><br><span class="line">   eb3614a..92539d4  master -&gt; master</span><br><span class="line"></span><br><span class="line">Administrator@ZhengJiaAo MINGW64 /j/IdeaTestProject/GitHub/YOUR_FORK (master)</span><br><span class="line">$</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="回滚代码"><a href="#回滚代码" class="headerlink" title="回滚代码"></a>回滚代码</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard <span class="string">&#x27;版本号&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="回滚后强制提交"><a href="#回滚后强制提交" class="headerlink" title="回滚后强制提交"></a>回滚后强制提交</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -f origin ’分支名‘</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2022/08/22/English/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/08/22/English/" class="post-title-link" itemprop="url">English</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2022-08-22 16:15:24" itemprop="dateCreated datePublished" datetime="2022-08-22T16:15:24+08:00">2022-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-08-24 11:30:01" itemprop="dateModified" datetime="2022-08-24T11:30:01+08:00">2022-08-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="词语与语法"><a href="#词语与语法" class="headerlink" title="词语与语法"></a>词语与语法</h2><ul>
+<li><p>goes from one to anther : 从一个到另一个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// other [adj] : 其他的</span></span><br><span class="line"><span class="comment">// another [adj] : 另一个的</span></span><br><span class="line"><span class="comment">// others [n] : 他人</span></span><br></pre></td></tr></table></figure></li>
+<li><p>get over : 克服</p>
+</li>
+<li><p>a few、few、a little、little</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- 修饰可数名词：a few、few</span><br><span class="line"> a few： 有一些</span><br><span class="line"> few： 很少</span><br><span class="line">- 修饰不可数名词：a little、little</span><br><span class="line"> a little： 有一些</span><br><span class="line"> little： 很少</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -189,7 +791,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 12:08:03" itemprop="dateModified" datetime="2022-04-25T12:08:03+08:00">2022-04-25</time>
+                <time title="Modified: 2022-05-04 16:34:32" itemprop="dateModified" datetime="2022-05-04T16:34:32+08:00">2022-05-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -594,493 +1196,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/06/canvas/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/06/canvas/" class="post-title-link" itemprop="url">canvas</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-12-06 16:15:24" itemprop="dateCreated datePublished" datetime="2021-12-06T16:15:24+08:00">2021-12-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-09 14:22:14" itemprop="dateModified" datetime="2021-12-09T14:22:14+08:00">2021-12-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/canvas/" itemprop="url" rel="index"><span itemprop="name">canvas</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>18年的时候用phase.js框架开发了一年的游戏，其实也是基于canvas的，但是api更接近dom的操作，最近有时间来搞一下canvas。</p>
-</blockquote>
-<h2 id="保存状态save-restore"><a href="#保存状态save-restore" class="headerlink" title="保存状态save,restore"></a>保存状态<code>save</code>,<code>restore</code></h2><p><a href="">代码</a></p>
-<ul>
-<li><p>设想：当你给字体设置红色之后，想恢复默认颜色，你是否还需要在设置一次？答案是<code>否</code>,可以通过restore来恢复默认值</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">ctx.save(); <span class="comment">// 将当前状态放入栈中</span></span><br><span class="line"><span class="comment">// 代码一</span></span><br><span class="line">ctx.font = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.fillStyle = <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">ctx.fillText(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line"></span><br><span class="line">ctx.restore() <span class="comment">// 恢复到最近的保存状态的方法</span></span><br><span class="line">ctx.font = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.fillText(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>不光可以恢复颜色，translate等位移量也可以恢复。</p>
-</blockquote>
-</li>
-<li><p>也可以执行俩次<code>restore</code>，回归到<code>上上个状态</code>；</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx.save(); <span class="comment">// 将当前状态放入栈中</span></span><br><span class="line">ctx.font = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.fillStyle = <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">ctx.save(); <span class="comment">// 将当前状态放入栈中</span></span><br><span class="line">ctx.fillText(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">ctx.restore()</span><br><span class="line">ctx.restore()</span><br><span class="line">ctx.font = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.fillText(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="旋转偏移量-基点"><a href="#旋转偏移量-基点" class="headerlink" title="旋转偏移量-基点"></a>旋转偏移量-基点</h2><p><a href="">代码</a></p>
-<blockquote>
-<p>当我们做旋转动画的时候，肯定要知道是相对于哪一点旋转的，dom是默认自身中心点，而canvas是想对于<code>原始点</code>，可以通过translate改变原始点。（官网话术）</p>
-</blockquote>
-<ul>
-<li><p>虽然这么<code>说</code>其实在真正的编码中还会碰到很多其他问题，其实canvas编码顺序是很重要的，间接影响效果。</p>
-</li>
-<li><p>代码一先translate在rotate,基点相对于translate的点。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.fillStyle = <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">ctx.translate(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">ctx.rotate(<span class="number">20</span> * <span class="built_in">Math</span>.PI / <span class="number">180</span>);</span><br><span class="line">ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如图他的基点 - 每次旋转左上角都不会发生位移<br><img src="/images/origin01.png"></p>
-</blockquote>
-</li>
-<li><p>代码一先rotate在translate,基点相对于rotate之前的点。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx.restore(); <span class="comment">// 恢复到最近的保存状态的方法</span></span><br><span class="line">ctx.fillStyle = <span class="string">&#x27;green&#x27;</span>;</span><br><span class="line">ctx.rotate(<span class="number">20</span> * <span class="built_in">Math</span>.PI / <span class="number">180</span>);</span><br><span class="line">ctx.translate(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如图他的基点 - 每次旋转相对于左上角。<br><img src="/images/origin02.png"></p>
-</blockquote>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/06/canvas/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/02/eval-Function/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/02/eval-Function/" class="post-title-link" itemprop="url">eval() 与 new Function()</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-12-02 16:15:24 / Modified: 15:56:11" itemprop="dateCreated datePublished" datetime="2021-12-02T16:15:24+08:00">2021-12-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>俩者其实根本没有可比性，只不过都是将传入的字符串当做 JavaScript 代码进行执行。所以这篇文章并不会很长。</p>
-</blockquote>
-<h2 id="eval"><a href="#eval" class="headerlink" title="eval()"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval">eval()</a></h2><ul>
-<li>是否有这样需求，一个<code>&#39;function add(a,b) &#123;retrun a+b&#125;&#39;</code>字符串传递给你，让你执行里面的函数，<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后端返回 字符串函数</span></span><br><span class="line"><span class="keyword">let</span> addstr =  <span class="string">&#x27;function add(a,b) &#123;retrun a+b&#125;&#x27;</span></span><br><span class="line"><span class="built_in">eval</span>(addstr); <span class="comment">// 相当于生命函数add</span></span><br><span class="line">add(); <span class="comment">// 执行add函数</span></span><br></pre></td></tr></table></figure></li>
-<li>或者给你抛出一个变量<code>a = add</code>或 <code>a = sum</code>,<code>a</code>是可变的，分别执行add函数，或sum函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;我是a函数&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;我是b函数&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> funName = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="built_in">eval</span>(funName+<span class="string">&#x27;()&#x27;</span>) <span class="comment">// 字符串拼接成 =&gt; a();</span></span><br><span class="line"><span class="comment">// 或者 第二种</span></span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&#x27;(&#x27;</span>+funName+<span class="string">&#x27;)&#x27;</span>)(); </span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第二种大家可能不理解，为什么要加()</p>
-<ol>
-<li>字符串拼接后相当于执行了eval里面的<code>function a() &#123;console.log(&#39;我是a函数&#39;)&#125;</code></li>
-<li><code>function a() &#123;console.log(&#39;我是a函数&#39;)&#125;()</code>这样调用肯定报错，所以要在函数外面加一下<code>（）</code></li>
-<li><code>(function a() &#123;console.log(&#39;我是a函数&#39;)&#125;)()</code></li>
-</ol>
-</blockquote>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/12/02/eval-Function/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/30/type/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/30/type/" class="post-title-link" itemprop="url">隐式类型转换、原始值、引用值</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2021-11-30 14:30:24 / Modified: 17:09:08" itemprop="dateCreated datePublished" datetime="2021-11-30T14:30:24+08:00">2021-11-30</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><ul>
-<li>在 ECMAScript 中，变量可以存在两种类型的值，即<a href="(https://www.w3school.com.cn/js/pro_js_value.asp)">原始值</a>和<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/pro_js_value.asp">引用值</a>,<code>这里就不做过多解释了。</code></li>
-<li>原始值有<code>5种数据类型</code>，<strong>undefined</strong>、<strong>null</strong>、<strong>boolean</strong>、<strong>string</strong>、<strong>number</strong></li>
-<li>引用值有<code>俩种引用类型</code>，<strong>Object</strong>、<strong>Array</strong></li>
-</ul>
-<h2 id="valueOf-、toString-方法解析"><a href="#valueOf-、toString-方法解析" class="headerlink" title="valueOf()、toString()方法解析"></a>valueOf()、toString()方法解析</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf">valueOf()</a>、<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">toString()</a> : <code>返回值为该对象的原始值。</code></p>
-</li>
-<li><p>那么5中基本数据类型的原始值分别是什么呢?</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// null undefined 不存在原始值</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.valueOf()&#x27;</span>,a.valueOf()) <span class="comment">// 报错</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.toString()&#x27;</span>, a.toString()) <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">undefined</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.valueOf()&#x27;</span>,a.valueOf()) <span class="comment">// 报错</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.toString()&#x27;</span>, a.toString()) <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Number.valueOf()&#x27;</span>,c.valueOf())  <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Number.toString()&#x27;</span>, c.toString())  <span class="comment">// &#x27;123&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;12df&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;String.valueOf()&#x27;</span>,<span class="keyword">typeof</span> d.valueOf()) <span class="comment">// &#x27;12df&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;String.toString()&#x27;</span>, d.toString()) <span class="comment">// &#x27;12df&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="string">&#x27;fd&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Boolean.valueOf()&#x27;</span>, e.valueOf()) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Boolean.toString()&#x27;</span>, e.toString()) <span class="comment">// true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>由此可见除了<code>undefined</code>、<code>null</code>报错外，其他都返回自己本身。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="引用值转成原始值"><a href="#引用值转成原始值" class="headerlink" title="引用值转成原始值"></a>引用值转成原始值</h2><ul>
-<li><code>为什么</code>引用值要转成原始值呢？：因为在<code>隐式类型转换</code>的时候出现引用类型，javascript会吧<code>他</code>转成原始值进行<code>比较</code>。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.valueOf()&#x27;</span>,f.valueOf())  <span class="comment">// []</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.toString()&#x27;</span>, f.toString())  <span class="comment">// &#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.valueOf()&#x27;</span>,e.valueOf())  <span class="comment">// [3]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.toString()&#x27;</span>, e.toString())  <span class="comment">// &#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.valueOf()&#x27;</span>,g.valueOf())  <span class="comment">// [1, 2, 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.toString()&#x27;</span>, g.toString())  <span class="comment">// &#x27;1,2,3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> j = <span class="keyword">new</span> <span class="built_in">Object</span>(&#123;&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Object.valueOf()&#x27;</span>,j.valueOf())  <span class="comment">// &#123;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Object.toString()&#x27;</span>, j.toString())  <span class="comment">// &#x27;[object Object]&#x27;</span></span><br></pre></td></tr></table></figure></li>
-<li>大家可以发现规律<code>valueOf()</code>一般都返回自己本身，而<code>toString()</code>转成string比较傻帽，铺垫已做好那么开始看<strong>正题</strong>。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/30/type/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/26/js-animation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/26/js-animation/" class="post-title-link" itemprop="url">requestAnimationFrame</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-11-26 16:15:24" itemprop="dateCreated datePublished" datetime="2021-11-26T16:15:24+08:00">2021-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-28 16:27:16" itemprop="dateModified" datetime="2021-12-28T16:27:16+08:00">2021-12-28</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li>如图！当UI给如下雪碧图，需要我们实现<code>喇叭播放效果，并且可以控制播放暂停</code>,我们只需要不停切换雪碧图位置来实现动画播放效果。<br><img src="/images/ic_voice.png"></li>
-</ul>
-<h2 id="铺垫"><a href="#铺垫" class="headerlink" title="铺垫"></a>铺垫</h2><h3 id="生成精灵图JSON网址"><a href="#生成精灵图JSON网址" class="headerlink" title="生成精灵图JSON网址"></a>生成精灵图JSON网址</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.leshylabs.com/apps/sstool/">地址</a>良心网站，可以将我们雪碧图<code>尺寸大小、x,y位置</code>以json的格式返回给我们(如下！！！)</li>
-<li>是不是很惊喜，我们不需要在管ui要数据，不管给什么图我们只要生成json，然后读取数据值实现动画效果，2秒钟搞定动画。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;ic_voice&quot;</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;ic_voice_01&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>: <span class="number">60</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>: <span class="number">60</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;ic_voice_02&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: <span class="number">61</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>: <span class="number">60</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>: <span class="number">60</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;ic_voice_03&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: <span class="number">61</span>,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>: <span class="number">60</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>: <span class="number">60</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><ul>
-<li>大家的第一反应是用<code>setTimeout</code>实现每秒切换，但是在移动端部分手机会因为型号原因导致动画<code>卡屏</code>，所有用此方法<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame">requestAnimationFrame</a>可以完全避免卡顿问题，此函数的回调函数是在<code>浏览器下一次重绘之前执行</code>.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="keyword">function</span>(<span class="params">DOMHighResTimeStamp</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// callback methods</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
-<li><code>浏览器下一次重绘之前执行</code>此回调函数，默认传递参数<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp#compat-mobile">DOMHighResTimeStamp</a>,那么<code>DOMHighResTimeStamp</code>又是个什么鬼? 请继续往下看！！！</li>
-</ul>
-<h3 id="DOMHighResTimeStamp"><a href="#DOMHighResTimeStamp" class="headerlink" title="DOMHighResTimeStamp"></a>DOMHighResTimeStamp</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp#compat-mobile">DOMHighResTimeStamp</a>翻译成汉语：<font color="red">【dom高精度时间戳】</font>,既然是高精度肯定要比毫秒还要精准（微妙级别), 让我们疑惑的是为什么小数点之前只有5位，甚至可能只有俩位数。他跟获取时间戳不太相同，他是：<code>自创建上下文以来经过的时间</code><blockquote>
-<p>想要观察 doSomething方法执行了多久？</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> highTimeStamp1 = <span class="built_in">window</span>.performance.now() <span class="comment">// 21152.700000047684</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">111</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> highTimeStamp2 = <span class="built_in">window</span>.performance.now() <span class="comment">// 21152.700000047684</span></span><br><span class="line"><span class="comment">// Difference doSomething方法执行所用的时间。</span></span><br><span class="line"><span class="keyword">let</span> Difference = highTimeStamp2 - highTimeStamp1;</span><br></pre></td></tr></table></figure></li>
-<li>js里我们一般用最多的是毫秒级别， 1s = 1000毫秒， 秒的时间戳是10位，那么毫秒时间戳便是13位。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前时间戳</span></span><br><span class="line"><span class="keyword">let</span> timeStamp = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime(); <span class="comment">// 1637891606442</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/26/js-animation/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/22/download/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/11/22/download/" class="post-title-link" itemprop="url">资源下载</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-11-22 16:15:24" itemprop="dateCreated datePublished" datetime="2021-11-22T16:15:24+08:00">2021-11-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-24 11:35:46" itemprop="dateModified" datetime="2021-11-24T11:35:46+08:00">2021-11-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、下载逻辑"><a href="#一、下载逻辑" class="headerlink" title="一、下载逻辑"></a>一、下载逻辑</h2><p><font color="red">【先区分是请求方式】</font></p>
-<h3 id="1、get请求"><a href="#1、get请求" class="headerlink" title="1、get请求"></a>1、get请求</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接打开下载</span></span><br><span class="line"><span class="built_in">window</span>.open()</span><br></pre></td></tr></table></figure>
-<h3 id="2、post请求"><a href="#2、post请求" class="headerlink" title="2、post请求"></a>2、post请求</h3><ol>
-<li>若后端返回数据为<code>application/octet-stream格式</code></li>
-</ol>
-<ul>
-<li>application/octet-stream: 需要转成<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob">blob</a>对象，在通过<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL">createObjectURL</a>转成连接。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// res为后端返回的数据流</span></span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">&#x27;res&#x27;</span>],&#123;<span class="attr">type</span>:<span class="string">&#x27;application/vnd.ms-excel&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">var</span> link = URL.createObjectURL(blob)</span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>); <span class="comment">// 生成一个a元素</span></span><br><span class="line"><span class="keyword">let</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&quot;click&quot;</span>); <span class="comment">// 创建一个单击事件</span></span><br><span class="line">a.download = <span class="string">&quot;text.txt&quot;</span>; <span class="comment">// 设置图片名称</span></span><br><span class="line">a.href = link <span class="comment">// 将生成的URL设置为a.href属性</span></span><br><span class="line">a.dispatchEvent(event); <span class="comment">// 触发a的单击事件</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/22/download/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1146,20 +1265,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1191,7 +1310,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

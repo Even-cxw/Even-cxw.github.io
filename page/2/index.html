@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
+<meta name="generator" content="Hexo 5.4.2">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -118,17 +118,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">12</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">12</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories<span class="badge">16</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">17</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">24</span></a>
 
   </li>
   </ul>
@@ -154,6 +154,489 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/06/canvas/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/06/canvas/" class="post-title-link" itemprop="url">canvas</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-12-06 16:15:24" itemprop="dateCreated datePublished" datetime="2021-12-06T16:15:24+08:00">2021-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-05-16 17:43:55" itemprop="dateModified" datetime="2023-05-16T17:43:55+08:00">2023-05-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/canvas/" itemprop="url" rel="index"><span itemprop="name">canvas</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>18年的时候用phase.js框架开发了一年的游戏，其实也是基于canvas的，但是api更接近dom的操作，最近有时间来搞一下canvas。</p>
+</blockquote>
+<h2 id="保存状态save-restore"><a href="#保存状态save-restore" class="headerlink" title="保存状态save,restore"></a>保存状态<code>save</code>,<code>restore</code></h2><p><a href="">代码</a></p>
+<ul>
+<li><p>设想：当你给字体设置红色之后，想恢复默认颜色，你是否还需要在设置一次？答案是<code>否</code>,可以通过restore来恢复默认值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.<span class="title function_">getContext</span>(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">ctx.<span class="title function_">save</span>(); <span class="comment">// 将当前状态放入栈中</span></span><br><span class="line"><span class="comment">// 代码一</span></span><br><span class="line">ctx.<span class="property">font</span> = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.<span class="property">fillStyle</span> = <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">ctx.<span class="title function_">fillText</span>(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">    </span><br><span class="line">ctx.<span class="title function_">restore</span>() <span class="comment">// 恢复到最近的保存状态的方法</span></span><br><span class="line">ctx.<span class="property">font</span> = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.<span class="title function_">fillText</span>(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>不光可以恢复颜色，translate等位移量也可以恢复。</p>
+</blockquote>
+</li>
+<li><p>也可以执行俩次<code>restore</code>，回归到<code>上上个状态</code>；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">save</span>(); <span class="comment">// 将当前状态放入栈中</span></span><br><span class="line">ctx.<span class="property">font</span> = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.<span class="property">fillStyle</span> = <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">ctx.<span class="title function_">save</span>(); <span class="comment">// 将当前状态放入栈中</span></span><br><span class="line">ctx.<span class="title function_">fillText</span>(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br><span class="line">ctx.<span class="title function_">restore</span>()</span><br><span class="line">ctx.<span class="title function_">restore</span>()</span><br><span class="line">ctx.<span class="property">font</span> = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.<span class="title function_">fillText</span>(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="旋转偏移量-基点"><a href="#旋转偏移量-基点" class="headerlink" title="旋转偏移量-基点"></a>旋转偏移量-基点</h2><p><a href="">代码</a></p>
+<blockquote>
+<p>当我们做旋转动画的时候，肯定要知道是相对于哪一点旋转的，dom是默认自身中心点，而canvas是想对于<code>原始点</code>，可以通过translate改变原始点。（官网话术）</p>
+</blockquote>
+<ul>
+<li><p>虽然这么<code>说</code>其实在真正的编码中还会碰到很多其他问题，其实canvas编码顺序是很重要的，间接影响效果。</p>
+</li>
+<li><p>代码一先translate在rotate,基点相对于translate的点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="property">fillStyle</span> = <span class="string">&#x27;red&#x27;</span>;</span><br><span class="line">ctx.<span class="title function_">translate</span>(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">ctx.<span class="title function_">rotate</span>(<span class="number">20</span> * <span class="title class_">Math</span>.<span class="property">PI</span> / <span class="number">180</span>);</span><br><span class="line">ctx.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如图他的基点 - 每次旋转左上角都不会发生位移<br><img src="/images/origin01.png"></p>
+</blockquote>
+</li>
+<li><p>代码一先rotate在translate,基点相对于rotate之前的点。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ctx.<span class="title function_">restore</span>(); <span class="comment">// 恢复到最近的保存状态的方法</span></span><br><span class="line">ctx.<span class="property">fillStyle</span> = <span class="string">&#x27;green&#x27;</span>;</span><br><span class="line">ctx.<span class="title function_">rotate</span>(<span class="number">20</span> * <span class="title class_">Math</span>.<span class="property">PI</span> / <span class="number">180</span>);</span><br><span class="line">ctx.<span class="title function_">translate</span>(<span class="number">20</span>, <span class="number">20</span>);</span><br><span class="line">ctx.<span class="title function_">fillRect</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">50</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如图他的基点 - 每次旋转相对于左上角。<br><img src="/images/origin02.png"></p>
+</blockquote>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/06/canvas/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/12/02/eval-Function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/02/eval-Function/" class="post-title-link" itemprop="url">eval() 与 new Function()</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-12-02 16:15:24 / Modified: 15:56:11" itemprop="dateCreated datePublished" datetime="2021-12-02T16:15:24+08:00">2021-12-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>俩者其实根本没有可比性，只不过都是将传入的字符串当做 JavaScript 代码进行执行。所以这篇文章并不会很长。</p>
+</blockquote>
+<h2 id="eval"><a href="#eval" class="headerlink" title="eval()"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/eval">eval()</a></h2><ul>
+<li>是否有这样需求，一个<code>&#39;function add(a,b) &#123;retrun a+b&#125;&#39;</code>字符串传递给你，让你执行里面的函数，<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 后端返回 字符串函数</span></span><br><span class="line"><span class="keyword">let</span> addstr =  <span class="string">&#x27;function add(a,b) &#123;retrun a+b&#125;&#x27;</span></span><br><span class="line"><span class="built_in">eval</span>(addstr); <span class="comment">// 相当于生命函数add</span></span><br><span class="line">add(); <span class="comment">// 执行add函数</span></span><br></pre></td></tr></table></figure></li>
+<li>或者给你抛出一个变量<code>a = add</code>或 <code>a = sum</code>,<code>a</code>是可变的，分别执行add函数，或sum函数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;我是a函数&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;我是b函数&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> funName = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line"><span class="built_in">eval</span>(funName+<span class="string">&#x27;()&#x27;</span>) <span class="comment">// 字符串拼接成 =&gt; a();</span></span><br><span class="line"><span class="comment">// 或者 第二种</span></span><br><span class="line"><span class="built_in">eval</span>(<span class="string">&#x27;(&#x27;</span>+funName+<span class="string">&#x27;)&#x27;</span>)(); </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第二种大家可能不理解，为什么要加()</p>
+<ol>
+<li>字符串拼接后相当于执行了eval里面的<code>function a() &#123;console.log(&#39;我是a函数&#39;)&#125;</code></li>
+<li><code>function a() &#123;console.log(&#39;我是a函数&#39;)&#125;()</code>这样调用肯定报错，所以要在函数外面加一下<code>（）</code></li>
+<li><code>(function a() &#123;console.log(&#39;我是a函数&#39;)&#125;)()</code></li>
+</ol>
+</blockquote>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/02/eval-Function/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/30/type/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/30/type/" class="post-title-link" itemprop="url">隐式类型转换、原始值、引用值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-11-30 14:30:24 / Modified: 17:09:08" itemprop="dateCreated datePublished" datetime="2021-11-30T14:30:24+08:00">2021-11-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="原始值"><a href="#原始值" class="headerlink" title="原始值"></a>原始值</h2><ul>
+<li>在 ECMAScript 中，变量可以存在两种类型的值，即<a href="(https://www.w3school.com.cn/js/pro_js_value.asp)">原始值</a>和<a target="_blank" rel="noopener" href="https://www.w3school.com.cn/js/pro_js_value.asp">引用值</a>,<code>这里就不做过多解释了。</code></li>
+<li>原始值有<code>5种数据类型</code>，<strong>undefined</strong>、<strong>null</strong>、<strong>boolean</strong>、<strong>string</strong>、<strong>number</strong></li>
+<li>引用值有<code>俩种引用类型</code>，<strong>Object</strong>、<strong>Array</strong></li>
+</ul>
+<h2 id="valueOf-、toString-方法解析"><a href="#valueOf-、toString-方法解析" class="headerlink" title="valueOf()、toString()方法解析"></a>valueOf()、toString()方法解析</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/valueOf">valueOf()</a>、<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">toString()</a> : <code>返回值为该对象的原始值。</code></p>
+</li>
+<li><p>那么5中基本数据类型的原始值分别是什么呢?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// null undefined 不存在原始值</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.valueOf()&#x27;</span>,a.valueOf()) <span class="comment">// 报错</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.toString()&#x27;</span>, a.toString()) <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">undefined</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.valueOf()&#x27;</span>,a.valueOf()) <span class="comment">// 报错</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;a.toString()&#x27;</span>, a.toString()) <span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="string">&#x27;123&#x27;</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Number.valueOf()&#x27;</span>,c.valueOf())  <span class="comment">// 123</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Number.toString()&#x27;</span>, c.toString())  <span class="comment">// &#x27;123&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">&#x27;12df&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;String.valueOf()&#x27;</span>,<span class="keyword">typeof</span> d.valueOf()) <span class="comment">// &#x27;12df&#x27;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;String.toString()&#x27;</span>, d.toString()) <span class="comment">// &#x27;12df&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Boolean</span>(<span class="string">&#x27;fd&#x27;</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Boolean.valueOf()&#x27;</span>, e.valueOf()) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Boolean.toString()&#x27;</span>, e.toString()) <span class="comment">// true</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>由此可见除了<code>undefined</code>、<code>null</code>报错外，其他都返回自己本身。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="引用值转成原始值"><a href="#引用值转成原始值" class="headerlink" title="引用值转成原始值"></a>引用值转成原始值</h2><ul>
+<li><code>为什么</code>引用值要转成原始值呢？：因为在<code>隐式类型转换</code>的时候出现引用类型，javascript会吧<code>他</code>转成原始值进行<code>比较</code>。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.valueOf()&#x27;</span>,f.valueOf())  <span class="comment">// []</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.toString()&#x27;</span>, f.toString())  <span class="comment">// &#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.valueOf()&#x27;</span>,e.valueOf())  <span class="comment">// [3]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.toString()&#x27;</span>, e.toString())  <span class="comment">// &#x27;3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.valueOf()&#x27;</span>,g.valueOf())  <span class="comment">// [1, 2, 3]</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Array.toString()&#x27;</span>, g.toString())  <span class="comment">// &#x27;1,2,3&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> j = <span class="keyword">new</span> <span class="built_in">Object</span>(&#123;&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Object.valueOf()&#x27;</span>,j.valueOf())  <span class="comment">// &#123;&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&#x27;Object.toString()&#x27;</span>, j.toString())  <span class="comment">// &#x27;[object Object]&#x27;</span></span><br></pre></td></tr></table></figure></li>
+<li>大家可以发现规律<code>valueOf()</code>一般都返回自己本身，而<code>toString()</code>转成string比较傻帽，铺垫已做好那么开始看<strong>正题</strong>。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/30/type/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/26/js-animation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/26/js-animation/" class="post-title-link" itemprop="url">requestAnimationFrame</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-26 16:15:24" itemprop="dateCreated datePublished" datetime="2021-11-26T16:15:24+08:00">2021-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-12-28 16:27:16" itemprop="dateModified" datetime="2021-12-28T16:27:16+08:00">2021-12-28</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li>如图！当UI给如下雪碧图，需要我们实现<code>喇叭播放效果，并且可以控制播放暂停</code>,我们只需要不停切换雪碧图位置来实现动画播放效果。<br><img src="/images/ic_voice.png"></li>
+</ul>
+<h2 id="铺垫"><a href="#铺垫" class="headerlink" title="铺垫"></a>铺垫</h2><h3 id="生成精灵图JSON网址"><a href="#生成精灵图JSON网址" class="headerlink" title="生成精灵图JSON网址"></a>生成精灵图JSON网址</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.leshylabs.com/apps/sstool/">地址</a>良心网站，可以将我们雪碧图<code>尺寸大小、x,y位置</code>以json的格式返回给我们(如下！！！)</li>
+<li>是不是很惊喜，我们不需要在管ui要数据，不管给什么图我们只要生成json，然后读取数据值实现动画效果，2秒钟搞定动画。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;ic_voice&quot;</span>: [</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;ic_voice_01&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>: <span class="number">60</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>: <span class="number">60</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;ic_voice_02&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: <span class="number">61</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>: <span class="number">60</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>: <span class="number">60</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;ic_voice_03&quot;</span>,</span><br><span class="line">    <span class="string">&quot;x&quot;</span>: <span class="number">61</span>,</span><br><span class="line">    <span class="string">&quot;y&quot;</span>: <span class="number">0</span>,</span><br><span class="line">    <span class="string">&quot;width&quot;</span>: <span class="number">60</span>,</span><br><span class="line">    <span class="string">&quot;height&quot;</span>: <span class="number">60</span></span><br><span class="line">  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="requestAnimationFrame"><a href="#requestAnimationFrame" class="headerlink" title="requestAnimationFrame"></a>requestAnimationFrame</h3><ul>
+<li>大家的第一反应是用<code>setTimeout</code>实现每秒切换，但是在移动端部分手机会因为型号原因导致动画<code>卡屏</code>，所有用此方法<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame">requestAnimationFrame</a>可以完全避免卡顿问题，此函数的回调函数是在<code>浏览器下一次重绘之前执行</code>.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.requestAnimationFrame(<span class="function"><span class="keyword">function</span>(<span class="params">DOMHighResTimeStamp</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// callback methods</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></li>
+<li><code>浏览器下一次重绘之前执行</code>此回调函数，默认传递参数<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp#compat-mobile">DOMHighResTimeStamp</a>,那么<code>DOMHighResTimeStamp</code>又是个什么鬼? 请继续往下看！！！</li>
+</ul>
+<h3 id="DOMHighResTimeStamp"><a href="#DOMHighResTimeStamp" class="headerlink" title="DOMHighResTimeStamp"></a>DOMHighResTimeStamp</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMHighResTimeStamp#compat-mobile">DOMHighResTimeStamp</a>翻译成汉语：<font color="red">【dom高精度时间戳】</font>,既然是高精度肯定要比毫秒还要精准（微妙级别), 让我们疑惑的是为什么小数点之前只有5位，甚至可能只有俩位数。他跟获取时间戳不太相同，他是：<code>自创建上下文以来经过的时间</code><blockquote>
+<p>想要观察 doSomething方法执行了多久？</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> highTimeStamp1 = <span class="built_in">window</span>.performance.now() <span class="comment">// 21152.700000047684</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomething</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">111</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> highTimeStamp2 = <span class="built_in">window</span>.performance.now() <span class="comment">// 21152.700000047684</span></span><br><span class="line"><span class="comment">// Difference doSomething方法执行所用的时间。</span></span><br><span class="line"><span class="keyword">let</span> Difference = highTimeStamp2 - highTimeStamp1;</span><br></pre></td></tr></table></figure></li>
+<li>js里我们一般用最多的是毫秒级别， 1s = 1000毫秒， 秒的时间戳是10位，那么毫秒时间戳便是13位。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前时间戳</span></span><br><span class="line"><span class="keyword">let</span> timeStamp = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime(); <span class="comment">// 1637891606442</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/26/js-animation/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2021/11/22/download/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="爱一切">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even小屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/22/download/" class="post-title-link" itemprop="url">资源下载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-11-22 16:15:24" itemprop="dateCreated datePublished" datetime="2021-11-22T16:15:24+08:00">2021-11-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2022-06-27 10:12:54" itemprop="dateModified" datetime="2022-06-27T10:12:54+08:00">2022-06-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index"><span itemprop="name">javascript</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、下载逻辑"><a href="#一、下载逻辑" class="headerlink" title="一、下载逻辑"></a>一、下载逻辑</h2><p><font color="red">【先区分是请求方式】</font></p>
+<h3 id="1、get请求"><a href="#1、get请求" class="headerlink" title="1、get请求"></a>1、get请求</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 直接打开下载</span></span><br><span class="line"><span class="built_in">window</span>.open()</span><br></pre></td></tr></table></figure>
+<h3 id="2、post请求"><a href="#2、post请求" class="headerlink" title="2、post请求"></a>2、post请求</h3><ol>
+<li>若后端返回数据为<code>application/octet-stream格式</code></li>
+</ol>
+<ul>
+<li>application/octet-stream: 需要转成<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob/Blob">blob</a>对象，在通过<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL">createObjectURL</a>转成连接。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// res为后端返回的数据流</span></span><br><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([<span class="string">&#x27;res&#x27;</span>],&#123;<span class="attr">type</span>:<span class="string">&#x27;application/vnd.ms-excel&#x27;</span>&#125;)</span><br><span class="line"><span class="keyword">var</span> link = URL.createObjectURL(blob)</span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>); <span class="comment">// 生成一个a元素</span></span><br><span class="line"><span class="keyword">let</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">&quot;click&quot;</span>); <span class="comment">// 创建一个单击事件</span></span><br><span class="line">a.download = <span class="string">&quot;text.txt&quot;</span>; <span class="comment">// 设置图片名称</span></span><br><span class="line">a.href = link <span class="comment">// 将生成的URL设置为a.href属性</span></span><br><span class="line">a.dispatchEvent(event); <span class="comment">// 触发a的单击事件</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/22/download/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -487,7 +970,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 12:08:03" itemprop="dateModified" datetime="2022-04-25T12:08:03+08:00">2022-04-25</time>
+                <time title="Modified: 2022-11-21 17:03:11" itemprop="dateModified" datetime="2022-11-21T17:03:11+08:00">2022-11-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -510,25 +993,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="nvm常用命令"><a href="#nvm常用命令" class="headerlink" title="nvm常用命令"></a>nvm常用命令</h1><hr>
-<ul>
-<li><p>切换成默认版本 <code>nvm alias default v12.7.0</code></p>
-</li>
-<li><p>下载指定版本node <code>nvm install v12.7.0</code></p>
-</li>
-<li><p>nvm install报错 <code>could not retrieve</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 解决办法</span></span><br><span class="line"><span class="comment">// 找到nvm配置目录 、settings.text文件，添加如下配置</span></span><br><span class="line"><span class="attr">node_mirror</span>:npm.taobao.org/mirrors/node/</span><br><span class="line">npm_mirror:npm.taobao.org/mirrors/npm/</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="cnpm安装"><a href="#cnpm安装" class="headerlink" title="cnpm安装"></a>cnpm安装</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https:<span class="comment">//registry.npm.taobao.org</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>替换淘宝镜像<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 命令</span></span><br><span class="line">npm config set registry https:<span class="comment">//registry.npm.taobao.org</span></span><br><span class="line">npm config set disturl https:<span class="comment">//npm.taobao.org/dist</span></span><br><span class="line"><span class="comment">// 查看是否成功</span></span><br><span class="line">npm config get registry</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="yarn安装"><a href="#yarn安装" class="headerlink" title="yarn安装"></a>yarn安装</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下载yarn</span></span><br><span class="line">npm isntall yarn -g</span><br><span class="line"><span class="comment">// 查看版本</span></span><br><span class="line">yarn --version</span><br><span class="line"><span class="comment">// yarn 设置淘宝镜像</span></span><br><span class="line">yarn config set registry https:<span class="comment">//registry.npm.taobao.org/</span></span><br><span class="line">yarn config set disturl https:<span class="comment">//npm.taobao.org/dist</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>yarn命令<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下载依赖</span></span><br><span class="line">yarn add 包名</span><br><span class="line"><span class="comment">// 移除依赖</span></span><br><span class="line">yarn remove 包名</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="vscode配置"><a href="#vscode配置" class="headerlink" title="vscode配置"></a>vscode配置</h1><hr>
+          <h1 id="vscode配置"><a href="#vscode配置" class="headerlink" title="vscode配置"></a>vscode配置</h1><hr>
 <ul>
 <li><p>vscode下载</p>
 </li>
@@ -600,7 +1065,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-11-17 14:06:05" itemprop="dateModified" datetime="2021-11-17T14:06:05+08:00">2021-11-17</time>
+                <time title="Modified: 2023-01-06 13:37:06" itemprop="dateModified" datetime="2023-01-06T13:37:06+08:00">2023-01-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -624,175 +1089,11 @@
 
       
           <ul>
-<li>mac截图快捷键 <code>command + shift + 5</code></li>
+<li><p>mac截图快捷键 <code>command + shift + 5</code></p>
+</li>
+<li></li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2019/01/25/react/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/25/react/" class="post-title-link" itemprop="url">react</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-01-25 16:15:24" itemprop="dateCreated datePublished" datetime="2019-01-25T16:15:24+08:00">2019-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 12:08:03" itemprop="dateModified" datetime="2022-04-25T12:08:03+08:00">2022-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="https://even-cxw.github.io/2018/11/16/document/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Even">
-      <meta itemprop="description" content="爱一切">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Even小屋">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/16/document/" class="post-title-link" itemprop="url">文档</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-11-16 14:30:24" itemprop="dateCreated datePublished" datetime="2018-11-16T14:30:24+08:00">2018-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-04-25 12:08:03" itemprop="dateModified" datetime="2022-04-25T12:08:03+08:00">2022-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%96%87%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">文档</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h4><ul>
-<li><a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/basic-types.html">TS文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/">TS英文版文档</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.axios-js.com/zh-cn/docs/">axios文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://wendux.github.io/dist/#/doc/flyio/engine">fly文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://postcss.org/">postcss文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://docs.npmjs.com/">npm文档</a></li>
-<li><a target="_blank" rel="noopener" href="http://momentjs.cn/docs/#/manipulating/">moment时间文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/">MDN手册</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.lodashjs.com/">lodash.js操作文档</a></li>
-<li><a target="_blank" rel="noopener" href="https://lbs.amap.com/api/javascript-api/reference/map/">高德地图文档</a></li>
-</ul>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/11/16/document/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -810,7 +1111,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -876,20 +1177,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -921,7 +1222,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
