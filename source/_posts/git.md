@@ -6,6 +6,30 @@ tags: [git]
 comments: false
 ---
 
+# 代码回归
+- 指针回滚
+```js
+git reset --soft HEAD~1  # 回退到前一个提交，保留更改
+git reset --mixed HEAD~1  # 回退到前一个提交，保留更改但不在暂存区
+git reset --hard HEAD~1  # 回退到前一个提交，丢弃所有更改
+```
+
+- 代码回滚并创建提交记录
+```js
+git revert <commit-SHA>  # 撤销特定提交的更改并创建新提交
+```
+
+## 场景
+- 想要会退到包含`测试git3`代码如何实践.
+```
+7000543 HEAD@{11}: commit: 测试git5
+b43209f HEAD@{12}: commit: 测试git4
+38072e1 HEAD@{13}: commit: 测试git3
+0089eaa HEAD@{14}: commit: 测试git2
+bde05f9 HEAD@{15}: commit: 测试git1
+```
+- `git revert b43209f` 
+
 
 # git基本命令
 1. 删除分支 `git branch -d ""`
@@ -179,14 +203,3 @@ $
 ```
 
 
-
-## 回滚代码
-```js
-git reset --hard '版本号'
-
-```
-
-## 回滚后强制提交
-```js
-git push -f origin ’分支名‘
-```

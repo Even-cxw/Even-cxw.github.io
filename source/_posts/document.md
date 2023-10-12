@@ -101,7 +101,7 @@ comments: false
 - [mobx-react:个人博客](https://juejin.cn/post/6906393905558880264)
 - [use-react官网](https://gitcode.net/mirrors/streamich/react-use?utm_source=csdn_github_accelerator)
 - [styled-components英文版](https://styled-components.com/docs/advanced#theming)
-- [react-router-dom官网]https://v5.reactrouter.com/web/api/BrowserRouter/basename-string)
+- [react-router-dom官网](https://v5.reactrouter.com/web/api/BrowserRouter/basename-string)
 - [react-router-dom-v6版本](https://github.com/remix-run/react-router/blob/main/docs/getting-started/tutorial.md)
 - [dva-git官网](https://github.com/dvajs/dva-docs/tree/master/v1/zh-cn/tutorial)
 - [dva.js官网](https://dvajs.com/)
@@ -122,7 +122,7 @@ comments: false
 - [react-media](https://www.npmjs.com/package/react-media)
 - [react-container-query](https://www.npmjs.com/package/react-container-query)
 - [react-组件](https://github.com/react-component)
-
+- [echarts-for-reac文档](https://git.hust.cc/echarts-for-react/)
 #### UI文档
 - [vant-ui](https://youzan.github.io/vant/#/zh-CN/quickstart)   
 - [element-ui](https://element.eleme.cn/#/zh-CN/component/layout)
