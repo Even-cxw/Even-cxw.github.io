@@ -17,9 +17,21 @@ comments: false
 - [MDN手册](https://developer.mozilla.org/zh-CN/)
 - [lodash.js操作文档](https://www.lodashjs.com/)
 - [高德地图文档](https://lbs.amap.com/api/javascript-api/reference/map/)
-- [react-native官网](https://reactnative.cn/)
 
 <!-- more -->   
+- [react-native官网](https://reactnative.cn/)
+- [react-native-element官网](https://reactnativeelements.com/docs)
+- [react-navitation导航](https://reactnavigation.org/)
+- [expo项目管理](https://expo.dev/accounts/evendetail)
+- [expo中文文档](https://github.com/1556173267/expo-document-chinese-translation/tree/master)
+- [expo英文官网](https://docs.expo.dev/)
+- [bundletool文档](https://developer.android.google.cn/studio/command-line/bundletool?hl=zh-cn)
+- [bundletool如何上传应用](https://developer.android.google.cn/studio/publish/upload-bundle?hl=zh-cn)
+
+```
+./bundletool build-apks --bundle=/Users/even/Documents/app/application-e6205b95-ed5f-439f-8600-0b6f6b4dade3.aab --output=/Users/even/Documents/app/Even.apks
+```
+
 - [vue2升级vue3官网](https://gogocode.io/zh/docs/vue/element-ui-to-element-plus)
 - [mongodb文档](https://www.mongodb.org.cn/)
 - [node-fetch文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Fetch_API/Using_Fetch)
@@ -85,7 +97,7 @@ comments: false
 - [vue3文档](https://vue3js.cn/docs/zh/guide/migration/introduction.html)
 - [vuex文档](https://vuex.vuejs.org/zh/)
 - [vue Cli](https://cli.vuejs.org/zh/guide/webpack.html)
-- [vite](https://vitejs.cn/guide/)
+- [vite](https://vitejs.cn/guide/)　
 - [vue-router官网](https://router.vuejs.org/zh/api/)
 - [vue-ssr官方文档](https://ssr.vuejs.org/zh/)
 - [vue-loader起步](https://vue-loader.vuejs.org/zh/)
