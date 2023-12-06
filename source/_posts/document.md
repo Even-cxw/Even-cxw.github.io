@@ -25,12 +25,12 @@ comments: false
 - [expo项目管理](https://expo.dev/accounts/evendetail)
 - [expo中文文档](https://github.com/1556173267/expo-document-chinese-translation/tree/master)
 - [expo英文官网](https://docs.expo.dev/)
+- [expo-gitHub`讲解`](https://github.com/expo/fyi)
 - [bundletool文档](https://developer.android.google.cn/studio/command-line/bundletool?hl=zh-cn)
 - [bundletool如何上传应用](https://developer.android.google.cn/studio/publish/upload-bundle?hl=zh-cn)
+- [android-studio`adb介绍`](https://developer.android.com/studio/command-line/adb?hl=zh-cn)
 
-```
-./bundletool build-apks --bundle=/Users/even/Documents/app/application-e6205b95-ed5f-439f-8600-0b6f6b4dade3.aab --output=/Users/even/Documents/app/Even.apks
-```
+- [faceBook开发者文档](https://developers.facebook.com/)
 
 - [vue2升级vue3官网](https://gogocode.io/zh/docs/vue/element-ui-to-element-plus)
 - [mongodb文档](https://www.mongodb.org.cn/)
@@ -82,6 +82,7 @@ comments: false
 - [docker中文文档](https://www.coonote.com/docker/docker-tutorial.html)
 - [ppChart](http://ppchart.com/#/)
 - [动画animation](https://daneden.github.io/animate.css/)
+- [tailwindcss](https://www.tailwindcss.cn/)
 
 #### 微信文档
 - [微信公众号订阅](https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/Wechat_Open_Tag.html#23)
@@ -122,7 +123,7 @@ comments: false
 - [react-media](https://www.npmjs.com/package/react-media)
 - [react-container-query](https://github.com/react-container-query/react-container-query)
 - [classname:个人博客](https://www.jianshu.com/p/1125e9848af6)
-- [react-hooks](https://react.docschina.org/docs/hooks-intro.html)
+- [react-hooks](https://zh-hans.react.dev/reference/react/hooks)
 - [ahooks](https://ahooks.js.org/zh-CN/hooks/use-request/index)
 - [使用useState注意的5个问题](http://www.bryh.cn/a/58683.html)
 ##### react项目相关
@@ -161,11 +162,9 @@ comments: false
 - [滚动元素图解](https://www.jianshu.com/p/d267456ebc0d)
 
 #### 插件文档
-- [tweenmax插件文档](https://www.tweenmax.com.cn/api/timelinemax/) 
+- [tweenmax插件文档](https://www.tweenmax.com.cn/api/timelinemax/)
 - [简单日历开发-插件](https://github.com/zwhGithub/vue-calendar)
 - [日历开发文档](https://github.com/Hzy0913/mpvue-calendar)
-
-
 
 #### 工具
 - [正则表达式图解工具](https://regexper.com/)

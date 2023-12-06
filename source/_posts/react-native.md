@@ -28,14 +28,11 @@ comments: false
 
 
 ### mac hundletool工具
-1. brew install hundletool
+- brew install hundletool
 
 - hundletool version查看报错 `没有找到java路径`
-```s
-# 输出如下 - 
-/Users/even/Library/Android/bundletool/@@HOMEBREW_JAVA@@/bin/java: No such file or directory
-/opt/homebrew/bin/bundletool: line 3: exec: /Users/even/Library/Android/bundletool/@@HOMEBREW_JAVA@@/bin/java: cannot execute: No such file or directory
-```
+报错如下
+> /Users/even/Library/Android/bundletool/`@@HOMEBREW_JAVA@@/bin/java`: No such file or directory /opt/homebrew/bin/bundletool: line 3: exec: /Users/even/Library/Android/bundletool/@@HOMEBREW_JAVA@@/bin/java: cannot execute: No such file or directory
 
 > 问题排查：查看java是否存在
 - `java -version` 查看java版本
@@ -47,28 +44,14 @@ OpenJDK 64-Bit Server VM Zulu11.66+19-CA (build 11.0.20.1+1-LTS, mixed mode)
 ```
 
 - `/usr/libexec/java_home -v 11` 查看java11路径
-```
-# 11路径如下
+```js
+// 路径如下
 /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 ```
 - `export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"` 设置java路径
 
 
-2. hundletool使用
-- 将abb转成apk
-```s
-bundletool build-apks --bundle=/Users/even/Documents/app/application-e6205b95-ed5f-439f-8600-0b6f6b4dade3.aab --output=/Users/even/Documents/app/Even.apks
-```
-
-```s
-bundletool install-apks --apks=/Users/even/Documents/app/Even.apks --output-dir=/Users/even/Documents
-
-bundletool install-apks --apks=path_to_output_directory/output.apks --output-dir=build
-bundletool install-apks --apks=/Users/even/Documents/app/Even.apks  --output-dir build
-
-/var/folders/j5/3s02cvh54hbbqs9yxfvzk06h0000gn/T/3777498629724160818
-
-adb install /Users/even/Documents/app/Even.apks
-adb install-multiple /Users/even/Documents/app/Even.apks
-
-```
+- hundletool使用
+1. 将abb转成apk命令
+`bundletool build-apks --bundle=./Eccom1.aab --output=./apks/Eccom1.apks --mode=universal`
+2. 将生成的apks文件改成后缀`zip`并解压
