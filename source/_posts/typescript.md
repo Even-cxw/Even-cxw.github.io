@@ -8,7 +8,7 @@ comments: false
 
 ## 基本数据类型
 
-- number数字类型
+### number数字类型
 ```ts
 // js写法
 let num = 20;
@@ -17,18 +17,18 @@ num = 23;
 let num: number = 25
 ```
 
-- boolean布尔类型
+### boolean布尔类型
 ```ts
 // boolean
 let isLogin:boolean = true;
 ```
 
-- string字符串类型
+### string字符串类型
 ```ts
 let name:string = 'Even'
 ```
 
-- null undefined类型
+### null undefined类型
 ```ts
 let a:null = null;
 let b:undefined = undefined;
@@ -38,7 +38,7 @@ let b:undefined = undefined;
 
 ## 引用数据类型
 
-- 数组类型
+### 数组类型
 ```ts
 // 三种书写方法
 let names01:Array<String> = ['hello'];
@@ -47,20 +47,90 @@ let name03:any[] = ['hello']
 
 // 元组 - 确切知道数组里每个值的类型
 let colors: [String,Number] = ['hell',12];
+```
 
-// 枚举
+### 枚举
+1. 数字枚举 `数字枚举的成员从 0 开始，依次递增。`
+```ts
 enum Color {
   number,
   yellow,
   red,
 }
-let myColor:Color = Color.red; // 获取角标
+let myColor:Color = Color.red; // 获取角标  2
 let myColorVal:String = Color[myColor]; // 获取值
 console.log(myColor);
 console.log(myColorVal);
 ```
 
-- 对象类型
+- 应用场景 (代替魔法数值)
+
+```ts
+enum Direction {
+  Up,
+  Down,
+  Left,
+  Right,
+}
+function move(direction: Direction) {
+  // ...
+}
+move(Direction.Up);
+```
+
+2. 字符串枚举 `更具有可读性`
+```ts
+// 枚举作为接口使用
+enum Color {
+  Red = 'RED',
+  Green = 'GREEN',
+  Blue = 'BLUE',
+}
+let color: Color = Color.Red;
+```
+
+- `let color: typeof Color` 与 `let color: keyof typeof Color;` 区别
+```ts
+let color: typeof Color
+color = Color.Red;    // 合法
+color = Color.Green;  // 合法
+color = Color.Blue;   // 合法
+```
+
+```ts
+let color: keyof typeof Color
+color = 'Red';    // 合法
+color = 'Green';  // 合法
+color = 'Blue';   // 合法
+
+color = Color.Red;    // 不合法，类型不匹配
+color = Color.Green;  // 不合法，类型不匹配
+color = Color.Blue;   // 不合法，类型不匹配
+
+```
+
+- 应用场景 如下！
+
+```ts
+export enum ValueType {
+  number = 'number',
+  string = 'string',
+  time = 'time',
+}
+
+export type FieldValueType = keyof typeof ValueType
+
+export interface DistinctField {
+  name: string
+  valueType: FieldValueType
+  /**
+   * 是否选中
+   */
+  status: boolean
+}
+```
+
+### 对象类型
 ```ts
 let dataObj:{age:number, name:String} = {
   age: 12,
