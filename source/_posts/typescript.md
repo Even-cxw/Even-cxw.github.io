@@ -172,6 +172,7 @@ logger('金色小芝麻')
 
 ### record记录
 - 可以简化代码
+> ，Record 是一个泛型工具类型，用于创建一个对象类型，其中包含指定属性的键值对。
 ```ts
 type studentScore = { [ name:string]:number }
 // 也可以用Record简化
@@ -415,4 +416,86 @@ const inputRef = useRef<HTMLEInputlement>(null);
 // 定义了输入框，初始化是null，但是你在调用他的时候相取输入框的value，这时候dom实例一定是有值的，所以用断言
 const value: string = inputRef.current!.value;
 // 这样就不会报错了
+```
+
+## Antd接口
+
+- table中`columns`- `ColumnsType`接口
+
+```ts
+import { ColumnsType } from 'antd/lib/table'
+type IList = {
+  id: number,
+  title: string
+}
+
+let columns:ColumnsType<IList> = useMemo(() => {
+  return [
+    {title: 'ID', dataIndex: 'id'},
+    {title: '任务名称', dataIndex: 'title'}
+  ]
+})
+```
+
+- table中`columns`- `ColumnProps`接口
+
+```ts
+import React from 'react';
+import { Table, ColumnProps } from 'antd';
+
+// Define the data type for your rows
+interface RowData {
+  key: string;
+  name: string;
+  age: number;
+  address: string;
+}
+
+// Define your columns
+const columns: ColumnProps<RowData>[] = [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    // You can add additional properties like sorter, render, etc.
+  },
+  {
+    title: 'Age',
+    dataIndex: 'age',
+    key: 'age',
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    key: 'address',
+  },
+];
+```
+
+- table中 `pagination` - `TablePaginationConfig`接口
+```ts
+import { TablePaginationConfig } from 'antd/es/table';
+const handleTableChange = (pagination:TablePaginationConfig, filters, sorter) => {
+  const {pageSize, current} = pagination;
+  setQueryParams({})
+  apiFetch({limit:pageSize, page: current})
+};
+```
+
+- `useRef` 一般在组件中使用
+
+```ts
+// 定义接口
+type ILogmodalRef = {
+  changeOpen: (newVal:boolean, record:ICollectionList) => void;
+}
+// 定义变量
+const logModalRef = useRef<ILogmodalRef>(null);
+//定义方法
+const lookLog = useCallback((record: ICollectionList) => {
+  logModalRef.current?.changeOpen(true, {opraType: 'look',...record});
+}, [])
+// 在组件中使用
+// <LogModal ref={logModalRef}/>
+
 ```
